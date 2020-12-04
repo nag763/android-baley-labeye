@@ -45,6 +45,32 @@ allprojects {
             }
         }
     }
+
+    task pmd(type: Pmd) {
+        consoleOutput = true
+        rulePriority = 5
+        ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+        ignoreFailures = true
+        // empty classpath
+        classpath = files()
+
+        reports {
+            xml.enabled true
+            xml {
+                destination file("../reports/pmd/pmd-report.xml") // this is okay
+            }
+            html.enabled true
+            html {
+                destination file("../reports/pmd/pmd-report.html")
+            }
+        }
+    }
 }
 
 task clean(type: Delete) {
