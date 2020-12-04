@@ -4,6 +4,7 @@ buildscript {
         google()
         jcenter()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
 
@@ -18,6 +19,57 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+
+    task checkstyle(type: Checkstyle) {
+        showViolations = true
+        configFile file("../config/checkstyle/checkstyle.xml")
+
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+        ignoreFailures = true
+        // empty classpath
+        classpath = files()
+
+        reports {
+            xml.enabled true
+            xml {
+                destination file("../reports/checkstyle/checkstyle-report.xml") // this is okay
+            }
+            html.enabled true
+            html {
+                destination file("../reports/checkstyle/checkstyle-report.html")
+            }
+        }
+    }
+
+    task pmd(type: Pmd) {
+        consoleOutput = true
+        rulePriority = 5
+        ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+
+        source 'src/main/java'
+        include '**/*.java'
+        exclude '**/gen/**'
+        exclude '**/R.java'
+        exclude '**/BuildConfig.java'
+        ignoreFailures = true
+        // empty classpath
+        classpath = files()
+
+        reports {
+            xml.enabled true
+            xml {
+                destination file("../reports/pmd/pmd-report.xml") // this is okay
+            }
+            html.enabled true
+            html {
+                destination file("../reports/pmd/pmd-report.html")
+            }
+        }
     }
 }
 
