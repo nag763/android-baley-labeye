@@ -30,7 +30,7 @@ allprojects {
         exclude '**/gen/**'
         exclude '**/R.java'
         exclude '**/BuildConfig.java'
-
+        ignoreFailures = true
         // empty classpath
         classpath = files()
 

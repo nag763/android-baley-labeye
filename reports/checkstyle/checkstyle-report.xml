@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.35">
 <file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/MainActivity.java">
+<error line="1" severity="error" message="Il manque un caractère NewLine à la fin du fichier." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 </file>
 </checkstyle>
