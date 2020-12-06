@@ -23,9 +23,9 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.login);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        login = findViewById(R.id.login);
         auth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
 

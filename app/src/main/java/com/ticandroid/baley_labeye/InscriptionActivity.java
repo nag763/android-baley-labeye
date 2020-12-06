@@ -26,9 +26,9 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        register = (Button) findViewById(R.id.register);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        register = findViewById(R.id.register);
         auth = FirebaseAuth.getInstance();
         register.setOnClickListener(this);
     }
