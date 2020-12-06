@@ -35,8 +35,8 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        String textEmail = email.getText().toString();
-        String textPassword = password.getText().toString();
+        final String textEmail = email.getText().toString();
+        final String textPassword = password.getText().toString();
 
         if (TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textPassword)) {
             Toast.makeText(this, "champs manquants", Toast.LENGTH_SHORT).show();

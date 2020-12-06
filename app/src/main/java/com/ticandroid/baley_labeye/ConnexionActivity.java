@@ -33,9 +33,9 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        String txt_email = email.getText().toString();
-        String txt_password = password.getText().toString();
-        loginUser(txt_email, txt_password);
+        final String txtEmail = email.getText().toString();
+        final String txtPassword = password.getText().toString();
+        loginUser(txtEmail, txtPassword);
     }
 
     private void loginUser(String email, String password) {
