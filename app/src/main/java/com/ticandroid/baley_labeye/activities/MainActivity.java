@@ -1,4 +1,4 @@
-package com.ticandroid.baley_labeye;
+package com.ticandroid.baley_labeye.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ticandroid.baley_labeye.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private transient Button buttonProfil;

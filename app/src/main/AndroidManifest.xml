@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baley_Labeye">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ConnexionActivity" />
-        <activity android:name=".InscriptionActivity" />
-        <activity android:name=".StartActivity">
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.ConnexionActivity" />
+        <activity android:name=".activities.InscriptionActivity" />
+        <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

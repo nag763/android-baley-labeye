@@ -1,4 +1,4 @@
-package com.ticandroid.baley_labeye;
+package com.ticandroid.baley_labeye.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.ticandroid.baley_labeye.R;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     private transient EditText email;
