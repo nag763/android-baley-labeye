@@ -101,7 +101,6 @@
       <!--module name="TodoComment"/-->
       <module name="UpperEll"/>
   </module>
-    <module name="NewlineAtEndOfFile"/>
     <module name="FileLength"/>
     <module name="FileTabCharacter"/>
 

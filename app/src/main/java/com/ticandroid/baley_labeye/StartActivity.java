@@ -22,11 +22,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void onClick(View v) {
-        if (v == register) {
+        if (v.equals(register)) {
             Intent inscription = new Intent(this, InscriptionActivity.class);
             startActivity(inscription);
             finish();
-        } else if (v == login) {
+        } else if (v.equals(login)) {
             Intent connexion = new Intent(this, ConnexionActivity.class);
             startActivity(connexion);
             finish();

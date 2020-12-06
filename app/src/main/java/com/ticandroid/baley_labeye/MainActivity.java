@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button buttonProfil;
-    private Button listeMusees;
-    private Button visites;
-    private Button evaluer;
-    private Button statistiques;
-    private Button quitter;
+    private transient Button buttonProfil;
+    private transient Button listeMusees;
+    private transient Button visites;
+    private transient Button evaluer;
+    private transient Button statistiques;
+    private transient Button quitter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        if (v == quitter) {
+        if (v.equals(quitter)) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(MainActivity.this, "déconnecté", Toast.LENGTH_SHORT).show();
             Intent deconnexion = new Intent(MainActivity.this, StartActivity.class);

@@ -35,13 +35,13 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        String text_email = email.getText().toString();
-        String text_password = password.getText().toString();
+        String textEmail = email.getText().toString();
+        String textPassword = password.getText().toString();
 
-        if (TextUtils.isEmpty(text_email) || TextUtils.isEmpty(text_password)) {
+        if (TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textPassword)) {
             Toast.makeText(this, "champs manquants", Toast.LENGTH_SHORT).show();
         } else {
-            registerUser(text_email, text_password);
+            registerUser(textEmail, textPassword);
         }
     }
 
