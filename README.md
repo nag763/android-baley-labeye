@@ -8,7 +8,7 @@ The subject is to create an Android app that will display the museums nearby the
 
 ## TODO List
 
-- [ ] Authentication of the user
+- [x] Authentication and inscription of the user
 
 - Main menu :
 
