@@ -42,15 +42,15 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
     protected void onBindViewHolder(@NonNull MuseumListHolder holder, int position, @NonNull MuseumBean model) {
 
         final String TITLE =  model.getNomDuMusee();
-        final String ADRS = model.getAdr();
+        final String LOCATION = String.format("%s, %s",model.getAdr(), model.getDepartement());
         // By default, the phone numbers from the csv are stored without the local prefix
         final String PHONE_NUMBER = String.format("0%s", model.getTelephone1());
 
         holder.setTextInTitleView(TITLE);
-        holder.setTextInLocationView(ADRS);
+        holder.setTextInLocationView(LOCATION);
         holder.setPhoneNumber(PHONE_NUMBER);
 
-        Log.d(this.getClass().toString(), String.format("card with %s;%s;%s binded", TITLE, ADRS, PHONE_NUMBER));
+        Log.d(this.getClass().toString(), String.format("card with %s;%s;%s binded", TITLE, LOCATION, PHONE_NUMBER));
     }
 
     @NonNull
