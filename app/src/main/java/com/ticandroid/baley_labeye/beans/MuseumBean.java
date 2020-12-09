@@ -1,6 +1,6 @@
 package com.ticandroid.baley_labeye.beans;
 
-public class Museum {
+public class MuseumBean {
 
     private String adresse;
     private String coordonneesFiscales;
@@ -15,10 +15,10 @@ public class Museum {
     private String refMusee;
     private String region;
     private String siteWeb;
-    private String telephone1;
+    private String telephone;
     private String ville;
 
-    public Museum() {
+    public MuseumBean() {
     }
 
     public String getAdresse() {
@@ -125,12 +125,12 @@ public class Museum {
         this.siteWeb = siteWeb;
     }
 
-    public String getTelephone1() {
-        return telephone1;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setTelephone1(String telephone1) {
-        this.telephone1 = telephone1;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getVille() {
@@ -157,7 +157,7 @@ public class Museum {
                 ", refMusee='" + refMusee + '\'' +
                 ", region='" + region + '\'' +
                 ", siteWeb='" + siteWeb + '\'' +
-                ", telephone1='" + telephone1 + '\'' +
+                ", telephone1='" + telephone + '\'' +
                 ", ville='" + ville + '\'' +
                 '}';
     }

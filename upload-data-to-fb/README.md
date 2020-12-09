@@ -2,7 +2,7 @@
 
 ## Only tested in my personnal environnement in dows
 
-Explanation of the files
+Explanation of the fileslk
 
 * `bash update_museum_list.sh` uses the following list of packages to upload the list of museums from opendata to firestore.
 	* Inside, `curl` is used to update the `museum_list.csv` file from opendata
