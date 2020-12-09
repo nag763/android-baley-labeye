@@ -74,7 +74,6 @@ public class MuseumListActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new searchBarListener());
 
         // Fetch firestore data
-        Query query = firebaseFirestore.collection(QUERY_PATH);
         options = generateQuery();
         adapter = new MuseumListFSAdapter(this, options);
 
