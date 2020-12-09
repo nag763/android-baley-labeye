@@ -19,7 +19,7 @@ The subject is to create an Android app that will display the museums nearby the
 		- [ ] Display the user's city
 		- [ ] Display the visited museums
 
-	- [ ] Can see the list of museums
+	- [x] Can see the list of museums
 		- [ ] Display the list of museums in France
 		- On click show a new activity that :
 			- [ ] Display the currrent datetime
@@ -30,7 +30,7 @@ The subject is to create an Android app that will display the museums nearby the
 		- [ ] Display the visit date
 	- [ ] Can evaluate the visits he already did
 	- [ ] Can see the statistics around his visits
-	- [ ] Can quit the application
+	- [x] Can quit the application
 
 If the user is authenticated as an admin :
 
@@ -40,3 +40,6 @@ If the user is authenticated as an admin :
 
 - [ ] Can quit the application
 
+## Known Issues
+
+- [ ] If data from fetched field is null, the application crashs

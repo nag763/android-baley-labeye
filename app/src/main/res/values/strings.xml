@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Baley_Labeye</string>
+    <string name="nothing_fetched">Aucun résultat.</string>
+    <string name="error_remote">Une erreur est survenue.</string>
 </resources>

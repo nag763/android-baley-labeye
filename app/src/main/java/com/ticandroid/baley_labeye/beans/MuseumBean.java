@@ -1,32 +1,53 @@
 package com.ticandroid.baley_labeye.beans;
 
-public class Museum {
+/**
+ * The museum class's purpose is to contain any important information related to the museums
+ * stored in the firestore database
+ *
+ * @author Baley
+ * @author Labeye
+ */
+public class MuseumBean {
 
-    private String adresse;
+    /** Adresse of the museum **/
+    private String adr;
+    /** Fiscales data **/
     private String coordonneesFiscales;
+    /** Postal code associated **/
     private int codePostal;
+    /** Date when it has ben named **/
     private String dateAppellation;
     private String dateRetraitAppellationParHautConseil;
+    /** Department of the museum **/
     private String departement;
+    /** fax of the museum **/
     private int fax;
+    /** Regular dates when it is closed **/
     private String fermetureAnnuelle;
+    /** Name of the museum **/
     private String nomDuMusee;
+    /** Dates when it will be opened **/
     private String periodeOuverture;
+    /** Reference of the museum **/
     private String refMusee;
+    /** Region where it is present **/
     private String region;
-    private String siteWeb;
-    private String telephone1;
+    /** Website associated **/
+    private String siteweb;
+    /** Phone number to join the office **/
+    private long telephone1;
+    /** City where the museum is present **/
     private String ville;
 
-    public Museum() {
+    public MuseumBean() {
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getAdr() {
+        return adr;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setAdr(String adr) {
+        this.adr = adr;
     }
 
     public String getCoordonneesFiscales() {
@@ -69,13 +90,7 @@ public class Museum {
         this.departement = departement;
     }
 
-    public int getFax() {
-        return fax;
-    }
 
-    public void setFax(int fax) {
-        this.fax = fax;
-    }
 
     public String getFermetureAnnuelle() {
         return fermetureAnnuelle;
@@ -117,19 +132,19 @@ public class Museum {
         this.region = region;
     }
 
-    public String getSiteWeb() {
-        return siteWeb;
+    public String getSiteweb() {
+        return siteweb;
     }
 
-    public void setSiteWeb(String siteWeb) {
-        this.siteWeb = siteWeb;
+    public void setSiteweb(String siteweb) {
+        this.siteweb = siteweb;
     }
 
-    public String getTelephone1() {
+    public long getTelephone1() {
         return telephone1;
     }
 
-    public void setTelephone1(String telephone1) {
+    public void setTelephone1(long telephone1) {
         this.telephone1 = telephone1;
     }
 
@@ -144,7 +159,7 @@ public class Museum {
     @Override
     public String toString() {
         return "Museum{" +
-                "adresse='" + adresse + '\'' +
+                "adresse='" + adr + '\'' +
                 ", coordonneesFiscales='" + coordonneesFiscales + '\'' +
                 ", codePostal=" + codePostal +
                 ", dateAppellation='" + dateAppellation + '\'' +
@@ -156,7 +171,7 @@ public class Museum {
                 ", periodeOuverture='" + periodeOuverture + '\'' +
                 ", refMusee='" + refMusee + '\'' +
                 ", region='" + region + '\'' +
-                ", siteWeb='" + siteWeb + '\'' +
+                ", siteWeb='" + siteweb + '\'' +
                 ", telephone1='" + telephone1 + '\'' +
                 ", ville='" + ville + '\'' +
                 '}';
