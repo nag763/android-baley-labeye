@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.35">
-<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/ConnexionActivity.java">
-<error line="36" column="16" severity="error" message="Le nom &apos;txt_email&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
-<error line="37" column="16" severity="error" message="Le nom &apos;txt_password&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck"/>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/ConnexionActivity.java">
 </file>
-<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/InscriptionActivity.java">
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/InscriptionActivity.java">
 </file>
-<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/MainActivity.java">
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/MainActivity.java">
+<error line="53" column="35" severity="error" message="Il manque une espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 </file>
-<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/StartActivity.java">
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/MuseumListActivity.java">
+<error line="101" column="9" severity="error" message="L&apos;instruction &apos;if&apos; devrait utiliser des accolades (&apos;{&apos; et &apos;}&apos;)." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="132" column="19" severity="error" message="Le nom &apos;searchBarListener&apos; n&apos;est pas conforme à l&apos;expression &apos;^[A-Z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck"/>
+</file>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/MuseumReader.java">
+</file>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/activities/StartActivity.java">
+</file>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/adapter/MuseumListFSAdapter.java">
+<error line="44" column="22" severity="error" message="Le nom &apos;TITLE&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"/>
+<error line="45" column="22" severity="error" message="Le nom &apos;LOCATION&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"/>
+<error line="45" column="55" severity="error" message="Il manque une espace après &apos;,&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="47" column="22" severity="error" message="Le nom &apos;PHONE_NUMBER&apos; n&apos;est pas conforme à l&apos;expression &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"/>
+</file>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/beans/MuseumBean.java">
+</file>
+<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/holder/MuseumListHolder.java">
+<error line="55" column="49" severity="error" message="Il manque une espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="64" column="55" severity="error" message="Il manque une espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="68" severity="error" message="La première ligne de la Javadoc doit se terminer avec un point." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="73" column="51" severity="error" message="Il manque une espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
 </file>
 </checkstyle>

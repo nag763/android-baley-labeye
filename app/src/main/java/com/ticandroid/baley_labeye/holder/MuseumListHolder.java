@@ -10,7 +10,7 @@ import com.ticandroid.baley_labeye.R;
 
 /**
  *
- * Holder used to bind our data into our museum card layout
+ * Holder used to bind our data into our museum card layout.
  *
  * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  *
@@ -19,25 +19,25 @@ import com.ticandroid.baley_labeye.R;
  */
 public class MuseumListHolder extends RecyclerView.ViewHolder {
 
-    /** Title of the museum **/
-    private final TextView title;
-    /** Location of the museum **/
-    private final TextView location;
-    /** Phone number of the museum **/
-    private final TextView phoneNumber;
+    /** Title of the museum. **/
+    private transient final TextView title;
+    /** Location of the museum. **/
+    private transient final TextView location;
+    /** Phone number of the museum. **/
+    private transient final TextView phoneNumber;
 
-    /** Card title element **/
+    /** Card title element. **/
     private final static int CARD_TITLE = R.id.textTitle;
-    /** Card location element **/
+    /** Card location element. **/
     private final static int CARD_LOCATION = R.id.textLocation;
-    /** Card phone element **/
+    /** Card phone element. **/
     private final static int CARD_PHONE = R.id.textPhoneNumber;
 
 
     /**
-     * Creates a museum holder for the museum list
+     * Creates a museum holder for the museum list.
      *
-     * @param itemView
+     * @param itemView layout to inflate
      */
     public MuseumListHolder(@NonNull View itemView) {
         super(itemView);
@@ -48,16 +48,16 @@ public class MuseumListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *  Set the title in the layout element
+     *  Set the title in the layout element.
      *
-     * @param title the title as a string to display
+     * @param title the title as a string to display.
      **/
     public void setTextInTitleView(String title){
         this.title.setText(title);
     }
 
     /**
-     * Set the location in the layout element
+     * Set the location in the layout element.
      *
      * @param location the location as a string to display
      */

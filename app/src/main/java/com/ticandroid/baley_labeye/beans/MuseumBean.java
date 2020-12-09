@@ -2,41 +2,41 @@ package com.ticandroid.baley_labeye.beans;
 
 /**
  * The museum class's purpose is to contain any important information related to the museums
- * stored in the firestore database
+ * stored in the firestore database.
  *
  * @author Baley
  * @author Labeye
  */
 public class MuseumBean {
 
-    /** Adresse of the museum **/
+    /** Adresse of the museum. **/
     private String adr;
-    /** Fiscales data **/
+    /** Fiscales data. **/
     private String coordonneesFiscales;
-    /** Postal code associated **/
+    /** Postal code associated. **/
     private int codePostal;
-    /** Date when it has ben named **/
+    /** Date when it has ben named. **/
     private String dateAppellation;
     private String dateRetraitAppellationParHautConseil;
-    /** Department of the museum **/
+    /** Department of the museum. **/
     private String departement;
-    /** fax of the museum **/
+    /** fax of the museum. **/
     private int fax;
-    /** Regular dates when it is closed **/
+    /** Regular dates when it is closed. **/
     private String fermetureAnnuelle;
-    /** Name of the museum **/
+    /** Name of the museum. **/
     private String nomDuMusee;
-    /** Dates when it will be opened **/
+    /** Dates when it will be opened. **/
     private String periodeOuverture;
-    /** Reference of the museum **/
+    /** Reference of the museum. **/
     private String refMusee;
-    /** Region where it is present **/
+    /** Region where it is present. **/
     private String region;
-    /** Website associated **/
+    /** Website associated. **/
     private String siteweb;
-    /** Phone number to join the office **/
+    /** Phone number to join the office. **/
     private long telephone1;
-    /** City where the museum is present **/
+    /** City where the museum is present. **/
     private String ville;
 
     public MuseumBean() {
