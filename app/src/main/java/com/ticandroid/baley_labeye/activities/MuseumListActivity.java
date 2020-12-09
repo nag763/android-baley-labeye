@@ -1,32 +1,22 @@
 package com.ticandroid.baley_labeye.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.common.ChangeEventType;
-import com.firebase.ui.firestore.ChangeEventListener;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
 
-import org.w3c.dom.Text;
-
 /**
- * Activity to display the whole list of museums
+ * Activity to display the whole list of museums.
  *
  * @author Baley
  * @author Labeye
@@ -35,33 +25,33 @@ import org.w3c.dom.Text;
 public class MuseumListActivity extends AppCompatActivity {
 
     /**
-     * Current activity's layout
+     * Current activity's layout.
      **/
     private static final int LAYOUT = R.layout.activity_museum_list;
     /**
-     * Current activity's used recycler view
+     * Current activity's used recycler view.
      **/
     private static final int RECYCLER_VIEW = R.id.recyclerView;
     /**
-     * Search bar used to filter our data
+     * Search bar used to filter our data.
      **/
     private static final int SEARCH_BAR = R.id.searchBar;
     /**
-     * Firesore query path to fetch museum elements
+     * Firesore query path to fetch museum elements.
      **/
     private static final String QUERY_PATH = "museums";
     /**
-     * Firestore instance
+     * Firestore instance.
      **/
-    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     /**
-     * Museum adapater to display the element
+     * Museum adapater to display the element.
      **/
-    private MuseumListFSAdapter adapter;
+    private transient MuseumListFSAdapter adapter;
     /**
-     * Options to be displayed
+     * Options to be displayed.
      */
-    private FirestoreRecyclerOptions<MuseumBean> options;
+    private transient FirestoreRecyclerOptions<MuseumBean> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +90,7 @@ public class MuseumListActivity extends AppCompatActivity {
     }
 
     /**
-     * Generates a query to fetch some specific data
+     * Generates a query to fetch some specific data.
      *
      * @param startsWith sequence at the begining of the research
      * @return the options matching the sequence
@@ -108,8 +98,9 @@ public class MuseumListActivity extends AppCompatActivity {
     private FirestoreRecyclerOptions<MuseumBean> generateQuery(String startsWith) {
         Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
         FirestoreRecyclerOptions<MuseumBean> newOptions;
-        if (startsWith == null || startsWith.length() == 0)
+        if (startsWith == null || startsWith.length() == 0) {
             newOptions = generateQuery();
+        }
         else {
             Query query;
             // The purpose is to make a query 'BEGIN WITH'
@@ -125,7 +116,7 @@ public class MuseumListActivity extends AppCompatActivity {
     }
 
     /**
-     * Generates a query to fetch all data
+     * Generates a query to fetch all data.
      *
      * @return all the options
      */
@@ -137,7 +128,7 @@ public class MuseumListActivity extends AppCompatActivity {
     }
 
     /**
-     * Class used to add a listener to our searchbar
+     * Class used to add a listener to our searchbar.
      */
     private class searchBarListener implements SearchView.OnQueryTextListener {
 

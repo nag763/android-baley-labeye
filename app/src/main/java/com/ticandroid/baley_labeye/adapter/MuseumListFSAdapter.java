@@ -15,7 +15,7 @@ import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.holder.MuseumListHolder;
 
 /**
- * This adapter's purpose is to bind the museum elements of the remote firestore into the given holder
+ * This adapter's purpose is to bind the museum elements of the remote firestore into the given holder.
  *
  * @see com.firebase.ui.firestore.FirestoreRecyclerAdapter
  * @author Baley
@@ -23,8 +23,8 @@ import com.ticandroid.baley_labeye.holder.MuseumListHolder;
  */
 public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, MuseumListHolder>  {
 
-    /** Context that will be used in the clickable element **/
-    private final Context context;
+    /** Context that will be used in the clickable element. **/
+    private transient final Context context;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
