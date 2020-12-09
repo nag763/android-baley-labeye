@@ -30,7 +30,7 @@ The subject is to create an Android app that will display the museums nearby the
 		- [ ] Display the visit date
 	- [ ] Can evaluate the visits he already did
 	- [ ] Can see the statistics around his visits
-	- [ ] Can quit the application
+	- [x] Can quit the application
 
 If the user is authenticated as an admin :
 
