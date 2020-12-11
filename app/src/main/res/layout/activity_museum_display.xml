@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/x5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.051983584"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/y95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1462dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/x95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="822dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/y5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="411dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMuseumNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/museum_name"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toTopOf="@+id/x5" />
+
+    <TextView
+        android:id="@+id/tvMuseumName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvMuseumNameLbl" />
+
+    <TextView
+        android:id="@+id/tvMuseumLocationLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/museum_location"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvMuseumName" />
+
+    <TextView
+        android:id="@+id/tvMuseumLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvMuseumLocationLbl" />
+
+    <TextView
+        android:id="@+id/tvMuseumPhoneLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="@string/museum_phone"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toTopOf="@+id/tvMuseumLocation" />
+
+    <TextView
+        android:id="@+id/tvMuseumPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvMuseumPhoneLbl" />
+
+    <TextView
+        android:id="@+id/tvDistanceToMuseumLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp"
+        android:text="@string/distance_to_museum"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvMuseumPhone" />
+
+    <TextView
+        android:id="@+id/tvDistanceToMuseum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        app:layout_constraintStart_toStartOf="@+id/y5"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistanceToMuseumLbl" />
+
+    <TextView
+        android:id="@+id/tvCurrDT"
+        android:layout_width="153dp"
+        android:layout_height="20dp"
+        android:text="@string/current_datetime"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/y95"
+        app:layout_constraintEnd_toStartOf="@+id/x95" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

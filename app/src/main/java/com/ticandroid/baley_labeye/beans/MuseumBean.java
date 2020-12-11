@@ -12,9 +12,9 @@ public class MuseumBean {
     /** Adresse of the museum. **/
     private String adr;
     /** Fiscales data. **/
-    private String coordonneesFiscales;
+    private String coordonneesFinales;
     /** Postal code associated. **/
-    private int codePostal;
+    private int cp;
     /** Date when it has ben named. **/
     private String dateAppellation;
     private String dateRetraitAppellationParHautConseil;
@@ -50,20 +50,20 @@ public class MuseumBean {
         this.adr = adr;
     }
 
-    public String getCoordonneesFiscales() {
-        return coordonneesFiscales;
+    public String getCoordonneesFinales() {
+        return coordonneesFinales;
     }
 
-    public void setCoordonneesFiscales(String coordonneesFiscales) {
-        this.coordonneesFiscales = coordonneesFiscales;
+    public void setCoordonneesFinales(String coordonneesFinales) {
+        this.coordonneesFinales = coordonneesFinales;
     }
 
-    public int getCodePostal() {
-        return codePostal;
+    public int getCp() {
+        return cp;
     }
 
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
+    public void setCp(int cp) {
+        this.cp = cp;
     }
 
     public String getDateAppellation() {
@@ -144,6 +144,15 @@ public class MuseumBean {
         return telephone1;
     }
 
+    /**
+     * Returns a readable string for the reader
+     *
+     * @return the phone number with the local number prefix
+     */
+    public String getTelephoneWithPrefix() {
+        return String.format("0%s", telephone1);
+    }
+
     public void setTelephone1(long telephone1) {
         this.telephone1 = telephone1;
     }
@@ -156,12 +165,38 @@ public class MuseumBean {
         this.ville = ville;
     }
 
+    /**
+     * Method to return only the most important part of the adress
+     *
+     * @return a shortened understandable adress
+     */
+    public String getPartialAdresse(){
+        return String.format("%s\n %s, %s", adr, ville, region);
+    }
+
+    /**
+     * Method to return the complete adresse of a museum
+     *
+     * @return the adr, cp, ville, departement and region as a pretty and readable String value
+     */
+    public String getCompleteAdresse() {
+        return String.format("%s\n%s %s\n%s, %s", adr, cp, ville, departement, region);
+    }
+
+    private double getLatitude() {
+        return Double.parseDouble(coordonneesFinales.split(",")[0]);
+    }
+
+    private double getLongitude() {
+        return Double.parseDouble(coordonneesFinales.split(",")[1]);
+    }
+
     @Override
     public String toString() {
         return "Museum{" +
                 "adresse='" + adr + '\'' +
-                ", coordonneesFiscales='" + coordonneesFiscales + '\'' +
-                ", codePostal=" + codePostal +
+                ", coordonneesFiscales='" + coordonneesFinales + '\'' +
+                ", codePostal=" + cp +
                 ", dateAppellation='" + dateAppellation + '\'' +
                 ", dateRetraitAppellationParHautConseil='" + dateRetraitAppellationParHautConseil + '\'' +
                 ", departement='" + departement + '\'' +
