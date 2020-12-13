@@ -54,6 +54,19 @@ public class MuseumBean {
         return coordonneesFinales;
     }
 
+    /**
+     *
+     * Method to returns the longitude/ latitude instead of
+     * latitude,longitude
+     *
+     * @return the coordonnnees as understandable by the api
+     */
+    public String getInvertedCoordonneesFinales(){
+        String[] coordonneesSplitted = coordonneesFinales
+                .split(",");
+        return String.format("%s,%s", coordonneesSplitted[1], coordonneesSplitted[0]);
+    }
+
     public void setCoordonneesFinales(String coordonneesFinales) {
         this.coordonneesFinales = coordonneesFinales;
     }

@@ -14,6 +14,8 @@
     <string name="unable_to_fetch">Le document n\'a pas pu être récupéré.</string>
     <string name="canceled_by_user">Opération annulée par l\'utilisateur.</string>
     <string name="error_remote_orss">Le service distant n\'est pas disponible.</string>
+    <string name="document_is_null">Le document retourné est null.</string>
+    <string name="location_service_disabled">Votre localisation est désactivée.</string>
 
     <!-- Remote ressources -->
     <string name="fs_museums">museums</string>
