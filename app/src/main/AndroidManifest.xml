@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Baley_Labeye">
         <activity android:name=".activities.MuseumReader"></activity>
         <activity android:name=".activities.MuseumListActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"/>
         <activity android:name=".activities.ProfilActivity"></activity>
         <activity android:name=".activities.ConnexionActivity" />
         <activity android:name=".activities.InscriptionActivity" />
@@ -24,9 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ConnexionActivity" />
-        <activity android:name=".activities.InscriptionActivity" />
-        <activity android:name=".activities.StartActivity"></activity>
     </application>
 
 </manifest>
