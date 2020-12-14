@@ -109,7 +109,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(this.getClass().toString(), String.format("%s clicked", v.toString()));
         if (v.equals(listeMusees)){
             startActivity(new Intent(this, MuseumListActivity.class));
-        } else if (v.equals(quitter)) {
+        }
+        else if(v.equals(buttonProfil)){
+            Intent profil = new Intent(MainActivity.this, ProfilActivity.class);
+            startActivity(profil);
+            finish();
+        }
+        else if (v.equals(quitter)) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(MainActivity.this, "déconnecté", Toast.LENGTH_SHORT).show();
             Intent deconnexion = new Intent(MainActivity.this, StartActivity.class);
