@@ -138,7 +138,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 .url(res.getString(R.string.orss_url))
                 .addHeader(res.getString(R.string.key_ret_type), res.getString(R.string.value_ret_type))
                 .addHeader(res.getString(R.string.key_token), res.getString(R.string.value_token))
-                // TODO : String res
                 .post(requestBody)
                 .build();
 
