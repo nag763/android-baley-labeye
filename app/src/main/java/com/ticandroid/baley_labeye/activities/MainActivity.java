@@ -105,8 +105,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
-        if (v.equals(quitter)) {
+        if(v.equals(buttonProfil)){
+            Intent profil = new Intent(MainActivity.this, ProfilActivity.class);
+            startActivity(profil);
+            finish();
+        }
+        else if (v.equals(quitter)) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(MainActivity.this, "déconnecté", Toast.LENGTH_SHORT).show();
             Intent deconnexion = new Intent(MainActivity.this, StartActivity.class);
