@@ -22,7 +22,7 @@ The subject is to create an Android app that will display the museums nearby the
 	- [x] Can see the list of museums
 		- On click show a new activity that :
 			- [x] Display the currrent datetime
-			- [ ] Display the distance in kms from the user
+			- [x] Display the distance in kms from the user
 			- [ ] On click show a new activity that show the travel to the user
 	- [ ] Can see the list of the latest museums he visited
 		- [ ] Display the name of the museum
