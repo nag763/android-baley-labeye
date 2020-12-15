@@ -3,7 +3,8 @@
     package="com.ticandroid.baley_labeye">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baley_Labeye">
-        <activity android:name=".activities.MuseumReader"></activity>
+        <activity android:name=".activities.MuseumReaderActivity"/>
         <activity android:name=".activities.MuseumListActivity" />
         <activity android:name=".activities.MainActivity"/>
         <activity android:name=".activities.ProfilActivity"></activity>
