@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orss_url">https://api.openrouteservice.org/v2/matrix/driving-car</string>
+    <string name="ors_matrix_url">https://api.openrouteservice.org/v2/matrix/driving-car</string>
+    <string name="ors_directions_url">https://api.openrouteservice.org/v2/directions/driving-car/geojson</string>
     <string name="key_token">Authorization</string>
     <string name="value_token">5b3ce3597851110001cf6248ab2461c86aee4b77ab895d9aa3cf2d61</string>
     <string name="key_ret_type">Content-Type</string>

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.ticandroid.baley_labeye"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -41,10 +41,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     testImplementation 'junit:junit:4.13.1'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
-    implementation 'pub.devrel:easypermissions:1.1.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.google.firebase:firebase-database:19.5.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -54,6 +55,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.0'
+    implementation 'org.osmdroid:osmdroid-android:6.1.8'
 
 
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
