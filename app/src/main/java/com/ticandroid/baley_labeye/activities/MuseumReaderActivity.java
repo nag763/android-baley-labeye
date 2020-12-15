@@ -1,6 +1,8 @@
 package com.ticandroid.baley_labeye.activities;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
@@ -8,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +75,8 @@ public class MuseumReaderActivity extends AppCompatActivity {
     private transient Button refreshButton;
     /** Museum bean fetched from remote firestore instance **/
     private transient MuseumBean museumBean;
+    /** Current context of the application **/
+    private transient Context context;
 
     /**
      *  Location listener used to get our user position
@@ -106,7 +111,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         } else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
             textToDisplay = res.getString(R.string.waiting_for_service);
-            refreshButton.setVisibility(View.GONE);
+            refreshButton.setVisibility(View.INVISIBLE);
         }
         ((TextView) findViewById(R.id.tvDistanceToMuseum)).setText(textToDisplay);
     }
@@ -117,6 +122,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_museum_display);
 
+        context = this.getApplication();
         res = getResources();
 
         // Fetching our document
@@ -131,7 +137,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 bindView(museumBean);
                 // Starting our location manager
                 mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-                refreshButton = findViewById(R.id.button);
+                refreshButton = findViewById(R.id.btnDestination);
                 refreshButton.setOnClickListener(click -> accessLocation());
             } else {
                 Toast.makeText(this, res.getString(R.string.document_is_null), Toast.LENGTH_LONG).show();
@@ -243,7 +249,14 @@ public class MuseumReaderActivity extends AppCompatActivity {
                         }
                     }
 
-                }runOnUiThread(() -> tvDistanceToMuseum.setText(displayedMessage));
+                }runOnUiThread(() -> {
+                    tvDistanceToMuseum.setText(displayedMessage);
+                    refreshButton.setText(res.getString(R.string.route_to_destination));
+                    refreshButton.setVisibility(View.VISIBLE);
+                    refreshButton.setOnClickListener(k -> startActivity(
+                            new Intent(context, MainActivity.class))
+                    );
+                });
             }
         });
     }

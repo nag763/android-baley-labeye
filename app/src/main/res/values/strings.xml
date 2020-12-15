@@ -9,7 +9,8 @@
     <string name="current_datetime">Date du jour : </string>
     <string name="access_my_location">Calculer le temps de trajet</string>
     <string name="waiting_for_service">En attente du service distant …</string>
-
+    <string name="route_to_destination">Itinéraire jusqu\'à la destination</string>
+    <string name="simple_logo">Simple logo</string>
 
     <!-- Errors -->
     <string name="nothing_fetched">Aucun résultat.</string>
