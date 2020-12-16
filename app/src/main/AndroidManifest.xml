@@ -11,18 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baley_Labeye">
-        <activity android:name=".activities.MuseumReader"></activity>
-        <activity android:name=".activities.MuseumListActivity" />
-        <activity android:name=".activities.MainActivity"/>
-        <activity android:name=".activities.ProfilActivity"></activity>
-        <activity android:name=".activities.ConnexionActivity" />
-        <activity android:name=".activities.InscriptionActivity" />
-        <activity android:name=".activities.StartActivity">
+        <activity
+            android:name=".activities.MainActivity2"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Baley_Labeye.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.MuseumReader" />
+        <activity android:name=".activities.MuseumListActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.ProfilActivity" />
+        <activity android:name=".activities.ConnexionActivity" />
+        <activity android:name=".activities.InscriptionActivity" />
+        <activity android:name=".activities.StartActivity">
+
         </activity>
     </application>
 
