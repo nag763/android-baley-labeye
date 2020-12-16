@@ -4,6 +4,6 @@ curl "https://data.culture.gouv.fr/explore/dataset/liste-et-localisation-des-mus
 
 python camelize_csv.py
 
-csvjson museum-list.csv > museum-list.json
+csvjson museum-list.csv > museum-list.json -d ";"
 
 node index.js

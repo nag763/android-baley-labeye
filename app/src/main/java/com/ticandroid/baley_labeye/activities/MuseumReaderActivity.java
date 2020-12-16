@@ -10,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -77,6 +76,10 @@ public class MuseumReaderActivity extends AppCompatActivity {
     private transient MuseumBean museumBean;
     /** Current context of the application **/
     private transient Context context;
+    /** Key of the extra user position **/
+    public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
+    /** Key of the extra museum position **/
+    public static final String KEY_OF_EXTRA_MUSEUM_POSITION = "museumPosition";
 
     /**
      *  Location listener used to get our user position
@@ -185,7 +188,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
 
         Request request = new Request.Builder()
-                .url(res.getString(R.string.orss_url))
+                .url(res.getString(R.string.ors_matrix_url))
                 .addHeader(res.getString(R.string.key_ret_type), res.getString(R.string.value_ret_type))
                 .addHeader(res.getString(R.string.key_token), res.getString(R.string.value_token))
                 .post(requestBody)
@@ -248,13 +251,17 @@ public class MuseumReaderActivity extends AppCompatActivity {
                             Log.d(this.getClass().getName(), String.format("Displayed message : %s", displayedMessage));
                         }
                     }
-
-                }runOnUiThread(() -> {
+                }
+                runOnUiThread(() -> {
                     tvDistanceToMuseum.setText(displayedMessage);
                     refreshButton.setText(res.getString(R.string.route_to_destination));
                     refreshButton.setVisibility(View.VISIBLE);
-                    refreshButton.setOnClickListener(k -> startActivity(
-                            new Intent(context, MainActivity.class))
+                    refreshButton.setOnClickListener(k -> {
+                                Intent intent = new Intent(context, RouteMapActivity.class);
+                                intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());
+                                startActivity(intent);
+                            }
                     );
                 });
             }
