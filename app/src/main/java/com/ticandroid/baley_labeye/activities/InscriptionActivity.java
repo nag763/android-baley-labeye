@@ -90,7 +90,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     Toast.makeText(InscriptionActivity.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
-                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity.class);
+                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity2.class);
                     startActivity(inscriptionF);
                     finish();
                 }

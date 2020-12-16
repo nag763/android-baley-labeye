@@ -44,7 +44,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                Intent connexionF = new Intent(ConnexionActivity.this, MainActivity.class);
+                Intent connexionF = new Intent(ConnexionActivity.this, MainActivity2.class);
                 startActivity(connexionF);
                 finish();
             }
