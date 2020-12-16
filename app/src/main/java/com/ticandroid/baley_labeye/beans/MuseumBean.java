@@ -72,6 +72,66 @@ public class MuseumBean {
         return String.format("%s\n%s %s\n%s, %s", adr, cp, ville, departement, region);
     }
 
+    public String getAdr() {
+        return adr;
+    }
+
+    public String getCoordonneesFinales() {
+        return coordonneesFinales;
+    }
+
+    public int getCp() {
+        return cp;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public long getTelephone1() {
+        return telephone1;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setAdr(String adr) {
+        this.adr = adr;
+    }
+
+    public void setCoordonneesFinales(String coordonneesFinales) {
+        this.coordonneesFinales = coordonneesFinales;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
+    }
+
+    public void setNomDuMusee(String nomDuMusee) {
+        this.nomDuMusee = nomDuMusee;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setTelephone1(long telephone1) {
+        this.telephone1 = telephone1;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
     @Override
     public String toString() {
         return "MuseumBean{" +
