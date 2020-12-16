@@ -6,25 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".activities.ProfilActivity"
     tools:ignore="InvalidId">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profil"
+        android:layout_centerHorizontal="true"
+        android:text="Profil"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"/>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/image" />
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/profil"
+        android:id="@+id/image"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lastname"
         android:layout_below="@+id/image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="50dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/firstname"
         android:layout_below="@+id/lastname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        android:layout_below="@+id/firstname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/town"
+        android:layout_below="@+id/phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
 
 
