@@ -70,7 +70,6 @@ public class GoToActivity extends AppCompatActivity {
         mMapView = findViewById(R.id.mapview);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         mMapController = (MapController) mMapView.getController();
-        mMapController.setZoom(13);
 
         GeoPoint userGpt = new GeoPoint(userPositionAsDouble[1], userPositionAsDouble[0]);
         GeoPoint museumGpt = new GeoPoint(museumPositionAsDouble[1], museumPositionAsDouble[0]);
@@ -78,7 +77,9 @@ public class GoToActivity extends AppCompatActivity {
         drawMarker(userGpt);
         drawMarker(museumGpt);
 
-        mMapController.setCenter(userGpt);
+        mMapController.setZoom(13);
+        mMapController.setCenter(museumGpt);
+        mMapController.animateTo(userGpt);
 
         drawMap(userPosition, museumPosition);
     }
@@ -152,6 +153,7 @@ public class GoToActivity extends AppCompatActivity {
 
                             runOnUiThread(() -> {
                                 Polyline polyline = new Polyline();
+                                // TODO : Remove warning
                                 polyline.setColor(Color.BLUE);
                                 mMapView.getOverlayManager().add(polyline);
                                 geoPointList.forEach(polyline::addPoint);
