@@ -11,6 +11,7 @@
     <string name="waiting_for_service">En attente du service distant …</string>
     <string name="route_to_destination">Itinéraire jusqu\'à la destination</string>
     <string name="simple_logo">Simple logo</string>
+    <string name="save_in_db">Enregistrer le trajet</string>
 
     <!-- Errors -->
     <string name="nothing_fetched">Aucun résultat.</string>

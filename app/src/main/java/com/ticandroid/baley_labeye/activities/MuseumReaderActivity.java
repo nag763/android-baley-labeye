@@ -257,7 +257,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                     refreshButton.setText(res.getString(R.string.route_to_destination));
                     refreshButton.setVisibility(View.VISIBLE);
                     refreshButton.setOnClickListener(k -> {
-                                Intent intent = new Intent(context, GoToActivity.class);
+                                Intent intent = new Intent(context, RouteMapActivity.class);
                                 intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());
                                 startActivity(intent);

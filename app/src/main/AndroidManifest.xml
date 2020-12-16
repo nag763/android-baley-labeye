@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Baley_Labeye">
 
-        <activity android:name=".activities.GoToActivity" />
+        <activity android:name=".activities.RouteMapActivity" />
         <activity android:name=".activities.MuseumReaderActivity" />
         <activity android:name=".activities.MuseumListActivity">
             <intent-filter>
