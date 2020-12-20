@@ -47,6 +47,10 @@ public class ProfilFragment extends Fragment {
     private transient FirebaseAuth auth;
     private transient static ProfilBean profilBean;
 
+    public static Fragment newInstance() {
+        return (new ProfilFragment());
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

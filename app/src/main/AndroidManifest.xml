@@ -27,7 +27,8 @@
         <activity android:name=".activities.ProfilActivity" />
         <activity android:name=".activities.ConnexionActivity" />
         <activity android:name=".activities.InscriptionActivity" />
-        <activity android:name=".activities.MainActivity2">
+        <activity android:name=".activities.MainActivity2"
+            android:theme="@style/Theme.Baley_Labeye.NoActionBar">
 
         </activity>
     </application>

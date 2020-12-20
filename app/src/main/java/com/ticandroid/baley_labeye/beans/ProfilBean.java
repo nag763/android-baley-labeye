@@ -1,10 +1,23 @@
 package com.ticandroid.baley_labeye.beans;
 
+import android.widget.ImageView;
+
 public class ProfilBean {
     private String firstname;
     private String lastname;
     private String phone;
     private String town;
+
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+
+    private ImageView image;
+
 
     public ProfilBean(){
 

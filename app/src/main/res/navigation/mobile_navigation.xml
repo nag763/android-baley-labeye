@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_profil" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/listeMusees"
         android:name="com.ticandroid.baley_labeye.activities.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_museum"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/visites"
         android:name="com.ticandroid.baley_labeye.activities.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_visites"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
