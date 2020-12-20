@@ -1,13 +1,19 @@
-package com.ticandroid.baley_labeye.activities;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.ticandroid.baley_labeye.activities.ui.profil;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,13 +28,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.activities.ProfilActivity;
 import com.ticandroid.baley_labeye.beans.ProfilBean;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ProfilActivity extends AppCompatActivity {
+public class ProfilFragment extends Fragment {
+
     private transient ImageView image;
     private transient TextView profil;
     private transient TextView firstName;
@@ -38,19 +46,24 @@ public class ProfilActivity extends AppCompatActivity {
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
     private transient static ProfilBean profilBean;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
-        profil = (TextView) findViewById(R.id.profil);
-        image = (ImageView) findViewById(R.id.image);
+
+    public static Fragment newInstance() {
+        return (new ProfilFragment());
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_profil, container, false);
+
+        profil = root.findViewById(R.id.profil);
+        firstName = root.findViewById(R.id.firstname);
+        lastName = root.findViewById(R.id.lastname);
+        phone = root.findViewById(R.id.phone);
+        town = root.findViewById(R.id.town);
+        image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
         stm= FirebaseStorage.getInstance().getReference();
-        firstName = (TextView) findViewById(R.id.firstname);
-        lastName = (TextView) findViewById(R.id.lastname);
-        phone = (TextView) findViewById(R.id.phone);
-        town = (TextView) findViewById(R.id.town);
-
         afficherImage();
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("profils").document(auth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -61,12 +74,17 @@ public class ProfilActivity extends AppCompatActivity {
                     if(docSnap.exists()){
                         profilBean = Objects.requireNonNull(docSnap).toObject(ProfilBean.class);
                         if(profilBean!=null){
-                            bindView(profilBean);
+                            ((TextView) root.findViewById(R.id.firstname)).setText(profilBean.getFirstname());
+                            ((TextView) root.findViewById(R.id.lastname)).setText(profilBean.getLastname());
+                            ((TextView) root.findViewById(R.id.phone)).setText(profilBean.getPhone());
+                            ((TextView) root.findViewById(R.id.town)).setText(profilBean.getTown());
+
                         }
                     }
                 }
             }
         });
+        return root;
     }
     private void afficherImage(){
 
@@ -89,25 +107,11 @@ public class ProfilActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        Picasso.with(getBaseContext()).load(uri).into(image);
-                        Toast.makeText(ProfilActivity.this, "image chargee", Toast.LENGTH_SHORT).show();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                        Toast.makeText(ProfilActivity.this, "image non chargee", Toast.LENGTH_SHORT).show();
-
+                        Picasso.with(getActivity()).load(uri).into(image);
                     }
                 });
             }
         });
     }
-    private void bindView(final ProfilBean profilBean) {
-        ((TextView) findViewById(R.id.firstname)).setText(profilBean.getFirstname());
-        ((TextView) findViewById(R.id.lastname)).setText(profilBean.getLastname());
-        ((TextView) findViewById(R.id.phone)).setText(profilBean.getPhone());
-        ((TextView) findViewById(R.id.town)).setText(profilBean.getTown());
-    }
+
 }

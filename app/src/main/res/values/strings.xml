@@ -16,6 +16,9 @@
     <!-- Errors -->
     <string name="nothing_fetched">Aucun résultat.</string>
     <string name="error_remote">Une erreur est survenue.</string>
+
+    <string name="title_activity_start">MainActivity</string>
+
     <string name="unable_to_fetch">Le document n\'a pas pu être récupéré.</string>
     <string name="canceled_by_user">Opération annulée par l\'utilisateur.</string>
     <string name="error_remote_orss">Le service distant n\'est pas disponible.</string>
@@ -27,14 +30,23 @@
     <string name="fs_museums">museums</string>
 
     <string name="title_activity_main2">MainActivity</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Nombre de musées visités</string>
+    <string name="nav_header_subtitle">nombre</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="menu_profil">Profil</string>
+    <string name="menu_museum">Liste des musées</string>
+    <string name="menu_visites">Mes visites</string>
+    <string name="menu_evaluer">Evaluer une visite</string>
+    <string name="menu_statistique">Statistiques</string>
+    <string name="menu_quitter">Quitter</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 </resources>
+

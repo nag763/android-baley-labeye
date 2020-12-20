@@ -1,6 +1,7 @@
 package com.ticandroid.baley_labeye.activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ import java.util.Map;
 
 
 public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener {
+    private transient TextView title;
     private transient EditText lastName;
     private transient EditText firstName;
     private transient EditText phone;
@@ -46,6 +49,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     private transient FirebaseFirestore db;
     private transient ImageView imageView;
     private transient Uri imageUri;
+    private transient ProgressDialog progressDialog;
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -55,7 +59,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-
+        title = (TextView) findViewById(R.id.title);
         lastName = findViewById(R.id.lastname);
         firstName = findViewById(R.id.firstname);
         phone = findViewById(R.id.phone);
@@ -63,7 +67,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         imageView = findViewById(R.id.image);
-
+        progressDialog = new ProgressDialog(this);
         picture = findViewById(R.id.picture);
         register = findViewById(R.id.register);
 
@@ -88,9 +92,10 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
             st.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialog.dismiss();
                     String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     Toast.makeText(InscriptionActivity.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
-                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity.class);
+                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity2.class);
                     startActivity(inscriptionF);
                     finish();
                 }
@@ -108,7 +113,8 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void registerUser(String lastName, String firstName, String phone, String town, String email, String password) {
-
+        progressDialog.setMessage("Veuillez patienter");
+        progressDialog.show();
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {

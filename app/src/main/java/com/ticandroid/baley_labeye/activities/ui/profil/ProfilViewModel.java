@@ -1,16 +1,16 @@
-package com.ticandroid.baley_labeye.activities.ui.home;
+package com.ticandroid.baley_labeye.activities.ui.profil;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ProfilViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ProfilViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is profil fragment");
     }
 
     public LiveData<String> getText() {

@@ -1,10 +1,12 @@
 package com.ticandroid.baley_labeye.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private transient EditText password;
     private transient Button login;
     private transient FirebaseAuth auth;
+    private transient TextView title;
+    private transient ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         login = findViewById(R.id.login);
         auth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
+        title = (TextView) findViewById(R.id.title);
+        progressDialog = new ProgressDialog(this);
 
     }
 
@@ -40,11 +46,14 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void loginUser(String email, String password) {
+        progressDialog.setMessage("Veuillez patienter");
+        progressDialog.show();
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+                progressDialog.dismiss();
                 Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                Intent connexionF = new Intent(ConnexionActivity.this, MainActivity.class);
+                Intent connexionF = new Intent(ConnexionActivity.this, MainActivity2.class);
                 startActivity(connexionF);
                 finish();
             }
