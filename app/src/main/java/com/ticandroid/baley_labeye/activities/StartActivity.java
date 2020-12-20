@@ -27,11 +27,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         if (v.equals(register)) {
             Intent inscription = new Intent(this, InscriptionActivity.class);
             startActivity(inscription);
-            finish();
+            //finish();
         } else if (v.equals(login)) {
             Intent connexion = new Intent(this, ConnexionActivity.class);
             startActivity(connexion);
-            finish();
+           // finish();
         }
 
 
