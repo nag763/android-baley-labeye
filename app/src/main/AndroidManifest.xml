@@ -21,7 +21,11 @@
 
         <activity android:name=".activities.RouteMapActivity" />
         <activity android:name=".activities.MuseumReaderActivity" />
-        <activity android:name=".activities.MuseumListActivity">
+        <activity android:name=".activities.MuseumListActivity"/>
+        <activity
+            android:name=".activities.MainActivity2"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Baley_Labeye.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
