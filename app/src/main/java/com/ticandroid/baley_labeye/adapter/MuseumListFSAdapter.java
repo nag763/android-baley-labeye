@@ -1,6 +1,7 @@
 package com.ticandroid.baley_labeye.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import androidx.annotation.NonNull;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.activities.MuseumReaderActivity;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.holder.MuseumListHolder;
 
@@ -25,6 +28,8 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
 
     /** Context that will be used in the clickable element. **/
     private transient final Context context;
+
+    public static final String KEY_OF_EXTRA = "idToOpen";
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -42,13 +47,24 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
     protected void onBindViewHolder(@NonNull MuseumListHolder holder, int position, @NonNull MuseumBean model) {
 
         final String TITLE =  model.getNomDuMusee();
-        final String LOCATION = String.format("%s, %s",model.getAdr(), model.getDepartement());
+        final String LOCATION = model.getPartialAdresse();
         // By default, the phone numbers from the csv are stored without the local prefix
-        final String PHONE_NUMBER = String.format("0%s", model.getTelephone1());
+        final String PHONE_NUMBER = model.getTelephoneWithPrefix();
 
         holder.setTextInTitleView(TITLE);
         holder.setTextInLocationView(LOCATION);
         holder.setPhoneNumber(PHONE_NUMBER);
+
+        holder.itemView.setOnClickListener(k -> {
+            Intent intent = new Intent(context, MuseumReaderActivity.class);
+            // Get corresponding document in fs
+            DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
+            String documentId = documentSnapshot.getReference().getId();
+            intent.putExtra(KEY_OF_EXTRA, documentId);
+            Log.d(getClass().getName(), String.format("intent created from %s to %s with id = %s", context.getClass(), MuseumReaderActivity.class, documentId));
+            context.startActivity(intent);
+
+        });
 
         Log.d(this.getClass().toString(), String.format("card with %s;%s;%s binded", TITLE, LOCATION, PHONE_NUMBER));
     }

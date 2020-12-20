@@ -1,8 +1,36 @@
 <resources>
     <string name="app_name">Baley_Labeye</string>
+
+    <!-- Layouts -->
+    <string name="museum_name">Nom du musée</string>
+    <string name="museum_location">Adresse du musée</string>
+    <string name="museum_phone">Numéro de téléphone du musée</string>
+    <string name="distance_to_museum">Distance de chez vous jusqu\'au musée.</string>
+    <string name="current_datetime">Date du jour : </string>
+    <string name="access_my_location">Calculer le temps de trajet</string>
+    <string name="waiting_for_service">En attente du service distant …</string>
+    <string name="route_to_destination">Itinéraire jusqu\'à la destination</string>
+    <string name="simple_logo">Simple logo</string>
+    <string name="save_in_db">Enregistrer le trajet</string>
+
+    <!-- Errors -->
     <string name="nothing_fetched">Aucun résultat.</string>
     <string name="error_remote">Une erreur est survenue.</string>
+
     <string name="title_activity_start">MainActivity</string>
+
+    <string name="unable_to_fetch">Le document n\'a pas pu être récupéré.</string>
+    <string name="canceled_by_user">Opération annulée par l\'utilisateur.</string>
+    <string name="error_remote_orss">Le service distant n\'est pas disponible.</string>
+    <string name="document_is_null">Le document retourné est null.</string>
+    <string name="location_service_disabled">Votre localisation est désactivée.</string>
+    <string name="error_while_displaying">Erreur lors de l\'affichage.</string>
+
+    <!-- Remote ressources -->
+    <string name="fs_museums">museums</string>
+
+    <string name="title_activity_main2">MainActivity</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Nombre de musées visités</string>
@@ -16,4 +44,9 @@
     <string name="menu_evaluer">Evaluer une visite</string>
     <string name="menu_statistique">Statistiques</string>
     <string name="menu_quitter">Quitter</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>
+
