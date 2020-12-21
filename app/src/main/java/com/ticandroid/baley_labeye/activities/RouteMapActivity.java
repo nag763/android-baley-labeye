@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -145,9 +146,10 @@ public class RouteMapActivity extends AppCompatActivity {
         final Map<String, Object> data = new HashMap<String, Object>() {
             {
                 put("nomMusee", museumName);
-                put("date", DateFormat.getDateInstance().format(new Date()));
+                put("date", Timestamp.now());
                 put("instructions", stepList);
                 put("georoute", geoPointList);
+                put("evaluation", null);
             }
         };
         docRef.collection("visites").document(museumId).set(data).addOnCompleteListener(task -> {
