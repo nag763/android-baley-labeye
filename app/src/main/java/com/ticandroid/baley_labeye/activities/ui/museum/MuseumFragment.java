@@ -9,9 +9,12 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
@@ -48,49 +51,55 @@ public class MuseumFragment extends Fragment {
      */
     private transient FirestoreRecyclerOptions<MuseumBean> options;
 
+    public static MuseumFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MuseumFragment fragment = new MuseumFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_museum, container, false);
-
-
-
+        View root = inflater.inflate(LAYOUT, container, false);
 
 
         Log.d(this.getClass().toString(), "start of onCreate method");
-              //  super.onCreate(savedInstanceState);
-               // setContentView(LAYOUT);
+        //  super.onCreate(savedInstanceState);
+        // setContentView(LAYOUT);
 
-                // Search view initilizaition
-                SearchView searchView = findViewById(SEARCH_BAR);
-                searchView.setOnQueryTextListener(new searchBarListener());
+        // Search view initilizaition
+        SearchView searchView = root.findViewById(SEARCH_BAR);
+        searchView.setOnQueryTextListener(new searchBarListener());
 
-                // Fetch firestore data
-                options = generateQuery();
-                adapter = new MuseumListFSAdapter(this, options);
+        // Fetch firestore data
+        options = generateQuery();
+        adapter = new MuseumListFSAdapter(root.getContext(), options);
 
-                // Place it in the recycler view
-                RecyclerView recyclerView = findViewById(RECYCLER_VIEW);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                recyclerView.setAdapter(adapter);
+        // Place it in the recycler view
+        RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(adapter);
 
-                Log.d(this.getClass().toString(), "end of onCreate method");
+        Log.d(this.getClass().toString(), "end of onCreate method");
         return root;
     }
 
     @Override
-    protected void onStop() {
-            super.onStop();
-            adapter.stopListening();
-            Log.i(this.getClass().toString(), "listening stopped");
-            }
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+        Log.i(this.getClass().toString(), "listening stopped");
+    }
 
     @Override
-    protected void onStart() {
-            super.onStart();
-            adapter.startListening();
-            Log.i(this.getClass().toString(), "listening started");
-            }
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+        Log.i(this.getClass().toString(), "listening started");
+    }
 
     /**
      * Generates a query to fetch some specific data.
@@ -99,24 +108,23 @@ public class MuseumFragment extends Fragment {
      * @return the options matching the sequence
      */
     private FirestoreRecyclerOptions<MuseumBean> generateQuery(String startsWith) {
-            Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
-            FirestoreRecyclerOptions<MuseumBean> newOptions;
-            if (startsWith == null || startsWith.length() == 0) {
+        Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
+        FirestoreRecyclerOptions<MuseumBean> newOptions;
+        if (startsWith == null || startsWith.length() == 0) {
             newOptions = generateQuery();
-            }
-            else {
+        } else {
             Query query;
             // The purpose is to make a query 'BEGIN WITH'
             query = firebaseFirestore.collection(QUERY_PATH)
-            .orderBy("nomDuMusee")
-            // The \uf8ff sequence is an escape sequence for any
-            .startAt(startsWith)
-            .endAt(String.format("%s\uf8ff", startsWith));
+                    .orderBy("nomDuMusee")
+                    // The \uf8ff sequence is an escape sequence for any
+                    .startAt(startsWith)
+                    .endAt(String.format("%s\uf8ff", startsWith));
             Log.d(this.getClass().getName(), String.format("options updated with %s parameter", startsWith));
             newOptions = new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
-            }
-            return newOptions;
-            }
+        }
+        return newOptions;
+    }
 
     /**
      * Generates a query to fetch all data.
@@ -124,11 +132,11 @@ public class MuseumFragment extends Fragment {
      * @return all the options
      */
     private FirestoreRecyclerOptions<MuseumBean> generateQuery() {
-            Query query;
-            query = firebaseFirestore.collection(QUERY_PATH).orderBy("nomDuMusee");
-            Log.d(this.getClass().getName(), "options reseted with default");
-            return new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
-            }
+        Query query;
+        query = firebaseFirestore.collection(QUERY_PATH).orderBy("nomDuMusee");
+        Log.d(this.getClass().getName(), "options reseted with default");
+        return new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
+    }
 
     /**
      * Class used to add a listener to our searchbar.
@@ -155,5 +163,7 @@ public class MuseumFragment extends Fragment {
             return true;
         }
     }
+
+
 
 }
