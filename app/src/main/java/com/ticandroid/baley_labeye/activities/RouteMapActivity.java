@@ -5,14 +5,16 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -36,35 +38,123 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class RouteMapActivity extends AppCompatActivity {
 
-
-    private transient MapView mMapView;
-    private transient RecyclerView recyclerView;
-
+    /**
+     * Context of the application
+     **/
     private Context context;
+    /**
+     * Ressources of the application
+     **/
     private static Resources res;
 
+    /**
+     * Current map view being displayed
+     **/
+    private transient MapView mMapView;
+    /**
+     * Recycler view to display the instructions
+     **/
+    private transient RecyclerView recyclerView;
+
+    /**
+     * Current museum id
+     **/
+    private transient String museumId;
+    /**
+     * Current museum name
+     **/
+    private transient String museumName;
+
+    /**
+     * List of steps to be displayed
+     **/
+    private transient final List<StepBean> stepList = new ArrayList<>();
+    /**
+     * List of geopoints associed with the steps
+     **/
+    private transient final List<GeoPoint> geoPointList = new ArrayList<>();
+
+    /**
+     * Draw a marker with the given geopoint
+     *
+     * @param geoPoint geopoint where the marker needs to be drawn
+     */
     private void drawMarker(GeoPoint geoPoint) {
         Marker marker = new Marker(mMapView);
         marker.setPosition(geoPoint);
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mMapView.getOverlayManager().add(marker);
+        Log.d(getClass().getName(), String.format("marker added to gp : %s", geoPoint.toString()));
     }
 
+    /**
+     * Parse the position as string to a array of double
+     *
+     * @param position position to parse
+     * @return position as double array
+     */
     private double[] positionToDoubleArray(String position) {
-        // That's aesthetic as fuck
-        return Arrays.stream(position.split(",")).mapToDouble(Double::parseDouble).toArray();
+        final String SPLITTABLE = ",";
+        try {
+            if (!position.contains(SPLITTABLE)) {
+                throw new ParseException("Array doesn't contain the splitter element", 0);
+            } else if (position.split(SPLITTABLE).length != 2) {
+                throw new ParseException("Array got too many splittable args", position.lastIndexOf(SPLITTABLE));
+            } else if (position.trim().isEmpty()) {
+                throw new NullPointerException("The string is empty");
+            } else {
+                return Arrays.stream(position.split(SPLITTABLE)).mapToDouble(Double::parseDouble).toArray();
+            }
+        } catch (ParseException | NullPointerException e) {
+            Log.e(getClass().getName(), "Exception occured\nException : %s", e);
+            return null;
+        }
     }
 
+    /**
+     * Switch the UI by switching the components visibility
+     */
     private void switchVisibilities() {
         final int mapVisibility = this.mMapView.getVisibility();
         this.mMapView.setVisibility(recyclerView.getVisibility());
         this.recyclerView.setVisibility(mapVisibility);
+    }
+
+    /**
+     * Add the route to firestore
+     */
+    private void addRouteToFirestore() {
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        final DocumentReference docRef =
+                FirebaseFirestore
+                        .getInstance()
+                        .collection("profils")
+                        .document(Objects.requireNonNull(auth.getCurrentUser()).getUid());
+        final Map<String, Object> data = new HashMap<String, Object>() {
+            {
+                put("nomMusee", museumName);
+                put("date", DateFormat.getDateInstance().format(new Date()));
+                put("instructions", stepList);
+                put("georoute", geoPointList);
+            }
+        };
+        docRef.collection("visites").document(museumId).set(data).addOnCompleteListener(task -> {
+            Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
+            // No need to save the document twice
+            findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
+        });
     }
 
 
@@ -81,10 +171,13 @@ public class RouteMapActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvSteps);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        museumId = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_ID);
+        museumName = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_NAME);
+
         final String userPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_USER_POSITION);
-        final double[] userPositionAsDouble = positionToDoubleArray(userPosition);
+        final double[] userPositionAsDouble = Objects.requireNonNull(positionToDoubleArray(userPosition));
         final String museumPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_POSITION);
-        final double[] museumPositionAsDouble = positionToDoubleArray(museumPosition);
+        final double[] museumPositionAsDouble = Objects.requireNonNull(positionToDoubleArray(museumPosition));
 
         mMapView = findViewById(R.id.mapview);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
@@ -109,7 +202,7 @@ public class RouteMapActivity extends AppCompatActivity {
      * and display the itinary between the arrival
      * and the departure
      *
-     * @param userPosition begining of the route
+     * @param userPosition   begining of the route
      * @param museumPosition arrival point
      */
     private void addContextualContent(String userPosition, String museumPosition) {
@@ -128,7 +221,7 @@ public class RouteMapActivity extends AppCompatActivity {
                 .post(requestBody)
                 .build();
 
-        Log.d(this.getClass().getName(), String.format(
+        Log.d(getClass().getName(), String.format(
                 "Following request has been sent : %s\n%s",
                 request.toString(), body)
         );
@@ -137,18 +230,16 @@ public class RouteMapActivity extends AppCompatActivity {
         new OkHttpClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                Log.e(this.getClass().getName(), "Request couldn't succeed");
+                Log.e(getClass().getName(), "Request couldn't succeed");
                 Toast.makeText(context, res.getString(R.string.error_remote_orss), Toast.LENGTH_LONG).show();
                 finish();
             }
 
             @Override
             public void onResponse(Response response) throws IOException {
-                List<GeoPoint> geoPointList = new ArrayList<>();
-                List<StepBean> stepList = new ArrayList<>();
 
                 if (!response.isSuccessful()) {
-                    Log.w(this.getClass().getName(), String.format(
+                    Log.w(getClass().getName(), String.format(
                             "Request with error code : %s\n%s",
                             response.code(), response.body().string())
                     );
@@ -160,6 +251,18 @@ public class RouteMapActivity extends AppCompatActivity {
 
                         String jsonData = response.body().string();
                         jsonReader = new JSONObject(jsonData);
+
+                        // Getting our instructions from our json
+                        JSONArray arrayOfIndications = jsonReader
+                                .getJSONArray("features")
+                                .getJSONObject(0)
+                                .getJSONObject("properties")
+                                .getJSONArray("segments")
+                                .getJSONObject(0)
+                                .getJSONArray("steps");
+                        for (int i = 0; i < arrayOfIndications.length(); i++) {
+                            stepList.add(new StepBean(arrayOfIndications.getJSONObject(i)));
+                        }
                         // Getting our geosteps from the json
                         JSONArray arrayOfGeoSteps = jsonReader
                                 .getJSONArray("features")
@@ -172,26 +275,15 @@ public class RouteMapActivity extends AppCompatActivity {
                             final double latitudeOfPoint = locationArray.getDouble(1);
                             geoPointList.add(new GeoPoint(latitudeOfPoint, longitudeOfPoint));
                         }
-                        // Getting our instructions from our json
-                        JSONArray arrayOfIndications = jsonReader
-                                .getJSONArray("features")
-                                .getJSONObject(0)
-                                .getJSONObject("properties")
-                                .getJSONArray("segments")
-                                .getJSONObject(0)
-                                .getJSONArray("steps");
-                        for (int i = 0; i < arrayOfIndications.length(); i++) {
-                            stepList.add(new StepBean(arrayOfIndications.getJSONObject(i)));
-                        }
 
                     } catch (JSONException e) {
-                        Log.e(this.getClass().getName(), e.getMessage());
+                        Log.e(getClass().getName(), e.getMessage());
                     } finally {
                         if (geoPointList.isEmpty() || stepList.isEmpty()) {
                             Log.e(this.getClass().getName(), "One of the list is empty");
                             Toast.makeText(context, res.getString(R.string.nothing_fetched), Toast.LENGTH_LONG).show();
                         } else {
-                            Log.i(this.getClass().getName(), String.format(
+                            Log.i(getClass().getName(), String.format(
                                     "%s points added to map" +
                                             "\n%s instructions added to the recyclerview",
                                     geoPointList.size(), stepList.size()
@@ -203,8 +295,11 @@ public class RouteMapActivity extends AppCompatActivity {
                                 polyline.setColor(Color.BLUE);
                                 mMapView.getOverlayManager().add(polyline);
                                 geoPointList.forEach(polyline::addPoint);
-                                FloatingActionButton floatingActionButton = findViewById(R.id.fltBtnMapInstructions);
-                                floatingActionButton.setOnClickListener(k -> switchVisibilities());
+
+                                findViewById(R.id.fltBtnMapInstructions).setOnClickListener(k -> switchVisibilities());
+
+                                findViewById(R.id.fltBtnSaveInDb).setOnClickListener(_k -> addRouteToFirestore());
+
                                 recyclerView.setAdapter(new StepListAdapter(stepList.toArray(new StepBean[0])));
                             });
                         }
