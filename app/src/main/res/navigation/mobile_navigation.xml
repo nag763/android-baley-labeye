@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/listeMusees"
-        android:name="com.ticandroid.baley_labeye.activities.ui.gallery.GalleryFragment"
+        android:name="com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment"
         android:label="@string/menu_museum"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_museum" />
 
     <fragment
         android:id="@+id/visites"

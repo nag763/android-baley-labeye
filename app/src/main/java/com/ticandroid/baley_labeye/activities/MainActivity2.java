@@ -138,11 +138,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             case R.id.profil:
                 this.showFragment(FRAGMENT_PROFIL);
                 break;
+            case R.id.listeMusees:
+                Intent musees = new Intent(this, MuseumListActivity.class);
+                startActivity(musees);
+                finish();
+                break;
             case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
                 startActivity(deconnexion);
                 finish();
+                break;
             default:
                 break;
         }
