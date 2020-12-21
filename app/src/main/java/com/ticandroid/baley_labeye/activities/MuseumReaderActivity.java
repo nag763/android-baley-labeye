@@ -76,6 +76,12 @@ public class MuseumReaderActivity extends AppCompatActivity {
     private transient MuseumBean museumBean;
     /** Current context of the application **/
     private transient Context context;
+    /** Current museum's fs document id **/
+    private transient String DOCUMENT_ID;
+    /** Key of the extra museum id **/
+    public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
+    /** Key of the extra museum id **/
+    public static final String KEY_OF_EXTRA_MUSEUM_NAME = "museumName";
     /** Key of the extra user position **/
     public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
     /** Key of the extra museum position **/
@@ -129,7 +135,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         res = getResources();
 
         // Fetching our document
-        final String DOCUMENT_ID = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
+        DOCUMENT_ID = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
         DocumentReference museumDocument = firebaseFirestore.collection(res.getString(R.string.fs_museums)).document(DOCUMENT_ID);
         Task<DocumentSnapshot> task = museumDocument.get();
         // Biding our view depending on the success
@@ -258,6 +264,8 @@ public class MuseumReaderActivity extends AppCompatActivity {
                     refreshButton.setVisibility(View.VISIBLE);
                     refreshButton.setOnClickListener(k -> {
                                 Intent intent = new Intent(context, RouteMapActivity.class);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_ID, DOCUMENT_ID);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_NAME, museumBean.getNomDuMusee());
                                 intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());
                                 startActivity(intent);
