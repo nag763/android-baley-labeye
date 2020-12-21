@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
 import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
+import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 
 import androidx.annotation.NonNull;
 
@@ -49,8 +50,10 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
     private Toolbar toolbar;
     private Fragment fragmentProfil;
     private Fragment fragmentMuseumList;
+    private Fragment fragmentVisitList;
     private static final int FRAGMENT_PROFIL = 0;
     private static final int FRAGMENT_LISTE_MUSEE = 1;
+    private static final int FRAGMENT_LIST_VISITS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +147,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             case R.id.listeMusees:
                 this.showFragment(FRAGMENT_LISTE_MUSEE);
                 break;
+            case R.id.visites:
+                this.showFragment(FRAGMENT_LIST_VISITS);
+                break;
             case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
@@ -164,12 +170,16 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                 break;
             case FRAGMENT_LISTE_MUSEE:
                 this.showMuseumListFragment();
+                break;
+            case FRAGMENT_LIST_VISITS:
+                this.showMuseumVisitFragment();
+                break;
             default:
                 break;
         }
     }
 
-        private void showProfilFragment () {
+    private void showProfilFragment () {
         if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
         this.startTransactionFragment(this.fragmentProfil);
     }
@@ -178,6 +188,12 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
             this.startTransactionFragment(this.fragmentMuseumList);
         }
+
+
+    private void showMuseumVisitFragment() {
+        if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
+        this.startTransactionFragment(this.fragmentVisitList);
+    }
 
         private void startTransactionFragment (Fragment fragment){
         if (!fragment.isVisible()) {

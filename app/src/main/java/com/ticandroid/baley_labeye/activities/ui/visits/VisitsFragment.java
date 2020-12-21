@@ -1,4 +1,4 @@
-package com.ticandroid.baley_labeye.activities.ui.museum;
+package com.ticandroid.baley_labeye.activities.ui.visits;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,13 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
+import com.ticandroid.baley_labeye.adapter.VisitListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
+import com.ticandroid.baley_labeye.beans.VisitBean;
 
-public class MuseumFragment extends Fragment {
+import java.util.Objects;
+
+public class VisitsFragment extends Fragment {
 
 
     /**
@@ -37,7 +42,7 @@ public class MuseumFragment extends Fragment {
     /**
      * Firesore query path to fetch museum elements.
      **/
-    private static final String QUERY_PATH = "museums";
+    private static final String QUERY_PATH = "vistes";
     /**
      * Firestore instance.
      **/
@@ -45,17 +50,17 @@ public class MuseumFragment extends Fragment {
     /**
      * Museum adapater to display the element.
      **/
-    private transient MuseumListFSAdapter adapter;
+    private transient VisitListFSAdapter adapter;
     /**
      * Options to be displayed.
      */
-    private transient FirestoreRecyclerOptions<MuseumBean> options;
+    private transient FirestoreRecyclerOptions<VisitBean> options;
 
-    public static MuseumFragment newInstance() {
+    public static VisitsFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        MuseumFragment fragment = new MuseumFragment();
+        VisitsFragment fragment = new VisitsFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,11 +79,11 @@ public class MuseumFragment extends Fragment {
 
         // Fetch firestore data
         options = generateQuery();
-        adapter = new MuseumListFSAdapter(root.getContext(), options);
+        adapter = new VisitListFSAdapter(root.getContext(), options);
 
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
         Log.d(this.getClass().toString(), "end of onCreate method");
@@ -105,21 +110,23 @@ public class MuseumFragment extends Fragment {
      * @param startsWith sequence at the begining of the research
      * @return the options matching the sequence
      */
-    private FirestoreRecyclerOptions<MuseumBean> generateQuery(String startsWith) {
+    private FirestoreRecyclerOptions<VisitBean> generateQuery(String startsWith) {
         Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
-        FirestoreRecyclerOptions<MuseumBean> newOptions;
+        FirestoreRecyclerOptions<VisitBean> newOptions;
         if (startsWith == null || startsWith.length() == 0) {
             newOptions = generateQuery();
         } else {
             Query query;
             // The purpose is to make a query 'BEGIN WITH'
             query = firebaseFirestore.collection(QUERY_PATH)
-                    .orderBy("nomDuMusee")
+                    .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                    .collection(QUERY_PATH)
+                    .orderBy("nomMusee")
                     // The \uf8ff sequence is an escape sequence for any
                     .startAt(startsWith)
                     .endAt(String.format("%s\uf8ff", startsWith));
             Log.d(this.getClass().getName(), String.format("options updated with %s parameter", startsWith));
-            newOptions = new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
+            newOptions = new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
         }
         return newOptions;
     }
@@ -129,11 +136,13 @@ public class MuseumFragment extends Fragment {
      *
      * @return all the options
      */
-    private FirestoreRecyclerOptions<MuseumBean> generateQuery() {
+    private FirestoreRecyclerOptions<VisitBean> generateQuery() {
         Query query;
-        query = firebaseFirestore.collection(QUERY_PATH).orderBy("nomDuMusee");
-        Log.d(this.getClass().getName(), "options reseted with default");
-        return new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
+        query = firebaseFirestore.collection("profils")
+                .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                .collection("visites");
+        Log.d(this.getClass().getName(), "options reseted with default "+query.toString());
+        return new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
     }
 
     /**
