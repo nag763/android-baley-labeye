@@ -39,11 +39,9 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +75,10 @@ public class RouteMapActivity extends AppCompatActivity {
      * Current museum name
      **/
     private transient String museumName;
-
+    /**
+     * Distance between user to museum.
+     */
+    private transient double distanceToMuseum;
     /**
      * List of steps to be displayed
      **/
@@ -150,6 +151,7 @@ public class RouteMapActivity extends AppCompatActivity {
                 put("instructions", stepList);
                 put("georoute", geoPointList);
                 put("evaluation", null);
+                put("distance", distanceToMuseum);
             }
         };
         docRef.collection("visites").document(museumId).set(data).addOnCompleteListener(task -> {
@@ -175,6 +177,7 @@ public class RouteMapActivity extends AppCompatActivity {
 
         museumId = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_ID);
         museumName = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_NAME);
+        distanceToMuseum = getIntent().getDoubleExtra(MuseumReaderActivity.KEY_OF_EXTRA_DISTANCE, -1);
 
         final String userPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_USER_POSITION);
         final double[] userPositionAsDouble = Objects.requireNonNull(positionToDoubleArray(userPosition));

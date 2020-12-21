@@ -78,6 +78,8 @@ public class MuseumReaderActivity extends AppCompatActivity {
     private transient Context context;
     /** Current museum's fs document id **/
     private transient String DOCUMENT_ID;
+    /** Distance from user to museum **/
+    private transient double distanceToMuseum;
     /** Key of the extra museum id **/
     public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
     /** Key of the extra museum id **/
@@ -86,6 +88,8 @@ public class MuseumReaderActivity extends AppCompatActivity {
     public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
     /** Key of the extra museum position **/
     public static final String KEY_OF_EXTRA_MUSEUM_POSITION = "museumPosition";
+    /** Key of extra distance to museum **/
+    public static final String KEY_OF_EXTRA_DISTANCE = "distanceToMuseum";
 
     /**
      *  Location listener used to get our user position
@@ -217,7 +221,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
             public void onResponse(Response response) throws IOException {
                 String displayedMessage;
                 double durationToMuseum = -1;
-                double distanceToMuseum = -1;
                 if (!response.isSuccessful()) {
                     Log.w(this.getClass().getName(), String.format(
                             "Request with error code : %s\n%s",
@@ -268,6 +271,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_NAME, museumBean.getNomDuMusee());
                                 intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());
+                                intent.putExtra(KEY_OF_EXTRA_DISTANCE, distanceToMuseum);
                                 startActivity(intent);
                             }
                     );
