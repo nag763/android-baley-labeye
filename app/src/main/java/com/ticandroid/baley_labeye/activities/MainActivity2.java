@@ -20,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
 import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
 
 import androidx.annotation.NonNull;
@@ -47,7 +48,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
     private NavigationView navigationView;
     private Toolbar toolbar;
     private Fragment fragmentProfil;
+    private Fragment fragmentMuseumList;
     private static final int FRAGMENT_PROFIL = 0;
+    private static final int FRAGMENT_LISTE_MUSEE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,9 +142,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                 this.showFragment(FRAGMENT_PROFIL);
                 break;
             case R.id.listeMusees:
-                Intent musees = new Intent(this, MuseumListActivity.class);
-                startActivity(musees);
-                finish();
+                this.showFragment(FRAGMENT_LISTE_MUSEE);
                 break;
             case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
@@ -160,6 +161,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         switch (fragmentIdentifier) {
             case FRAGMENT_PROFIL:
                 this.showProfilFragment();
+                break;
+            case FRAGMENT_LISTE_MUSEE:
+                this.showMuseumListFragment();
             default:
                 break;
         }
@@ -169,6 +173,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
         this.startTransactionFragment(this.fragmentProfil);
     }
+
+        private void showMuseumListFragment() {
+            if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
+            this.startTransactionFragment(this.fragmentMuseumList);
+        }
 
         private void startTransactionFragment (Fragment fragment){
         if (!fragment.isVisible()) {
