@@ -20,14 +20,24 @@ import com.ticandroid.baley_labeye.holder.VisitListHolder;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class VisitListFSAdapter  extends FirestoreRecyclerAdapter<VisitBean, VisitListHolder> {
+/**
+ * Visit list holder
+ *
+ * @see FirestoreRecyclerAdapter
+ *
+ * @author Baley
+ * @author Labeye
+ */
+public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, VisitListHolder> {
 
 
-    /** Context that will be used in the clickable element. **/
+    /**
+     * Context that will be used in the clickable element.
+     **/
     private transient final Context context;
-
+    /** Date formatter used to display our date **/
     private final static SimpleDateFormat formatter = new SimpleDateFormat("'visité le' dd MMMM yyyy", Locale.FRANCE);
-
+    // TODO : Pass it as string res
     public static final String KEY_OF_EXTRA = "idToOpen";
 
     /**
@@ -44,7 +54,7 @@ public class VisitListFSAdapter  extends FirestoreRecyclerAdapter<VisitBean, Vis
 
     @Override
     protected void onBindViewHolder(@NonNull VisitListHolder holder, int position, @NonNull VisitBean model) {
-        final String TITLE =  model.getNomMusee();
+        final String TITLE = model.getNomMusee();
         final String VISITED_ON = formatter.format(model.getDate().toDate());
 
         holder.setTextInTitleView(TITLE);
