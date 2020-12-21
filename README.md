@@ -12,11 +12,11 @@ The subject is to create an Android app that will display the museums nearby the
 
 - Main menu :
 
-	- [ ] Can see his profile
-		- [ ] Display the user's profile picture
-		- [ ] Display the user's name
-		- [ ] Display the user's phone number
-		- [ ] Display the user's city
+	- [x] Can see his profile
+		- [x] Display the user's profile picture
+		- [x] Display the user's name
+		- [x] Display the user's phone number
+		- [x] Display the user's city
 		- [ ] Display the visited museums
 
 	- [x] Can see the list of museums
@@ -24,7 +24,7 @@ The subject is to create an Android app that will display the museums nearby the
 			- [x] Display the currrent datetime
 			- [x] Display the distance in kms from the user
 			- [x] On click show a new activity that show the travel to the user
-			- [ ] Shows the route path to the user
+			- [x] Shows the route path to the user
 	- [ ] Can see the list of the latest museums he visited
 		- [ ] Display the name of the museum
 		- [ ] Display the visit date
