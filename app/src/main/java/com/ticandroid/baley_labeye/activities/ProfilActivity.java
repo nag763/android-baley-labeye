@@ -105,8 +105,8 @@ public class ProfilActivity extends AppCompatActivity {
         });
     }
     private void bindView(final ProfilBean profilBean) {
-        ((TextView) findViewById(R.id.firstname)).setText(profilBean.getFirstname());
-        ((TextView) findViewById(R.id.lastname)).setText(profilBean.getLastname());
+        ((TextView) findViewById(R.id.firstname)).setText(profilBean.getFirstName());
+        ((TextView) findViewById(R.id.lastname)).setText(profilBean.getLastName());
         ((TextView) findViewById(R.id.phone)).setText(profilBean.getPhone());
         ((TextView) findViewById(R.id.town)).setText(profilBean.getTown());
     }

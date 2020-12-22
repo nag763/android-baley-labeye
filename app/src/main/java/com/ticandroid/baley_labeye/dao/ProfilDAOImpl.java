@@ -16,15 +16,17 @@ import com.ticandroid.baley_labeye.beans.ProfilBean;
 
 import java.io.File;
 import java.io.IOException;
-public class ProfilDAOImpl implements ProfilDAOI {
+public class ProfilDAOImpl  {
     private StorageReference stm;
     private FirebaseAuth auth;
+    private Uri downloadUrl;
     public ProfilDAOImpl(){
 
     }
-    public void afficherImage(ProfilBean profilBean){
+    public Uri getDownloadUrl(){return this.downloadUrl;}
+    public void afficherImage(){
 
-      /*  StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
+       StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
         File localFile = null;
         try{
 
@@ -41,8 +43,8 @@ public class ProfilDAOImpl implements ProfilDAOI {
                 st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
-                        Picasso.with(getClass()).load(uri).into(profilBean.getImage());
+                        downloadUrl=uri;
+                       // Picasso.with(getClass()).load(uri).into(profilBean.getImage());
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -53,6 +55,6 @@ public class ProfilDAOImpl implements ProfilDAOI {
                     }
                 });
             }
-        });*/
+        });
     }
 }

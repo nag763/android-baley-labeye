@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/visites"
-        android:name="com.ticandroid.baley_labeye.activities.ui.slideshow.SlideshowFragment"
+        android:name="com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment"
         android:label="@string/menu_visites"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_evaluer" />
 </navigation>
