@@ -21,6 +21,8 @@
 
         <activity android:name=".activities.RouteMapActivity" />
         <activity android:name=".activities.MuseumReaderActivity" />
+        <activity android:name=".activities.MuseumListActivity"/>
+        <activity android:name=".activities.AdminActivity"/>
 
         <activity
             android:name=".activities.StartActivity"

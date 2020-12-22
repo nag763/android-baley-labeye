@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/listeMusees"
+            android:icon="@drawable/ic_baseline_museum"
+            android:title="@string/menu_museum" />
+        <item
+            android:id="@+id/statistiques"
+            android:icon="@drawable/ic_baseline_statistics"
+            android:title="@string/menu_statistique"/>
+        <item
+            android:id="@+id/quitter"
+            android:icon="@drawable/ic_baseline_power"
+            android:title="@string/menu_quitter"/>
+    </group>
+</menu>

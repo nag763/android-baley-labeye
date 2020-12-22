@@ -107,7 +107,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
 
     private void configureToolbar() {
-        this.toolbar = findViewById(R.id.activity_main_toolbar);
+        this.toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
