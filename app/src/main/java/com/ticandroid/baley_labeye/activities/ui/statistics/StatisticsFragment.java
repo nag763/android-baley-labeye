@@ -70,8 +70,8 @@ public class StatisticsFragment extends Fragment {
                        distanceParcourue = Double.sum(distanceParcourue,d);
                        // distanceParcourue = distanceParcourue+doc.get("distance");
                     }
-                    nombre.setText(""+count);
-                    distance.setText(""+distanceParcourue);
+                    nombre.setText(count+" musées");
+                    distance.setText(distanceParcourue+" Km");
                 }
             }
         });
