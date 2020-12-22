@@ -12,11 +12,11 @@ The subject is to create an Android app that will display the museums nearby the
 
 - Main menu :
 
-	- [ ] Can see his profile
-		- [ ] Display the user's profile picture
-		- [ ] Display the user's name
-		- [ ] Display the user's phone number
-		- [ ] Display the user's city
+	- [x] Can see his profile
+		- [x] Display the user's profile picture
+		- [x] Display the user's name
+		- [x] Display the user's phone number
+		- [x] Display the user's city
 		- [ ] Display the visited museums
 
 	- [x] Can see the list of museums
