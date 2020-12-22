@@ -3,8 +3,8 @@ package com.ticandroid.baley_labeye.beans;
 import android.widget.ImageView;
 
 public class ProfilBean {
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String phone;
     private String town;
 
@@ -23,20 +23,20 @@ public class ProfilBean {
 
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String fistname) {
-        this.firstname = fistname;
+    public void setFirstName(String fistName) {
+        this.firstName = fistName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {

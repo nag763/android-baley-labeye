@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.activities.ProfilActivity;
@@ -16,15 +17,25 @@ import com.ticandroid.baley_labeye.beans.ProfilBean;
 
 import java.io.File;
 import java.io.IOException;
-public class ProfilDAOImpl implements ProfilDAOI {
+public class ProfilDAOImpl  {
     private StorageReference stm;
     private FirebaseAuth auth;
+    private Uri downloadUrl;
     public ProfilDAOImpl(){
 
     }
-    public void afficherImage(ProfilBean profilBean){
+    public Uri getDownloadUrl(){return this.downloadUrl;}
+    public void setAuth(){
+        auth=FirebaseAuth.getInstance();
+    }
+    public void setStm(){
+        stm= FirebaseStorage.getInstance().getReference();
+    }
 
-      /*  StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
+
+   /* public void afficherImage(){
+
+       StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
         File localFile = null;
         try{
 
@@ -41,8 +52,8 @@ public class ProfilDAOImpl implements ProfilDAOI {
                 st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
-                        Picasso.with(getClass()).load(uri).into(profilBean.getImage());
+                        downloadUrl=uri;
+                       // Picasso.with(getClass()).load(uri).into(profilBean.getImage());
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -53,6 +64,6 @@ public class ProfilDAOImpl implements ProfilDAOI {
                     }
                 });
             }
-        });*/
-    }
+        });
+    }*/
 }
