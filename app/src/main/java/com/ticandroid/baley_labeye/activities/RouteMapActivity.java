@@ -138,23 +138,20 @@ public class RouteMapActivity extends AppCompatActivity {
      * Add the route to firestore
      */
     private void addRouteToFirestore() {
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
-        final DocumentReference docRef =
-                FirebaseFirestore
-                        .getInstance()
-                        .collection("profils")
-                        .document(Objects.requireNonNull(auth.getCurrentUser()).getUid());
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         final Map<String, Object> data = new HashMap<String, Object>() {
             {
-                put("nomMusee", museumName);
+                put("nomDuMusee", museumName);
                 put("date", Timestamp.now());
                 put("instructions", stepList);
                 put("georoute", geoPointList);
                 put("evaluation", null);
                 put("distance", distanceToMuseum);
+                put("idMusee", museumId);
+                put("idProfil", auth.getUid());
             }
         };
-        docRef.collection("visites").document(museumId).set(data).addOnCompleteListener(task -> {
+        FirebaseFirestore.getInstance().collection("visites").add(data).addOnCompleteListener(task -> {
             Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
             // No need to save the document twice
             findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
