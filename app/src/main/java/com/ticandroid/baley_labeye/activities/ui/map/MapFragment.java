@@ -1,19 +1,17 @@
 package com.ticandroid.baley_labeye.activities.ui.map;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ticandroid.baley_labeye.BuildConfig;
 import com.ticandroid.baley_labeye.R;
@@ -28,7 +26,6 @@ import org.osmdroid.views.overlay.Marker;
 
 import java.text.ParseException;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -51,11 +48,12 @@ public class MapFragment extends Fragment {
      *
      * @param geoPoint geopoint where the marker needs to be drawn
      */
-    private void drawMarker(GeoPoint geoPoint) {
+    private void drawMarker(GeoPoint geoPoint, String museumName, int numberOfVisits) {
         Marker marker = new Marker(mMapView);
         marker.setPosition(geoPoint);
+        marker.setTitle(museumName);
+        marker.setSnippet(String.format("Nombre de visites : %s", numberOfVisits));
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        marker.setTextIcon("Hello world! ");
         mMapView.getOverlayManager().add(marker);
         Log.d(getClass().getName(), String.format("marker added to gp : %s", geoPoint.toString()));
     }
@@ -104,18 +102,28 @@ public class MapFragment extends Fragment {
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 
         MapController mMapController = (MapController) mMapView.getController();
+        final GeoPoint CENTER_OF_FRANCE = new GeoPoint(47.1539, 0.22508);
+        mMapController.setCenter(CENTER_OF_FRANCE);
+        mMapController.setZoom(7);
 
         CollectionReference collectionReference = firebaseFirestore.collection("museums");
         Task<QuerySnapshot> task = collectionReference.get();
         task.addOnCompleteListener(k -> {
             task.getResult().forEach(element -> {
-                try {
-                    final MuseumBean museumBean = Objects.requireNonNull(element).toObject(MuseumBean.class);
-                    final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
-                    drawMarker(new GeoPoint(position[0], position[1]));
-                } catch (Exception e){
-                    Log.e(getClass().getName(), e.getMessage());
-                }
+                Query collectionReference1 = FirebaseFirestore.getInstance().collection("visites").whereEqualTo("idMusee", element.getId());
+                Task<QuerySnapshot> task1 = collectionReference1.get();
+                task1.addOnCompleteListener(l -> {
+                            try {
+                                int numberOfVisits = l.getResult().size();
+                                final MuseumBean museumBean = Objects.requireNonNull(element).toObject(MuseumBean.class);
+                                final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
+                                drawMarker(new GeoPoint(position[0], position[1]), museumBean.getNomDuMusee(), numberOfVisits);
+
+                            } catch (Exception e) {
+                                Log.e(getClass().getName(), e.getMessage());
+                            }
+                        }
+                );
             });
         });
 
