@@ -2,6 +2,7 @@ package com.ticandroid.baley_labeye.activities.ui.profil;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class ProfilFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
-        //ProfilDAOImpl profilDAO =new ProfilDAOImpl();
+        ProfilDAOImpl profilDAO =new ProfilDAOImpl();
         profil = root.findViewById(R.id.profil);
         firstName = root.findViewById(R.id.firstname);
         lastName = root.findViewById(R.id.lastname);
@@ -65,8 +66,11 @@ public class ProfilFragment extends Fragment {
         image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
         stm= FirebaseStorage.getInstance().getReference();
+       // profilDAO.setAuth();
+       // profilDAO.setStm();
         //profilDAO.afficherImage();
-       // Picasso.with(getActivity()).load(profilDAO.getDownloadUrl()).into(image);
+       // Log.d("message", profilDAO.getDownloadUrl().toString());
+       //Picasso.with(getActivity()).load(profilDAO.getDownloadUrl()).into(image);
         afficherImage();
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("profils").document(auth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

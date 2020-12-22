@@ -22,4 +22,9 @@
         android:name="com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment"
         android:label="@string/menu_visites"
         tools:layout="@layout/fragment_evaluer" />
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsFragment"
+        android:label="Statistiques"
+        tools:layout="@layout/fragment_statistics"/>
 </navigation>

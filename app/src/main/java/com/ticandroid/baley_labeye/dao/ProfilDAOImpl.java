@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.activities.ProfilActivity;
@@ -24,7 +25,15 @@ public class ProfilDAOImpl  {
 
     }
     public Uri getDownloadUrl(){return this.downloadUrl;}
-    public void afficherImage(){
+    public void setAuth(){
+        auth=FirebaseAuth.getInstance();
+    }
+    public void setStm(){
+        stm= FirebaseStorage.getInstance().getReference();
+    }
+
+
+   /* public void afficherImage(){
 
        StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
         File localFile = null;
@@ -56,5 +65,5 @@ public class ProfilDAOImpl  {
                 });
             }
         });
-    }
+    }*/
 }

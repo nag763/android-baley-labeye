@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_baseline_star_rate_24"
             android:title="@string/menu_evaluer"/>
         <item
-            android:id="@+id/statistiques"
+            android:id="@+id/statistics"
             android:icon="@drawable/ic_baseline_statistics"
             android:title="@string/menu_statistique"/>
         <item
