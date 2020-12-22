@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -59,17 +60,6 @@ public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, Visi
 
         holder.setTextInTitleView(TITLE);
         holder.setTextInVisitedOnView(VISITED_ON);
-
-        holder.itemView.setOnClickListener(k -> {
-            Intent intent = new Intent(context, MuseumReaderActivity.class);
-            // Get corresponding document in fs
-            DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
-            String documentId = documentSnapshot.getReference().getId();
-            intent.putExtra(KEY_OF_EXTRA, documentId);
-            Log.d(getClass().getName(), String.format("intent created from %s to %s with id = %s", context.getClass(), MuseumReaderActivity.class, documentId));
-            context.startActivity(intent);
-
-        });
 
         Log.d(this.getClass().toString(), String.format("card with %s;%s binded", TITLE, VISITED_ON));
     }

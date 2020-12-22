@@ -151,7 +151,8 @@ public class RouteMapActivity extends AppCompatActivity {
                 put("idProfil", auth.getUid());
             }
         };
-        FirebaseFirestore.getInstance().collection("visites").add(data).addOnCompleteListener(task -> {
+        // Setting a unique id combining both the uuid and museum id to avoid duplicates
+        FirebaseFirestore.getInstance().collection("visites").document(String.format("%s::%s", auth.getUid(), museumId)).set(data).addOnCompleteListener(task -> {
             Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
             // No need to save the document twice
             findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
