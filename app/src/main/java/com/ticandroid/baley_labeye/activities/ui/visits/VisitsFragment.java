@@ -17,12 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.ticandroid.baley_labeye.R;
-import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
 import com.ticandroid.baley_labeye.adapter.VisitListFSAdapter;
-import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.beans.VisitBean;
-
-import java.util.Objects;
 
 public class VisitsFragment extends Fragment {
 

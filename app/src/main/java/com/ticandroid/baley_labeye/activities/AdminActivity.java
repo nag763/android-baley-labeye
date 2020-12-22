@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
 import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
 import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
 import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
@@ -135,7 +136,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     private void showMuseumListFragment() {
-        if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
+        if (this.fragmentMuseumList == null) this.fragmentMuseumList = MapFragment.newInstance();
         this.startTransactionFragment(this.fragmentMuseumList);
     }
 
