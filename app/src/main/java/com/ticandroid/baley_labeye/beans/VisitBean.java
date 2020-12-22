@@ -8,19 +8,19 @@ import com.google.firebase.Timestamp;
 public class VisitBean {
 
     /** Name of the museum **/
-    private String nomMusee;
+    private String nomDuMusee;
     /** Date of the visit **/
     private Timestamp date;
 
     public VisitBean() {
     }
 
-    public String getNomMusee() {
-        return nomMusee;
+    public String getNomDuMusee() {
+        return nomDuMusee;
     }
 
-    public void setNomMusee(String nomMusee) {
-        this.nomMusee = nomMusee;
+    public void setNomDuMusee(String nomMusee) {
+        this.nomDuMusee = nomMusee;
     }
 
     public Timestamp getDate() {

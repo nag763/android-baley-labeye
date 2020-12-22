@@ -42,7 +42,7 @@ public class VisitsFragment extends Fragment {
     /**
      * Firesore query path to fetch museum elements.
      **/
-    private static final String QUERY_PATH = "vistes";
+    private static final String QUERY_PATH = "visites";
     /**
      * Firestore instance.
      **/
@@ -119,9 +119,8 @@ public class VisitsFragment extends Fragment {
             Query query;
             // The purpose is to make a query 'BEGIN WITH'
             query = firebaseFirestore.collection(QUERY_PATH)
-                    .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                    .collection(QUERY_PATH)
-                    .orderBy("nomMusee")
+                    .whereEqualTo("idProfil", FirebaseAuth.getInstance().getUid())
+                    .orderBy("nomDuMusee")
                     // The \uf8ff sequence is an escape sequence for any
                     .startAt(startsWith)
                     .endAt(String.format("%s\uf8ff", startsWith));
@@ -138,9 +137,9 @@ public class VisitsFragment extends Fragment {
      */
     private FirestoreRecyclerOptions<VisitBean> generateQuery() {
         Query query;
-        query = firebaseFirestore.collection("profils")
-                .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                .collection("visites");
+        query = firebaseFirestore.collection(QUERY_PATH)
+                .whereEqualTo("idProfil", FirebaseAuth.getInstance().getUid())
+        .orderBy("nomDuMusee");
         Log.d(this.getClass().getName(), "options reseted with default "+query.toString());
         return new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
     }

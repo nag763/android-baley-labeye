@@ -54,7 +54,7 @@ public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, Visi
 
     @Override
     protected void onBindViewHolder(@NonNull VisitListHolder holder, int position, @NonNull VisitBean model) {
-        final String TITLE = model.getNomMusee();
+        final String TITLE = model.getNomDuMusee();
         final String VISITED_ON = formatter.format(model.getDate().toDate());
 
         holder.setTextInTitleView(TITLE);
