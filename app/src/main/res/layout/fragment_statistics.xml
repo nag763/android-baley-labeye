@@ -5,11 +5,42 @@
     android:layout_height="match_parent"
     tools:context=".activities.ui.statistics.StatisticsFragment">
 
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="bonjour"
-        android:id="@+id/text"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Statistiques"
+        android:id="@+id/stat"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de musées déjà visités :"
+        android:id="@+id/nb"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nb"
+        android:id="@+id/nombre"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance parcourue cumulée :"
+        android:layout_below="@+id/nombre"
+        android:id="@+id/dist"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dist"
+        android:id="@+id/distance"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
