@@ -12,9 +12,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.model.Document;
 import com.ticandroid.baley_labeye.R;
+
+import java.util.Objects;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     private transient EditText email;
@@ -23,6 +30,8 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private transient FirebaseAuth auth;
     private transient TextView title;
     private transient ProgressDialog progressDialog;
+
+    private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +62,21 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
             public void onSuccess(AuthResult authResult) {
                 progressDialog.dismiss();
                 Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                Intent connexionF = new Intent(ConnexionActivity.this, MainActivity2.class);
-                startActivity(connexionF);
-                finish();
+                DocumentReference document = firebaseFirestore.collection("profils").document(authResult.getUser().getUid());
+                Task<DocumentSnapshot> task = document.get();
+                task.addOnCompleteListener(k -> {
+                    try {
+                        if (task.getResult().getBoolean("isAdmin")) {
+                            startActivity(new Intent(ConnexionActivity.this, AdminActivity.class));
+                        } else {
+                            startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                        }
+                    } catch (NullPointerException e) {
+                        startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                    } finally {
+                        finish();
+                    }
+                });
             }
         });
     }
