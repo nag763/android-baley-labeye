@@ -84,7 +84,7 @@ public class VisitsFragment extends Fragment {
 
         // Fetch firestore data
         options = generateQuery();
-        adapter = new VisitListFSAdapter(root.getContext(), options);
+        adapter = new VisitListFSAdapter(options);
 
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
