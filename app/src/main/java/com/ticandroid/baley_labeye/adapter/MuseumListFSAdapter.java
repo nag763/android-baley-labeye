@@ -35,7 +35,7 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
+     * @param options list of objects to display
      */
     public MuseumListFSAdapter(Context context, @NonNull FirestoreRecyclerOptions<MuseumBean> options) {
         super(options);
@@ -46,14 +46,14 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
     @Override
     protected void onBindViewHolder(@NonNull MuseumListHolder holder, int position, @NonNull MuseumBean model) {
 
-        final String TITLE =  model.getNomDuMusee();
-        final String LOCATION = model.getPartialAdresse();
+        final String title =  model.getNomDuMusee();
+        final String location = model.getPartialAdresse();
         // By default, the phone numbers from the csv are stored without the local prefix
-        final String PHONE_NUMBER = model.getTelephoneWithPrefix();
+        final String phoneNumber = model.getTelephoneWithPrefix();
 
-        holder.setTextInTitleView(TITLE);
-        holder.setTextInLocationView(LOCATION);
-        holder.setPhoneNumber(PHONE_NUMBER);
+        holder.setTextInTitleView(title);
+        holder.setTextInLocationView(location);
+        holder.setTextInPhoneNumberView(phoneNumber);
 
         holder.itemView.setOnClickListener(k -> {
             Intent intent = new Intent(context, MuseumReaderActivity.class);
@@ -61,12 +61,15 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
             DocumentSnapshot documentSnapshot = getSnapshots().getSnapshot(holder.getAdapterPosition());
             String documentId = documentSnapshot.getReference().getId();
             intent.putExtra(KEY_OF_EXTRA, documentId);
-            Log.d(getClass().getName(), String.format("intent created from %s to %s with id = %s", context.getClass(), MuseumReaderActivity.class, documentId));
+            Log.d(getClass().getName(), String.format(
+                    "intent created from %s to %s with id = %s",
+                    context.getClass(), MuseumReaderActivity.class, documentId)
+            );
             context.startActivity(intent);
 
         });
 
-        Log.d(this.getClass().toString(), String.format("card with %s;%s;%s binded", TITLE, LOCATION, PHONE_NUMBER));
+        Log.d(this.getClass().toString(), String.format("card with %s;%s;%s binded", title, location, phoneNumber));
     }
 
     @NonNull

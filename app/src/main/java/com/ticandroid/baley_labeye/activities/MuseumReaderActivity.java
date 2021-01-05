@@ -59,15 +59,15 @@ import static java.text.DateFormat.getDateTimeInstance;
 public class MuseumReaderActivity extends AppCompatActivity {
 
     /**
-     * Firestore instance
+     * Firestore instance.
      **/
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     /**
-     * Ressources of the application
+     * Ressources of the application.
      **/
     private transient Resources res;
     /**
-     * Permissions needed in this app
+     * Permissions needed in this app.
      **/
     private final static String[] PERMISSIONS_NEEDED =
             {
@@ -75,52 +75,51 @@ public class MuseumReaderActivity extends AppCompatActivity {
                     Manifest.permission.ACCESS_COARSE_LOCATION
             };
     /**
-     * Location manager used to get the user's position
+     * Location manager used to get the user's position.
      **/
     private transient LocationManager mLocationManager;
     /**
-     * Refresh button to refresh our position
+     * Refresh button to refresh our position.
      **/
     private transient Button refreshButton;
     /**
-     * Museum bean fetched from remote firestore instance
+     * Museum bean fetched from remote firestore instance.
      **/
     private transient MuseumBean museumBean;
     /**
-     * Current context of the application
+     * Current context of the application.
      **/
     private transient Context context;
     /**
-     * Current museum's fs document id
+     * Current museum's fs document id.
      **/
-    private transient String DOCUMENT_ID;
+    private transient String documentId;
     /**
-     * Distance from user to museum
+     * Distance from user to museum.
      **/
     private transient double distanceToMuseum;
     /**
-     * Key of the extra museum id
+     * Key of the extra museum id.
      **/
     public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
     /**
-     * Key of the extra museum id
+     * Key of the extra museum id.
      **/
     public static final String KEY_OF_EXTRA_MUSEUM_NAME = "museumName";
     /**
-     * Key of the extra user position
+     * Key of the extra user position.
      **/
     public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
     /**
-     * Key of the extra museum position
+     * Key of the extra museum position.
      **/
     public static final String KEY_OF_EXTRA_MUSEUM_POSITION = "museumPosition";
     /**
-     * Key of extra distance to museum
+     * Key of extra distance to museum.
      **/
     public static final String KEY_OF_EXTRA_DISTANCE = "distanceToMuseum";
-
     /**
-     * Location listener used to get our user position
+     * Location listener used to get our user position.
      */
     private final LocationListener mLocationListener = new LocationListener() {
         @Override
@@ -134,20 +133,20 @@ public class MuseumReaderActivity extends AppCompatActivity {
     };
 
     /**
-     * Method to access the user's location
+     * Method to access the user's location.
      */
     private void accessLocation() {
         String textToDisplay = res.getString(R.string.location_service_disabled);
-        Log.d(this.getClass().getName(), "Location accesser called");
+        Log.d(getClass().getName(), "Location accesser called");
         // If the user hasn't accepted the usage of its location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(this.getClass().getName(), "Location permission hasn't been accepted on user's device");
+            Log.i(getClass().getName(), "Location permission hasn't been accepted on user's device");
             requestPermissions(PERMISSIONS_NEEDED, 124);
             // If the location hasn't been enabled on the user's device
         } else if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 && !mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            Log.i(this.getClass().getName(), "Location is disabled on user's device");
+            Log.i(getClass().getName(), "Location is disabled on user's device");
             // If the location is enabled on user's device
         } else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
@@ -167,14 +166,14 @@ public class MuseumReaderActivity extends AppCompatActivity {
         res = getResources();
 
         // Fetching our document
-        DOCUMENT_ID = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
-        DocumentReference museumDocument = firebaseFirestore.collection(res.getString(R.string.fs_museums)).document(DOCUMENT_ID);
+        documentId = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
+        DocumentReference museumDocument = firebaseFirestore.collection(res.getString(R.string.fs_museums)).document(documentId);
         Task<DocumentSnapshot> task = museumDocument.get();
         // Biding our view depending on the success
         task.addOnSuccessListener(k -> {
             museumBean = Objects.requireNonNull(task.getResult()).toObject(MuseumBean.class);
             if (null != museumBean) {
-                Log.d(this.getClass().getName(), String.format("Document with id=%s fetched", DOCUMENT_ID));
+                Log.d(this.getClass().getName(), String.format("Document with id=%s fetched", documentId));
                 bindView(museumBean);
                 // Starting our location manager
                 mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -182,19 +181,21 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 refreshButton.setOnClickListener(click -> accessLocation());
             } else {
                 Toast.makeText(this, res.getString(R.string.document_is_null), Toast.LENGTH_LONG).show();
-                Log.e(this.getClass().getName(), String.format("Document with id=%s couldn't be parsed in java class", DOCUMENT_ID));
+                Log.e(this.getClass().getName(), String.format(
+                        "Document with id=%s couldn't be parsed in java class", documentId)
+                );
                 finish();
             }
         }).addOnFailureListener(k -> {
             Toast.makeText(this, res.getString(R.string.unable_to_fetch), Toast.LENGTH_LONG).show();
-            Log.e(this.getClass().getName(), String.format("Document with id=%s couldn't be fetched", DOCUMENT_ID));
+            Log.e(this.getClass().getName(), String.format("Document with id=%s couldn't be fetched", documentId));
             finish();
         });
 
     }
 
     /**
-     * Bind our view with the given bean
+     * Bind our view with the given bean.
      *
      * @param museumBean museum bean to bind our view with
      */
@@ -207,7 +208,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
 
     /**
      * Bind the informations related to the
-     * distance to museum in our view
+     * distance to museum in our view.
      *
      * @param userPosition the user's position
      * @param museumBean   the museum
@@ -295,7 +296,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                     refreshButton.setVisibility(View.VISIBLE);
                     refreshButton.setOnClickListener(k -> {
                                 Intent intent = new Intent(context, RouteMapActivity.class);
-                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_ID, DOCUMENT_ID);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_ID, documentId);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_NAME, museumBean.getNomDuMusee());
                                 intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());

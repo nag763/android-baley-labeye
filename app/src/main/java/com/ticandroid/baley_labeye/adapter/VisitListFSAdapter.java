@@ -1,20 +1,15 @@
 package com.ticandroid.baley_labeye.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.ticandroid.baley_labeye.R;
-import com.ticandroid.baley_labeye.activities.MuseumReaderActivity;
 import com.ticandroid.baley_labeye.beans.VisitBean;
 import com.ticandroid.baley_labeye.holder.VisitListHolder;
 
@@ -22,17 +17,18 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Visit list FS adapter used to display the visits made by the user
- *
- * @see FirestoreRecyclerAdapter
+ * Visit list FS adapter used to display the visits made by the user.
  *
  * @author Baley
  * @author Labeye
+ * @see FirestoreRecyclerAdapter
  */
 public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, VisitListHolder> {
 
-    /** Date formatter used to display our date **/
-    private final static SimpleDateFormat formatter = new SimpleDateFormat("'visité le' dd MMMM yyyy", Locale.FRANCE);
+    /**
+     * Date formatter used to display our date.
+     **/
+    private final static SimpleDateFormat FORMATTER = new SimpleDateFormat("'visité le' dd MMMM yyyy", Locale.FRANCE);
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -47,13 +43,13 @@ public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, Visi
 
     @Override
     protected void onBindViewHolder(@NonNull VisitListHolder holder, int position, @NonNull VisitBean model) {
-        final String TITLE = model.getNomDuMusee();
-        final String VISITED_ON = formatter.format(model.getDate().toDate());
+        final String title = model.getNomDuMusee();
+        final String visitedOn = FORMATTER.format(model.getDate().toDate());
 
-        holder.setTextInTitleView(TITLE);
-        holder.setTextInVisitedOnView(VISITED_ON);
+        holder.setTextInTitleView(title);
+        holder.setTextInVisitedOnView(visitedOn);
 
-        Log.d(getClass().toString(), String.format("card with %s;%s binded", TITLE, VISITED_ON));
+        Log.d(getClass().toString(), String.format("card with %s;%s binded", title, visitedOn));
     }
 
     @NonNull

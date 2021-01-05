@@ -80,7 +80,7 @@ public class MuseumListHolder extends RecyclerView.ViewHolder {
      *
      * @param phoneNumber the phone number as a string to display
      */
-    public void setPhoneNumber(String phoneNumber) {
+    public void setTextInPhoneNumberView(String phoneNumber) {
         this.phoneNumber.setText(phoneNumber);
     }
 }

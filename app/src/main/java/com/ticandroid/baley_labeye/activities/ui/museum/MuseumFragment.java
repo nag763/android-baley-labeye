@@ -77,7 +77,7 @@ public class MuseumFragment extends Fragment {
 
         // Search view initilizaition
         SearchView searchView = root.findViewById(SEARCH_BAR);
-        searchView.setOnQueryTextListener(new searchBarListener());
+        searchView.setOnQueryTextListener(new SearchBarListener());
 
         // Fetch firestore data
         options = generateQuery();
@@ -113,7 +113,10 @@ public class MuseumFragment extends Fragment {
      * @return the options matching the sequence
      */
     private FirestoreRecyclerOptions<MuseumBean> generateQuery(String startsWith) {
-        Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
+        Log.d(this.getClass().toString(), String.format(
+                "method with %s called",
+                startsWith == null ? "null" : startsWith)
+        );
         FirestoreRecyclerOptions<MuseumBean> newOptions;
         if (startsWith == null || startsWith.length() == 0) {
             newOptions = generateQuery();
@@ -146,7 +149,7 @@ public class MuseumFragment extends Fragment {
     /**
      * Class used to add a listener to our searchbar.
      */
-    private class searchBarListener implements SearchView.OnQueryTextListener {
+    private class SearchBarListener implements SearchView.OnQueryTextListener {
 
         @Override
         public boolean onQueryTextChange(String newText) {

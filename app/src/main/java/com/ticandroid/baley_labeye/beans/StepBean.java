@@ -30,13 +30,13 @@ public class StepBean {
     private String roadName;
 
     /**
-     * default constructor
+     * default constructor.
      **/
     public StepBean() {
     }
 
     /**
-     * Create a StepBean from a JsonObject
+     * Create a StepBean from a JsonObject.
      *
      * @param jsonObject
      */
