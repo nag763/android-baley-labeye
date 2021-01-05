@@ -9,25 +9,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ticandroid.baley_labeye.R;
 
 /**
- * Holder of a step list to be used in a recylcer view
+ * Holder of a step list to be used in a recylcer view.
  *
  * @author Baley
  * @author Labeye
  */
 public class StepListHolder extends RecyclerView.ViewHolder {
 
-    /** Street name in TextView **/
+    /**
+     * Street name in TextView
+     **/
     private transient final TextView tvStreetName;
-    /** Text view displaying the distance and duration **/
+    /**
+     * Text view displaying the distance and duration
+     **/
     private transient final TextView tvDistanceDuration;
-    /** Instruction to be followed **/
+    /**
+     * Instruction to be followed
+     **/
     private transient final TextView tvInstruction;
 
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view
+     **/
     private final static int CARD_STREET_NAME = R.id.textStreetName;
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view
+     **/
     private final static int CARD_DISTANCE_DURATION = R.id.textDistanceDuration;
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view
+     **/
     private final static int CARD_INSTRUCTION = R.id.textInstruction;
 
     /**
@@ -45,7 +57,6 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *
      * @param textInTvStreetName text to be displayhed in the street name tv
      */
     public void setTextInTvStreetName(String textInTvStreetName) {
@@ -53,7 +64,6 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *
      * @param textInTvDistanceDuration text to be displayed in the distance duration tv
      */
     public void setTextInTvDistanceDuration(String textInTvDistanceDuration) {
@@ -61,7 +71,6 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *
      * @param textInTvInstruction instruction to be displayed in the instruction tv
      */
     public void setTextInTvInstruction(String textInTvInstruction) {

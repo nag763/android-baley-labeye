@@ -22,11 +22,12 @@ import java.util.TimeZone;
  */
 public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
 
-    /** List of elements to display. **/
+    /**
+     * List of elements to display.
+     **/
     private transient final StepBean[] stepBeans;
 
     /**
-     *
      * @param stepBeans steps to be displayed in the adapter.
      */
     public StepListAdapter(StepBean[] stepBeans) {
@@ -44,13 +45,16 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     @Override
     public void onBindViewHolder(@NonNull StepListHolder holder, int position) {
         final StepBean currentStep = stepBeans[position];
-        // TODO : PASS TO CLASS
         final String STREET_NAME = String.format("Etape %s : %s", ++position, currentStep.getRoadName());
         SimpleDateFormat formatter = new SimpleDateFormat(
                 "HH' heures 'mm' minutes 'ss' secondes'", Locale.FRANCE
         );
         formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-        final String DISTANCE_DURATION = String.format("Dans %s - à %s kms", formatter.format(new Date((long) currentStep.getDuration() * 1000)), currentStep.getDistance());
+        final String DISTANCE_DURATION = String.format("Dans %s - à %s kms",
+                formatter.format(
+                        new Date((long) currentStep.getDuration() * 1000)
+                ),
+                currentStep.getDistance());
         final String INSTRUCTION = currentStep.getInstruction();
 
         holder.setTextInTvStreetName(STREET_NAME);

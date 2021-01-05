@@ -58,41 +58,69 @@ import static java.text.DateFormat.getDateTimeInstance;
  */
 public class MuseumReaderActivity extends AppCompatActivity {
 
-    /** Firestore instance **/
+    /**
+     * Firestore instance
+     **/
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    /** Ressources of the application **/
+    /**
+     * Ressources of the application
+     **/
     private transient Resources res;
-    /** Permissions needed in this app **/
+    /**
+     * Permissions needed in this app
+     **/
     private final static String[] PERMISSIONS_NEEDED =
             {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
             };
-    /** Location manager used to get the user's position **/
+    /**
+     * Location manager used to get the user's position
+     **/
     private transient LocationManager mLocationManager;
-    /** Refresh button to refresh our position **/
+    /**
+     * Refresh button to refresh our position
+     **/
     private transient Button refreshButton;
-    /** Museum bean fetched from remote firestore instance **/
+    /**
+     * Museum bean fetched from remote firestore instance
+     **/
     private transient MuseumBean museumBean;
-    /** Current context of the application **/
+    /**
+     * Current context of the application
+     **/
     private transient Context context;
-    /** Current museum's fs document id **/
+    /**
+     * Current museum's fs document id
+     **/
     private transient String DOCUMENT_ID;
-    /** Distance from user to museum **/
+    /**
+     * Distance from user to museum
+     **/
     private transient double distanceToMuseum;
-    /** Key of the extra museum id **/
+    /**
+     * Key of the extra museum id
+     **/
     public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
-    /** Key of the extra museum id **/
+    /**
+     * Key of the extra museum id
+     **/
     public static final String KEY_OF_EXTRA_MUSEUM_NAME = "museumName";
-    /** Key of the extra user position **/
+    /**
+     * Key of the extra user position
+     **/
     public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
-    /** Key of the extra museum position **/
+    /**
+     * Key of the extra museum position
+     **/
     public static final String KEY_OF_EXTRA_MUSEUM_POSITION = "museumPosition";
-    /** Key of extra distance to museum **/
+    /**
+     * Key of extra distance to museum
+     **/
     public static final String KEY_OF_EXTRA_DISTANCE = "distanceToMuseum";
 
     /**
-     *  Location listener used to get our user position
+     * Location listener used to get our user position
      */
     private final LocationListener mLocationListener = new LocationListener() {
         @Override
@@ -106,7 +134,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
     };
 
     /**
-     *  Method to access the user's location
+     * Method to access the user's location
      */
     private void accessLocation() {
         String textToDisplay = res.getString(R.string.location_service_disabled);
@@ -116,11 +144,11 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.i(this.getClass().getName(), "Location permission hasn't been accepted on user's device");
             requestPermissions(PERMISSIONS_NEEDED, 124);
-        // If the location hasn't been enabled on the user's device
+            // If the location hasn't been enabled on the user's device
         } else if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 && !mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             Log.i(this.getClass().getName(), "Location is disabled on user's device");
-        // If the location is enabled on user's device
+            // If the location is enabled on user's device
         } else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
             textToDisplay = res.getString(R.string.waiting_for_service);
@@ -182,7 +210,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
      * distance to museum in our view
      *
      * @param userPosition the user's position
-     * @param museumBean the museum
+     * @param museumBean   the museum
      */
     public void bindDistanceToMuseum(String userPosition, MuseumBean museumBean) {
 
@@ -191,8 +219,8 @@ public class MuseumReaderActivity extends AppCompatActivity {
 
         String json = String.format(
                 "{\"locations\":[[%s],[%s]]," +
-                "\"metrics\":[\"duration\"," +
-                "\"distance\"],\"units\":\"km\"}",
+                        "\"metrics\":[\"duration\"," +
+                        "\"distance\"],\"units\":\"km\"}",
                 userPosition, museumBean.getInvertedCoordonneesFinales());
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);

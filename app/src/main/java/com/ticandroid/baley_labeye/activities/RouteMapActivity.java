@@ -137,7 +137,7 @@ public class RouteMapActivity extends AppCompatActivity {
      * Add the route to firestore
      */
     private void addRouteToFirestore() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
         final Map<String, Object> data = new HashMap<String, Object>() {
             {
                 put("nomDuMusee", museumName);

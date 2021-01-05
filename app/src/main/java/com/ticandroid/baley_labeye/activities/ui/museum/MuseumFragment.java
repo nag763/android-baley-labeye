@@ -19,6 +19,13 @@ import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
 
+/**
+ * Museum Fragment used to display the list of museum available on the app.
+ *
+ * @author Baley
+ * @author Labeye
+ * @see Fragment
+ */
 public class MuseumFragment extends Fragment {
 
 
@@ -51,20 +58,20 @@ public class MuseumFragment extends Fragment {
      */
     private transient FirestoreRecyclerOptions<MuseumBean> options;
 
+    /**
+     * Creates a new museum fragment instance.
+     *
+     * @return a new MuseumFragment
+     */
     public static MuseumFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        MuseumFragment fragment = new MuseumFragment();
-        fragment.setArguments(args);
-        return fragment;
+        return new MuseumFragment();
     }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(LAYOUT, container, false);
-
 
         Log.d(this.getClass().toString(), "start of onCreate method");
 
@@ -161,7 +168,6 @@ public class MuseumFragment extends Fragment {
             return true;
         }
     }
-
 
 
 }

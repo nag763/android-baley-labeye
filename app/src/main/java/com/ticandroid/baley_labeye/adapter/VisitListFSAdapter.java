@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 /**
- * Visit list holder
+ * Visit list FS adapter used to display the visits made by the user
  *
  * @see FirestoreRecyclerAdapter
  *
@@ -31,26 +31,18 @@ import java.util.Locale;
  */
 public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, VisitListHolder> {
 
-
-    /**
-     * Context that will be used in the clickable element.
-     **/
-    private transient final Context context;
     /** Date formatter used to display our date **/
     private final static SimpleDateFormat formatter = new SimpleDateFormat("'visité le' dd MMMM yyyy", Locale.FRANCE);
-    // TODO : Pass it as string res
-    public static final String KEY_OF_EXTRA = "idToOpen";
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
+     * @param options list of elements to display
      */
-    public VisitListFSAdapter(Context context, @NonNull FirestoreRecyclerOptions<VisitBean> options) {
+    public VisitListFSAdapter(@NonNull FirestoreRecyclerOptions<VisitBean> options) {
         super(options);
-        this.context = context;
-        Log.d(this.getClass().toString(), "created");
+        Log.d(getClass().toString(), "created");
     }
 
     @Override
@@ -61,14 +53,14 @@ public class VisitListFSAdapter extends FirestoreRecyclerAdapter<VisitBean, Visi
         holder.setTextInTitleView(TITLE);
         holder.setTextInVisitedOnView(VISITED_ON);
 
-        Log.d(this.getClass().toString(), String.format("card with %s;%s binded", TITLE, VISITED_ON));
+        Log.d(getClass().toString(), String.format("card with %s;%s binded", TITLE, VISITED_ON));
     }
 
     @NonNull
     @Override
     public VisitListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_visits, parent, false);
-        Log.d(this.getClass().toString(), "view holder created");
+        Log.d(toString(), "view holder created");
         return new VisitListHolder(view);
     }
 }
