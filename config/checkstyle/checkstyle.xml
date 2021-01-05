@@ -13,7 +13,7 @@
       <!--module name="JavadocVariable"/-->
       <module name="JavadocStyle"/>
 
-
+		        
       <!-- Checks for Naming Conventions.                  -->
       <!-- See http://checkstyle.sf.net/config_naming.html -->
       <module name="ConstantName"/>
@@ -108,6 +108,9 @@
         <property name="format" value="\s+$"/>
         <property name="message" value="Line has trailing spaces."/>
     </module>
-
+    <module name="LineLength">
+	    <property name="fileExtensions" value="java"/>
+	    <property name="max" value="120"/>
+    </module>
 
 </module>

@@ -98,7 +98,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         @Override
         public void onLocationChanged(final Location location) {
             String userPosition = String.format("%s,%s", location.getLongitude(), location.getLatitude());
-            Log.d(this.getClass().getName(), String.format("Location changed to %s", userPosition));
+            Log.d(getClass().getName(), String.format("Location changed to %s", userPosition));
             // Once the location is fetched, there is no need for new updates
             mLocationManager.removeUpdates(this);
             bindDistanceToMuseum(userPosition, museumBean);
