@@ -76,10 +76,20 @@ public class MuseumReaderActivity extends AppCompatActivity {
     private transient MuseumBean museumBean;
     /** Current context of the application **/
     private transient Context context;
+    /** Current museum's fs document id **/
+    private transient String DOCUMENT_ID;
+    /** Distance from user to museum **/
+    private transient double distanceToMuseum;
+    /** Key of the extra museum id **/
+    public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
+    /** Key of the extra museum id **/
+    public static final String KEY_OF_EXTRA_MUSEUM_NAME = "museumName";
     /** Key of the extra user position **/
     public static final String KEY_OF_EXTRA_USER_POSITION = "userPosition";
     /** Key of the extra museum position **/
     public static final String KEY_OF_EXTRA_MUSEUM_POSITION = "museumPosition";
+    /** Key of extra distance to museum **/
+    public static final String KEY_OF_EXTRA_DISTANCE = "distanceToMuseum";
 
     /**
      *  Location listener used to get our user position
@@ -129,7 +139,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
         res = getResources();
 
         // Fetching our document
-        final String DOCUMENT_ID = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
+        DOCUMENT_ID = getIntent().getStringExtra(MuseumListFSAdapter.KEY_OF_EXTRA);
         DocumentReference museumDocument = firebaseFirestore.collection(res.getString(R.string.fs_museums)).document(DOCUMENT_ID);
         Task<DocumentSnapshot> task = museumDocument.get();
         // Biding our view depending on the success
@@ -211,7 +221,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
             public void onResponse(Response response) throws IOException {
                 String displayedMessage;
                 double durationToMuseum = -1;
-                double distanceToMuseum = -1;
                 if (!response.isSuccessful()) {
                     Log.w(this.getClass().getName(), String.format(
                             "Request with error code : %s\n%s",
@@ -258,8 +267,11 @@ public class MuseumReaderActivity extends AppCompatActivity {
                     refreshButton.setVisibility(View.VISIBLE);
                     refreshButton.setOnClickListener(k -> {
                                 Intent intent = new Intent(context, RouteMapActivity.class);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_ID, DOCUMENT_ID);
+                                intent.putExtra(KEY_OF_EXTRA_MUSEUM_NAME, museumBean.getNomDuMusee());
                                 intent.putExtra(KEY_OF_EXTRA_USER_POSITION, userPosition);
                                 intent.putExtra(KEY_OF_EXTRA_MUSEUM_POSITION, museumBean.getInvertedCoordonneesFinales());
+                                intent.putExtra(KEY_OF_EXTRA_DISTANCE, distanceToMuseum);
                                 startActivity(intent);
                             }
                     );

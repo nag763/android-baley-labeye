@@ -4,23 +4,36 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment;
+import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
 import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
+import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsFragment;
+import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 
 import androidx.annotation.NonNull;
 
@@ -31,6 +44,7 @@ import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,16 +52,25 @@ import java.io.IOException;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private transient TextView textView;
     private ImageView imageView;
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
-
+   // private transient int count=0;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
     private Fragment fragmentProfil;
+    private Fragment fragmentMuseumList;
+    private Fragment fragmentVisitList;
+    private Fragment fragmentEvaluer;
+    private Fragment fragmentStatistics;
     private static final int FRAGMENT_PROFIL = 0;
+    private static final int FRAGMENT_LISTE_MUSEE = 1;
+    private static final int FRAGMENT_LIST_VISITS = 2;
+    private static final int FRAGMENT_EVALUER = 3;
+    private static final int FRAGMENT_STATISTICS = 4;
+    private transient int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +80,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         stm= FirebaseStorage.getInstance().getReference();
         this.configureNavigationView();
         this.configureToolbar();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle =new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close){
             @Override
             public void onDrawerClosed(View v){
@@ -70,21 +93,56 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        this.showFirstFragment();
+    }
+    private void showFirstFragment(){
+        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        if (visibleFragment == null){
+            // 1.1 - Show News Fragment
+            this.showFragment(FRAGMENT_PROFIL);
+            // 1.2 - Mark as selected the menu item corresponding to NewsFragment
+            this.navigationView.getMenu().getItem(0).setChecked(true);
+        }
     }
 
+
     private void configureToolbar() {
-        this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        this.toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void configureNavigationView(){
-        this.navigationView = (NavigationView) findViewById(R.id.nav_view);
+        this.navigationView = findViewById(R.id.nav_view);
         // NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
 
-        imageView = (ImageView) hView.findViewById(R.id.imageView);
+        imageView = hView.findViewById(R.id.imageView);
         afficherImage();
+
+        textView = hView.findViewById(R.id.textView);
+        afficherNbMusees();
+        //textView.setText(afficherNbMusees());
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    private void afficherNbMusees(){
+
+        FirebaseFirestore.getInstance().collection("visites")
+                .whereEqualTo("idProfil",auth.getCurrentUser().getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    Log.d("count","count");
+                    for(QueryDocumentSnapshot doc : task.getResult()){
+                        Log.d("count"," "+count);
+                        count+=1;
+                    }
+                    textView.setText(""+count);
+                }
+            }
+        });
+
+
     }
     private void afficherImage(){
 
@@ -138,11 +196,24 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             case R.id.profil:
                 this.showFragment(FRAGMENT_PROFIL);
                 break;
+            case R.id.listeMusees:
+                this.showFragment(FRAGMENT_LISTE_MUSEE);
+                break;
+            case R.id.visites:
+                this.showFragment(FRAGMENT_LIST_VISITS);
+                break;
+            case R.id.evaluer:
+                this.showFragment(FRAGMENT_EVALUER);
+                break;
+            case R.id.statistics:
+                this.showFragment(FRAGMENT_STATISTICS);
+                break;
             case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
                 startActivity(deconnexion);
                 finish();
+                break;
             default:
                 break;
         }
@@ -154,21 +225,60 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         switch (fragmentIdentifier) {
             case FRAGMENT_PROFIL:
                 this.showProfilFragment();
+                break;
+            case FRAGMENT_LISTE_MUSEE:
+                this.showMuseumListFragment();
+                break;
+            case FRAGMENT_LIST_VISITS:
+                this.showMuseumVisitFragment();
+                break;
+
+            case FRAGMENT_EVALUER:
+                this.showEvaluerFragment();
+                break;
+            case FRAGMENT_STATISTICS:
+                this.showStatisticsFragment();
+                break;
             default:
                 break;
         }
     }
 
-        private void showProfilFragment () {
+
+
+    private void showProfilFragment () {
         if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
         this.startTransactionFragment(this.fragmentProfil);
     }
 
-        private void startTransactionFragment (Fragment fragment){
-        if (!fragment.isVisible()) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main_frame_layout, fragment).commit();
+        private void showMuseumListFragment() {
+            if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
+            this.startTransactionFragment(this.fragmentMuseumList);
         }
+        private void showEvaluerFragment(){
+            if(this.fragmentEvaluer == null) this.fragmentEvaluer = EvaluerFragment.newInstance();
+            this.startTransactionFragment(this.fragmentEvaluer);
+        }
+
+
+        private void showMuseumVisitFragment() {
+            if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
+            this.startTransactionFragment(this.fragmentVisitList);
+        }
+        private void showStatisticsFragment() {
+            if (this.fragmentStatistics == null) this.fragmentStatistics = StatisticsFragment.newInstance();
+            this.startTransactionFragment(this.fragmentStatistics);
+        }
+
+        private void startTransactionFragment (Fragment fragment){
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+            transaction.replace(R.id.activity_main_frame_layout, fragment);
+            transaction.addToBackStack(null);
+
+            transaction.commit();
     }
 
 

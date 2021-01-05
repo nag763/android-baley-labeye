@@ -39,7 +39,6 @@ public class StepBean {
      * Create a StepBean from a JsonObject
      *
      * @param jsonObject
-     * @throws JSONException
      */
     public StepBean(JSONObject jsonObject) throws JSONException {
         this.distance = jsonObject.optDouble("distance", 0);

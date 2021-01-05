@@ -13,13 +13,18 @@
 
     <fragment
         android:id="@+id/listeMusees"
-        android:name="com.ticandroid.baley_labeye.activities.ui.gallery.GalleryFragment"
+        android:name="com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment"
         android:label="@string/menu_museum"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_museum" />
 
     <fragment
         android:id="@+id/visites"
-        android:name="com.ticandroid.baley_labeye.activities.ui.slideshow.SlideshowFragment"
+        android:name="com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment"
         android:label="@string/menu_visites"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_evaluer" />
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsFragment"
+        android:label="Statistiques"
+        tools:layout="@layout/fragment_statistics"/>
 </navigation>

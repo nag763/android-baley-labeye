@@ -1,4 +1,4 @@
-package com.ticandroid.baley_labeye.activities.ui.gallery;
+package com.ticandroid.baley_labeye.activities.ui.museum;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

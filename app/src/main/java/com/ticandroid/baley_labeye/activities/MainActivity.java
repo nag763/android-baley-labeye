@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.d(this.getClass().toString(), String.format("%s clicked", v.toString()));
         if (v.equals(listeMusees)){
-            startActivity(new Intent(this, MuseumListActivity.class));
+            return;
         }
         else if(v.equals(buttonProfil)){
             Intent profil = new Intent(MainActivity.this, ProfilActivity.class);

@@ -25,21 +25,25 @@ The subject is to create an Android app that will display the museums nearby the
 			- [x] Display the distance in kms from the user
 			- [x] On click show a new activity that show the travel to the user
 			- [x] Shows the route path to the user
-	- [ ] Can see the list of the latest museums he visited
-		- [ ] Display the name of the museum
-		- [ ] Display the visit date
-	- [ ] Can evaluate the visits he already did
-	- [ ] Can see the statistics around his visits
+	- [x] Can see the list of the latest museums he visited
+		- [x] Display the name of the museum
+		- [x] Display the visit date
+	- [x] Can evaluate the visits he already did
+	- [x] Can see the statistics around his visits
 	- [x] Can quit the application
 
 If the user is authenticated as an admin :
 
-- [ ] Can see the integrated museums in a map
+- [x] Can see the integrated museums in a map
 
 - [ ] Can see the application usage stats
 
-- [ ] Can quit the application
+- [x] Can quit the application
 
 ## Known Issues
 
-- [ ] If data from fetched field is null, the application crashs
+- [x] If data from fetched field is null, the application crashs
+	
+	- Solved by removing some useless fields in the museum collection
+
+- [ ] If the connection isn't successful, the connection loops
