@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +24,7 @@ import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
 import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
 import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
+import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment;
 import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 
 
@@ -36,12 +38,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private Fragment fragmentProfil;
-    private Fragment fragmentMuseumList;
-    private Fragment fragmentVisitList;
-    private static final int FRAGMENT_PROFIL = 0;
-    private static final int FRAGMENT_LISTE_MUSEE = 1;
-    private static final int FRAGMENT_LIST_VISITS = 2;
+    private Fragment fragmentMap;
+    private Fragment fragmentStatistics;
+    private static final int FRAGMENT_MAP=0;
+    private static final int FRAGMENT_STATISTICS=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         this.configureNavigationView();
         this.configureToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+        ActionBarDrawerToggle actionBarDrawerToggle =
+                new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                        R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View v) {
                 super.onDrawerClosed(v);
@@ -65,17 +68,26 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        this.showFirstFragment();
     }
 
     private void configureToolbar() {
-        this.toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        this.toolbar = findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void configureNavigationView() {
-        this.navigationView = (NavigationView) findViewById(R.id.nav_view);
+        this.navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    private void showFirstFragment(){
+        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        if (visibleFragment == null){
+            // 1.1 - Show News Fragment
+            this.showFragment(FRAGMENT_MAP);
+            // 1.2 - Mark as selected the menu item corresponding to NewsFragment
+            this.navigationView.getMenu().getItem(0).setChecked(true);
+        }
     }
 
     @Override
@@ -92,14 +104,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.profil:
-                this.showFragment(FRAGMENT_PROFIL);
+            case R.id.map:
+                this.showFragment(FRAGMENT_MAP);
                 break;
-            case R.id.listeMusees:
-                this.showFragment(FRAGMENT_LISTE_MUSEE);
-                break;
-            case R.id.visites:
-                this.showFragment(FRAGMENT_LIST_VISITS);
+            case R.id.statisticsAdmin:
+                this.showFragment(FRAGMENT_STATISTICS);
                 break;
             case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
@@ -116,41 +125,35 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     private void showFragment(int fragmentIdentifier) {
         switch (fragmentIdentifier) {
-            case FRAGMENT_PROFIL:
-                this.showProfilFragment();
+            case FRAGMENT_MAP:
+                this.showMapFragment();
                 break;
-            case FRAGMENT_LISTE_MUSEE:
-                this.showMuseumListFragment();
-                break;
-            case FRAGMENT_LIST_VISITS:
-                this.showMuseumVisitFragment();
+            case FRAGMENT_STATISTICS:
+                this.showStatisticsFragment();
                 break;
             default:
                 break;
         }
     }
 
-    private void showProfilFragment() {
-        if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
-        this.startTransactionFragment(this.fragmentProfil);
+    private void showStatisticsFragment() {
+        if(this.fragmentStatistics == null) this.fragmentStatistics = StatisticsAdminFragment.newInstance();
+        this.startTransactionFragment(this.fragmentStatistics);
     }
 
-    private void showMuseumListFragment() {
-        if (this.fragmentMuseumList == null) this.fragmentMuseumList = MapFragment.newInstance();
-        this.startTransactionFragment(this.fragmentMuseumList);
-    }
-
-
-    private void showMuseumVisitFragment() {
-        if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
-        this.startTransactionFragment(this.fragmentVisitList);
+    private void showMapFragment() {
+        if(this.fragmentMap == null) this.fragmentMap = MapFragment.newInstance();
+        this.startTransactionFragment(this.fragmentMap);
     }
 
     private void startTransactionFragment(Fragment fragment) {
-        if (!fragment.isVisible()) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main_frame_layout, fragment).commit();
-        }
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+        transaction.replace(R.id.activity_main_frame_layout, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 
 
