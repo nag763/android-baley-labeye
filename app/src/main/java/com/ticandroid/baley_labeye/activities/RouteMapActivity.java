@@ -113,8 +113,8 @@ public class RouteMapActivity extends AppCompatActivity {
      */
     private double[] positionToDoubleArray(String position) {
         final String splittable = ",";
-        final int numberOfSplittableElements = 2;
         try {
+            final int numberOfSplittableElements = 2;
             if (!position.contains(splittable)) {
                 throw new ParseException("Array doesn't contain the splitter element", 0);
             } else if (position.split(splittable).length != numberOfSplittableElements) {

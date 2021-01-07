@@ -69,11 +69,11 @@ public class MapFragment extends Fragment {
      */
     private double[] positionToDoubleArray(String position) {
         final String splitter = ",";
-        final int numberOfSplittableRequired = 2;
         try {
+            final int numberOfSplittableRequired = 2;
             if (!position.contains(splitter)) {
                 throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(splitter).length != numberOfSplittableRequired) {
+            } else if (position.split(splitter).length != 2) {
                 throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
             } else if (position.trim().isEmpty()) {
                 throw new Exception("The string is empty");
