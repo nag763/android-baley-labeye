@@ -9,29 +9,43 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ticandroid.baley_labeye.R;
 
 /**
- * Holder of a step list to be used in a recylcer view
+ * Holder of a step list to be used in a recylcer view.
+ *
+ * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  *
  * @author Baley
  * @author Labeye
+ *
  */
 public class StepListHolder extends RecyclerView.ViewHolder {
 
-    /** Street name in TextView **/
+    /**
+     * Street name in TextView.
+     **/
     private transient final TextView tvStreetName;
-    /** Text view displaying the distance and duration **/
+    /**
+     * Text view displaying the distance and duration.
+     **/
     private transient final TextView tvDistanceDuration;
-    /** Instruction to be followed **/
+    /**
+     * Instruction to be followed.
+     **/
     private transient final TextView tvInstruction;
-
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view.
+     **/
     private final static int CARD_STREET_NAME = R.id.textStreetName;
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view.
+     **/
     private final static int CARD_DISTANCE_DURATION = R.id.textDistanceDuration;
-    /** Matching text view element in card view **/
+    /**
+     * Matching text view element in card view.
+     **/
     private final static int CARD_INSTRUCTION = R.id.textInstruction;
 
     /**
-     * Constructor initiliasing the text view elements
+     * Constructor initialising the text view elements.
      *
      * @param itemView current view where the holder is being called
      */
@@ -45,14 +59,16 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
+     * Set the given text in the street tv.
      *
-     * @param textInTvStreetName text to be displayhed in the street name tv
+     * @param textInTvStreetName text to be displayed in the street name tv
      */
     public void setTextInTvStreetName(String textInTvStreetName) {
         this.tvStreetName.setText(textInTvStreetName);
     }
 
     /**
+     * Set the text in the distance tv.
      *
      * @param textInTvDistanceDuration text to be displayed in the distance duration tv
      */
@@ -61,6 +77,7 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
+     * Set the text in the instruction tv.
      *
      * @param textInTvInstruction instruction to be displayed in the instruction tv
      */

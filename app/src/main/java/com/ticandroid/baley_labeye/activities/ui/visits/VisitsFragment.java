@@ -20,6 +20,14 @@ import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.VisitListFSAdapter;
 import com.ticandroid.baley_labeye.beans.VisitBean;
 
+/**
+ * Visits fragment used to display the places currently visited by the user.
+ *
+ * @see Fragment
+ *
+ * @author Baley
+ * @author Labeye
+ */
 public class VisitsFragment extends Fragment {
 
 
@@ -52,15 +60,16 @@ public class VisitsFragment extends Fragment {
      */
     private transient FirestoreRecyclerOptions<VisitBean> options;
 
+    /**
+     * Creates a new VisitFragment
+     *
+     * @return a new visit fragment
+     */
     public static VisitsFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        VisitsFragment fragment = new VisitsFragment();
-        fragment.setArguments(args);
-        return fragment;
+        return new VisitsFragment();
     }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -75,7 +84,7 @@ public class VisitsFragment extends Fragment {
 
         // Fetch firestore data
         options = generateQuery();
-        adapter = new VisitListFSAdapter(root.getContext(), options);
+        adapter = new VisitListFSAdapter(options);
 
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
@@ -135,8 +144,8 @@ public class VisitsFragment extends Fragment {
         Query query;
         query = firebaseFirestore.collection(QUERY_PATH)
                 .whereEqualTo("idProfil", FirebaseAuth.getInstance().getUid())
-        .orderBy("nomDuMusee");
-        Log.d(this.getClass().getName(), "options reseted with default "+query.toString());
+                .orderBy("nomDuMusee");
+        Log.d(this.getClass().getName(), "options reseted with default " + query.toString());
         return new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
     }
 
@@ -165,7 +174,6 @@ public class VisitsFragment extends Fragment {
             return true;
         }
     }
-
 
 
 }

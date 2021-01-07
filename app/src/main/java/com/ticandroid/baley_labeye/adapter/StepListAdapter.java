@@ -22,11 +22,16 @@ import java.util.TimeZone;
  */
 public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
 
-    /** List of elements to display. **/
+    /**
+     * List of elements to display.
+     **/
     private transient final StepBean[] stepBeans;
 
+    private transient static final SimpleDateFormat formatter = new SimpleDateFormat(
+            "HH' heures 'mm' minutes 'ss' secondes'", Locale.FRANCE
+    );
+
     /**
-     *
      * @param stepBeans steps to be displayed in the adapter.
      */
     public StepListAdapter(StepBean[] stepBeans) {
@@ -36,26 +41,32 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     @NonNull
     @Override
     public StepListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list_instruction, parent, false);
+        View view = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.card_view_list_instruction, parent, false);
         Log.d(this.getClass().toString(), "view holder created");
+
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+
         return new StepListHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StepListHolder holder, int position) {
         final StepBean currentStep = stepBeans[position];
-        // TODO : PASS TO CLASS
-        final String STREET_NAME = String.format("Etape %s : %s", ++position, currentStep.getRoadName());
-        SimpleDateFormat formatter = new SimpleDateFormat(
-                "HH' heures 'mm' minutes 'ss' secondes'", Locale.FRANCE
-        );
-        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
-        final String DISTANCE_DURATION = String.format("Dans %s - à %s kms", formatter.format(new Date((long) currentStep.getDuration() * 1000)), currentStep.getDistance());
-        final String INSTRUCTION = currentStep.getInstruction();
+        final String streetName = String.format("Etape %s : %s", ++position, currentStep.getRoadName());
 
-        holder.setTextInTvStreetName(STREET_NAME);
-        holder.setTextInTvDistanceDuration(DISTANCE_DURATION);
-        holder.setTextInTvInstruction(INSTRUCTION);
+        final String distanceDuration = String.format("Dans %s - à %s kms",
+                formatter.format(
+                        new Date((long) currentStep.getDuration() * 1000)
+                ),
+                currentStep.getDistance()
+        );
+        final String instruction = currentStep.getInstruction();
+
+        holder.setTextInTvStreetName(streetName);
+        holder.setTextInTvDistanceDuration(distanceDuration);
+        holder.setTextInTvInstruction(instruction);
     }
 
     @Override

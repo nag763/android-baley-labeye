@@ -9,34 +9,52 @@ package com.ticandroid.baley_labeye.beans;
  */
 public class MuseumBean {
 
-    /** Adresse of the museum. **/
+    /**
+     * Adresse of the museum.
+     **/
     private String adr;
-    /** Fiscales data. **/
+    /**
+     * Fiscales data.
+     **/
     private String coordonneesFinales;
-    /** Postal code associated. **/
+    /**
+     * Postal code associated.
+     **/
     private int cp;
-    /** Department of the museum. **/
+    /**
+     * Department of the museum.
+     **/
     private String departement;
-    /** Name of the museum. **/
+    /**
+     * Name of the museum.
+     **/
     private String nomDuMusee;
-    /** Region where it is present. **/
+    /**
+     * Region where it is present.
+     **/
     private String region;
-    /** Phone number to join the office. **/
+    /**
+     * Phone number to join the office.
+     **/
     private long telephone1;
-    /** City where the museum is present. **/
+    /**
+     * City where the museum is present.
+     **/
     private String ville;
 
+    /**
+     * Default constructor.
+     */
     public MuseumBean() {
     }
 
     /**
-     *
      * Method to returns the longitude/ latitude instead of
-     * latitude,longitude
+     * latitude,longitude.
      *
      * @return the coordonnnees as understandable by the api
      */
-    public String getInvertedCoordonneesFinales(){
+    public String getInvertedCoordonneesFinales() {
         String[] coordonneesSplitted = coordonneesFinales.split(",");
         return String.format("%s,%s", coordonneesSplitted[1], coordonneesSplitted[0]);
     }
@@ -46,7 +64,7 @@ public class MuseumBean {
     }
 
     /**
-     * Returns a readable string for the reader
+     * Returns a readable string for the reader.
      *
      * @return the phone number with the local number prefix
      */
@@ -55,16 +73,16 @@ public class MuseumBean {
     }
 
     /**
-     * Method to return only the most important part of the adress
+     * Method to return only the most important part of the address.
      *
      * @return a shortened understandable adress
      */
-    public String getPartialAdresse(){
+    public String getPartialAdresse() {
         return String.format("%s\n %s, %s", adr, ville, region);
     }
 
     /**
-     * Method to return the complete adresse of a museum
+     * Method to return the complete adresse of a museum.
      *
      * @return the adr, cp, ville, departement and region as a pretty and readable String value
      */

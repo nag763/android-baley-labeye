@@ -47,3 +47,11 @@ If the user is authenticated as an admin :
 	- Solved by removing some useless fields in the museum collection
 
 - [ ] If the connection isn't successful, the connection loops
+
+## TODO
+
+- [ ] Fix deprecated *ProgressDialog* in *InscriptionActivity*
+
+- [ ] Rename MainActivity2 to something more explicit
+
+- [ ] Change App Name and App Logo on phone

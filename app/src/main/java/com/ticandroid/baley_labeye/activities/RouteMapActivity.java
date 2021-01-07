@@ -46,32 +46,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Display the route to a point given as intent.
+ *
+ * @author Baley
+ * @author Labeye
+ * @see AppCompatActivity
+ */
 public class RouteMapActivity extends AppCompatActivity {
 
     /**
-     * Context of the application
+     * Context of the application.
      **/
     private Context context;
     /**
-     * Ressources of the application
+     * Ressources of the application.
      **/
     private static Resources res;
-
     /**
-     * Current map view being displayed
+     * Current map view being displayed.
      **/
     private transient MapView mMapView;
     /**
-     * Recycler view to display the instructions
+     * Recycler view to display the instructions.
      **/
     private transient RecyclerView recyclerView;
-
     /**
-     * Current museum id
+     * Current museum id.
      **/
     private transient String museumId;
     /**
-     * Current museum name
+     * Current museum name.
      **/
     private transient String museumName;
     /**
@@ -79,16 +84,16 @@ public class RouteMapActivity extends AppCompatActivity {
      */
     private transient double distanceToMuseum;
     /**
-     * List of steps to be displayed
+     * List of steps to be displayed.
      **/
     private transient final List<StepBean> stepList = new ArrayList<>();
     /**
-     * List of geopoints associed with the steps
+     * List of geopoints associed with the steps.
      **/
     private transient final List<GeoPoint> geoPointList = new ArrayList<>();
 
     /**
-     * Draw a marker with the given geopoint
+     * Draw a marker with the given geopoint.
      *
      * @param geoPoint geopoint where the marker needs to be drawn
      */
@@ -101,22 +106,22 @@ public class RouteMapActivity extends AppCompatActivity {
     }
 
     /**
-     * Parse the position as string to a array of double
+     * Parse the position as string to a array of double.
      *
      * @param position position to parse
      * @return position as double array
      */
     private double[] positionToDoubleArray(String position) {
-        final String SPLITTABLE = ",";
+        final String splittable = ",";
         try {
-            if (!position.contains(SPLITTABLE)) {
+            if (!position.contains(splittable)) {
                 throw new ParseException("Array doesn't contain the splitter element", 0);
-            } else if (position.split(SPLITTABLE).length != 2) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(SPLITTABLE));
+            } else if (position.split(splittable).length != 2) {
+                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splittable));
             } else if (position.trim().isEmpty()) {
                 throw new NullPointerException("The string is empty");
             } else {
-                return Arrays.stream(position.split(SPLITTABLE)).mapToDouble(Double::parseDouble).toArray();
+                return Arrays.stream(position.split(splittable)).mapToDouble(Double::parseDouble).toArray();
             }
         } catch (ParseException | NullPointerException e) {
             Log.e(getClass().getName(), "Exception occured\nException : %s", e);
@@ -125,7 +130,7 @@ public class RouteMapActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch the UI by switching the components visibility
+     * Switch the UI by switching the components visibility.
      */
     private void switchVisibilities() {
         final int mapVisibility = this.mMapView.getVisibility();
@@ -134,10 +139,10 @@ public class RouteMapActivity extends AppCompatActivity {
     }
 
     /**
-     * Add the route to firestore
+     * Add the route to firestore.
      */
     private void addRouteToFirestore() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
         final Map<String, Object> data = new HashMap<String, Object>() {
             {
                 put("nomDuMusee", museumName);
@@ -152,10 +157,14 @@ public class RouteMapActivity extends AppCompatActivity {
         };
 
         // Setting a unique id combining both the uuid and museum id to avoid duplicates
-        FirebaseFirestore.getInstance().collection("visites").document(String.format("%s::%s", auth.getUid(), museumId)).set(data).addOnCompleteListener(task -> {
-            Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
-            // No need to save the document twice
-            findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
+        FirebaseFirestore
+                .getInstance()
+                .collection("visites")
+                .document(String.format("%s::%s", auth.getUid(), museumId))
+                .set(data).addOnCompleteListener(task -> {
+                    Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
+                    // No need to save the document twice
+                    findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
         });
     }
 
@@ -176,7 +185,7 @@ public class RouteMapActivity extends AppCompatActivity {
         museumId = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_ID);
         museumName = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_NAME);
         distanceToMuseum = getIntent().getDoubleExtra(MuseumReaderActivity.KEY_OF_EXTRA_DISTANCE, -1);
-
+        // Get positions and cast them to string in order to use them in the controller
         final String userPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_USER_POSITION);
         final double[] userPositionAsDouble = Objects.requireNonNull(positionToDoubleArray(userPosition));
         final String museumPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_POSITION);
@@ -203,7 +212,7 @@ public class RouteMapActivity extends AppCompatActivity {
     /**
      * Draws the route line between the spots
      * and display the itinary between the arrival
-     * and the departure
+     * and the departure.
      *
      * @param userPosition   begining of the route
      * @param museumPosition arrival point

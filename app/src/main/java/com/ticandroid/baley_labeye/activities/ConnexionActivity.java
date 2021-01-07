@@ -29,6 +29,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private transient Button login;
     private transient FirebaseAuth auth;
     private transient TextView title;
+    // TODO : Fix that
     private transient ProgressDialog progressDialog;
 
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();

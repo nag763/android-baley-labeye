@@ -9,24 +9,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ticandroid.baley_labeye.R;
 
 /**
- *
  * Holder used to bind our data into our visit card layout.
- *
- * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  *
  * @author Baley
  * @author Labeye
+ * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  */
 public class VisitListHolder extends RecyclerView.ViewHolder {
 
-    /** Title of the museum. **/
+    /**
+     * Title of the museum.
+     **/
     private transient final TextView title;
-    /** Date of the visit. **/
+    /**
+     * Date of the visit.
+     **/
     private transient final TextView visitedOn;
 
-    /** Card title element. **/
+    /**
+     * Card title element.
+     **/
     private final static int CARD_TITLE = R.id.textTitle;
-    /** Card visited on element. **/
+    /**
+     * Card visited on element.
+     **/
     private final static int CARD_VISITED_ON = R.id.textVisitedOn;
 
 
@@ -43,11 +49,11 @@ public class VisitListHolder extends RecyclerView.ViewHolder {
     }
 
     /**
-     *  Set the title in the layout element.
+     * Set the title in the layout element.
      *
      * @param title the title as a string to display.
      **/
-    public void setTextInTitleView(String title){
+    public void setTextInTitleView(String title) {
         this.title.setText(title);
     }
 
@@ -56,7 +62,7 @@ public class VisitListHolder extends RecyclerView.ViewHolder {
      *
      * @param visitedOn the date as a string to display
      */
-    public void setTextInVisitedOnView(String visitedOn){
+    public void setTextInVisitedOnView(String visitedOn) {
         this.visitedOn.setText(visitedOn);
     }
 }

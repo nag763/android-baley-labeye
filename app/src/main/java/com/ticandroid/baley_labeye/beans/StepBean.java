@@ -13,30 +13,30 @@ import org.json.JSONObject;
 public class StepBean {
 
     /**
-     * distance travelled since last step
+     * distance travelled since last step.
      **/
     private double distance;
     /**
-     * duration since last step
+     * duration since last step.
      **/
     private int duration;
     /**
-     * what to do at this point
+     * what to do at this point.
      **/
     private String instruction;
     /**
-     * current road name
+     * current road name.
      **/
     private String roadName;
 
     /**
-     * default constructor
+     * default constructor.
      **/
     public StepBean() {
     }
 
     /**
-     * Create a StepBean from a JsonObject
+     * Create a StepBean from a JsonObject.
      *
      * @param jsonObject
      */

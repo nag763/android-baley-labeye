@@ -29,14 +29,17 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link MapFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Map Fragment used to display all the museums stored in the FS instance on a
+ * osm map.
+ *
+ * @author Baley
+ * @author Labeye
+ * @see Fragment
  */
 public class MapFragment extends Fragment {
 
     /**
-     * Current map view being displayed
+     * Current map view being displayed.
      **/
     private transient MapView mMapView;
 
@@ -44,7 +47,7 @@ public class MapFragment extends Fragment {
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     /**
-     * Draw a marker with the given geopoint
+     * Draw a marker with the given geopoint.
      *
      * @param geoPoint geopoint where the marker needs to be drawn
      */
@@ -59,22 +62,22 @@ public class MapFragment extends Fragment {
     }
 
     /**
-     * Parse the position as string to a array of double
+     * Parse the position as string to a array of double.
      *
      * @param position position to parse
      * @return position as double array
      */
     private double[] positionToDoubleArray(String position) {
-        final String SPLITTABLE = ",";
+        final String splitter = ",";
         try {
-            if (!position.contains(SPLITTABLE)) {
-                throw new ParseException("Array doesn't contain the splitter element", 0);
-            } else if (position.split(SPLITTABLE).length != 2) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(SPLITTABLE));
+            if (!position.contains(splitter)) {
+                throw new ParseException("Array doesn't contain the splitter museums", 0);
+            } else if (position.split(splitter).length != 2) {
+                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
             } else if (position.trim().isEmpty()) {
                 throw new NullPointerException("The string is empty");
             } else {
-                return Arrays.stream(position.split(SPLITTABLE)).mapToDouble(Double::parseDouble).toArray();
+                return Arrays.stream(position.split(splitter)).mapToDouble(Double::parseDouble).toArray();
             }
         } catch (ParseException | NullPointerException e) {
             Log.e(getClass().getName(), "Exception occured\nException : %s", e);
@@ -82,10 +85,18 @@ public class MapFragment extends Fragment {
         }
     }
 
+    /**
+     * Default constructor.
+     */
     public MapFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Creates an instance of the fragment.
+     *
+     * @return a new map fragment
+     */
     public static MapFragment newInstance() {
         return new MapFragment();
     }
@@ -97,35 +108,35 @@ public class MapFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_map, container, false);
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
         super.onCreate(savedInstanceState);
-
+        // Create map view
         mMapView = root.findViewById(R.id.mapMuseumsView);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
-
-        MapController mMapController = (MapController) mMapView.getController();
-        final GeoPoint CENTER_OF_FRANCE = new GeoPoint(47.1539, 0.22508);
-        mMapController.setCenter(CENTER_OF_FRANCE);
+        // Focus on the geographical center of the metropolitan france
+        final MapController mMapController = (MapController) mMapView.getController();
+        final GeoPoint centerOfFrance = new GeoPoint(47.1539d, 0.22508d);
+        mMapController.setCenter(centerOfFrance);
         mMapController.setZoom(7);
-
+        // Add geomarkers for museums
         CollectionReference collectionReference = firebaseFirestore.collection("museums");
         Task<QuerySnapshot> task = collectionReference.get();
-        task.addOnCompleteListener(k -> {
-            task.getResult().forEach(element -> {
-                Query collectionReference1 = FirebaseFirestore.getInstance().collection("visites").whereEqualTo("idMusee", element.getId());
-                Task<QuerySnapshot> task1 = collectionReference1.get();
-                task1.addOnCompleteListener(l -> {
-                            try {
-                                int numberOfVisits = l.getResult().size();
-                                final MuseumBean museumBean = Objects.requireNonNull(element).toObject(MuseumBean.class);
-                                final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
-                                drawMarker(new GeoPoint(position[0], position[1]), museumBean.getNomDuMusee(), numberOfVisits);
+        task.addOnCompleteListener(k ->
+                task.getResult().forEach(museums -> {
+                            Query collectionReference1 = firebaseFirestore.collection("visites").whereEqualTo("idMusee", museums.getId());
+                            Task<QuerySnapshot> task1 = collectionReference1.get();
+                            task1.addOnCompleteListener(visits -> {
+                                        try {
+                                            int numberOfVisits = visits.getResult().size();
+                                            final MuseumBean museumBean = Objects.requireNonNull(museums).toObject(MuseumBean.class);
+                                            final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
+                                            drawMarker(new GeoPoint(position[0], position[1]), museumBean.getNomDuMusee(), numberOfVisits);
 
-                            } catch (Exception e) {
-                                Log.e(getClass().getName(), e.getMessage());
-                            }
+                                        } catch (Exception e) {
+                                            Log.e(getClass().getName(), e.getMessage());
+                                        }
+                                    }
+                            );
                         }
-                );
-            });
-        });
+                ));
 
 
         return root;
