@@ -121,7 +121,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
     /**
      * Location listener used to get our user position.
      */
-    private final LocationListener mLocationListener = new LocationListener() {
+    private transient final LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(final Location location) {
             String userPosition = String.format("%s,%s", location.getLongitude(), location.getLatitude());
@@ -136,24 +136,26 @@ public class MuseumReaderActivity extends AppCompatActivity {
      * Method to access the user's location.
      */
     private void accessLocation() {
-        String textToDisplay = res.getString(R.string.location_service_disabled);
+        final TextView tvDistanceToMuseum =  findViewById(R.id.tvDistanceToMuseum);
         Log.d(getClass().getName(), "Location accesser called");
         // If the user hasn't accepted the usage of its location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(getClass().getName(), "Location permission hasn't been accepted on user's device");
+            Log.w(getClass().getName(), "Location permission hasn't been accepted on user's device");
             requestPermissions(PERMISSIONS_NEEDED, 124);
+            tvDistanceToMuseum.setText(res.getText(R.string.location_service_disabled));
             // If the location hasn't been enabled on the user's device
         } else if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 && !mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            Log.i(getClass().getName(), "Location is disabled on user's device");
+            Log.w(getClass().getName(), "Location is disabled on user's device");
+            tvDistanceToMuseum.setText(res.getText(R.string.location_service_disabled));
             // If the location is enabled on user's device
         } else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
-            textToDisplay = res.getString(R.string.waiting_for_service);
+
+            tvDistanceToMuseum.setText(res.getString(R.string.waiting_for_service));
             refreshButton.setVisibility(View.INVISIBLE);
         }
-        ((TextView) findViewById(R.id.tvDistanceToMuseum)).setText(textToDisplay);
     }
 
 
@@ -272,7 +274,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                         distanceToMuseum = jsonArray.getJSONArray(0).getDouble(1);
 
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.e(getClass().getName(), String.format("The following error happened\n%s", e));
                     } finally {
                         if (durationToMuseum == -1 || distanceToMuseum == -1) {
                             displayedMessage = res.getString(R.string.error_while_displaying);

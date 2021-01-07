@@ -34,8 +34,8 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     /**
      * @param stepBeans steps to be displayed in the adapter.
      */
-    public StepListAdapter(StepBean[] stepBeans) {
-        this.stepBeans = stepBeans;
+    public StepListAdapter(StepBean... stepBeans) {
+        this.stepBeans = stepBeans.clone();
     }
 
     @NonNull
@@ -54,7 +54,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     @Override
     public void onBindViewHolder(@NonNull StepListHolder holder, int position) {
         final StepBean currentStep = stepBeans[position];
-        final String streetName = String.format("Etape %s : %s", ++position, currentStep.getRoadName());
+        final String streetName = String.format("Etape %s : %s", position+1, currentStep.getRoadName());
 
         final String distanceDuration = String.format("Dans %s - à %s kms",
                 FORMATTER.format(

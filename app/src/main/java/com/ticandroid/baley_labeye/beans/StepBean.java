@@ -15,19 +15,19 @@ public class StepBean {
     /**
      * distance travelled since last step.
      **/
-    private double distance;
+    private transient double distance;
     /**
      * duration since last step.
      **/
-    private int duration;
+    private transient int duration;
     /**
      * what to do at this point.
      **/
-    private String instruction;
+    private transient String instruction;
     /**
      * current road name.
      **/
-    private String roadName;
+    private transient String roadName;
 
     /**
      * default constructor.
@@ -38,7 +38,7 @@ public class StepBean {
     /**
      * Create a StepBean from a JsonObject.
      *
-     * @param jsonObject
+     * @param jsonObject json object to deserialize
      */
     public StepBean(JSONObject jsonObject) throws JSONException {
         this.distance = jsonObject.optDouble("distance", 0);
