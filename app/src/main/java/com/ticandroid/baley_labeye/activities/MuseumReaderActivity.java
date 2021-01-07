@@ -251,7 +251,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
             @Override
             public void onResponse(Response response) throws IOException {
                 String displayedMessage;
-                double durationToMuseum = -1;
                 if (!response.isSuccessful()) {
                     Log.w(this.getClass().getName(), String.format(
                             "Request with error code : %s\n%s",
@@ -262,6 +261,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                             response.code(), res.getString(R.string.error_remote_orss)
                     );
                 } else {
+                    double durationToMuseum = -1;
                     final JSONObject jsonReader;
                     try {
                         String jsonData = response.body().string();
