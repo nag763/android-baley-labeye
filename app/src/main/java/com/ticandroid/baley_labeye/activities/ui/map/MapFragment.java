@@ -121,12 +121,18 @@ public class MapFragment extends Fragment {
         Task<QuerySnapshot> task = collectionReference.get();
         task.addOnCompleteListener(k ->
                 task.getResult().forEach(museums -> {
-                            Query collectionReference1 = firebaseFirestore.collection("visites").whereEqualTo("idMusee", museums.getId());
-                            Task<QuerySnapshot> task1 = collectionReference1.get();
+                            Query visiteCollection = firebaseFirestore
+                                                            .collection("visites")
+                                                            .whereEqualTo("idMusee", museums.getId());
+                            Task<QuerySnapshot> task1 = visiteCollection.get();
                             task1.addOnCompleteListener(visits -> {
                                         try {
-                                            int numberOfVisits = visits.getResult().size();
-                                            final MuseumBean museumBean = Objects.requireNonNull(museums).toObject(MuseumBean.class);
+                                            final int numberOfVisits = visits
+                                                                        .getResult()
+                                                                        .size();
+                                            final MuseumBean museumBean = Objects
+                                                                        .requireNonNull(museums)
+                                                                        .toObject(MuseumBean.class);
                                             final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
                                             drawMarker(new GeoPoint(position[0], position[1]), museumBean.getNomDuMusee(), numberOfVisits);
 
