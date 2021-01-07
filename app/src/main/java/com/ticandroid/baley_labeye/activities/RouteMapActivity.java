@@ -58,7 +58,7 @@ public class RouteMapActivity extends AppCompatActivity {
     /**
      * Context of the application.
      **/
-    private Context context;
+    private transient Context context;
     /**
      * Ressources of the application.
      **/
@@ -113,17 +113,18 @@ public class RouteMapActivity extends AppCompatActivity {
      */
     private double[] positionToDoubleArray(String position) {
         final String splittable = ",";
+        final int numberOfSplittableElements = 2;
         try {
             if (!position.contains(splittable)) {
                 throw new ParseException("Array doesn't contain the splitter element", 0);
-            } else if (position.split(splittable).length != 2) {
+            } else if (position.split(splittable).length != numberOfSplittableElements) {
                 throw new ParseException("Array got too many splittable args", position.lastIndexOf(splittable));
             } else if (position.trim().isEmpty()) {
                 throw new NullPointerException("The string is empty");
             } else {
                 return Arrays.stream(position.split(splittable)).mapToDouble(Double::parseDouble).toArray();
             }
-        } catch (ParseException | NullPointerException e) {
+        } catch (Exception e) {
             Log.e(getClass().getName(), "Exception occured\nException : %s", e);
             return null;
         }
@@ -143,18 +144,15 @@ public class RouteMapActivity extends AppCompatActivity {
      */
     private void addRouteToFirestore() {
         final FirebaseAuth auth = FirebaseAuth.getInstance();
-        final Map<String, Object> data = new HashMap<String, Object>() {
-            {
-                put("nomDuMusee", museumName);
-                put("date", Timestamp.now());
-                put("instructions", stepList);
-                put("georoute", geoPointList);
-                put("evaluation", null);
-                put("distance", distanceToMuseum);
-                put("idMusee", museumId);
-                put("idProfil", auth.getUid());
-            }
-        };
+        final Map<String, Object> data = new HashMap<String, Object>() { };
+        data.put("nomDuMusee", museumName);
+        data.put("date", Timestamp.now());
+        data.put("instructions", stepList);
+        data.put("georoute", geoPointList);
+        data.put("evaluation", null);
+        data.put("distance", distanceToMuseum);
+        data.put("idMusee", museumId);
+        data.put("idProfil", auth.getUid());
 
         // Setting a unique id combining both the uuid and museum id to avoid duplicates
         FirebaseFirestore

@@ -27,15 +27,15 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
      **/
     private transient final StepBean[] stepBeans;
 
-    private transient static final SimpleDateFormat formatter = new SimpleDateFormat(
+    private transient static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
             "HH' heures 'mm' minutes 'ss' secondes'", Locale.FRANCE
     );
 
     /**
      * @param stepBeans steps to be displayed in the adapter.
      */
-    public StepListAdapter(StepBean[] stepBeans) {
-        this.stepBeans = stepBeans;
+    public StepListAdapter(StepBean... stepBeans) {
+        this.stepBeans = stepBeans.clone();
     }
 
     @NonNull
@@ -46,7 +46,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
                 .inflate(R.layout.card_view_list_instruction, parent, false);
         Log.d(this.getClass().toString(), "view holder created");
 
-        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        FORMATTER.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         return new StepListHolder(view);
     }
@@ -54,10 +54,10 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     @Override
     public void onBindViewHolder(@NonNull StepListHolder holder, int position) {
         final StepBean currentStep = stepBeans[position];
-        final String streetName = String.format("Etape %s : %s", ++position, currentStep.getRoadName());
+        final String streetName = String.format("Etape %s : %s", position+1, currentStep.getRoadName());
 
         final String distanceDuration = String.format("Dans %s - à %s kms",
-                formatter.format(
+                FORMATTER.format(
                         new Date((long) currentStep.getDuration() * 1000)
                 ),
                 currentStep.getDistance()
