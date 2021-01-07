@@ -5,11 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/listeMusees"
-            android:icon="@drawable/ic_baseline_museum"
-            android:title="@string/menu_museum" />
+            android:id="@+id/map"
+            android:icon="@drawable/ic_baseline_map_24"
+            android:title="Afficher carte" />
         <item
-            android:id="@+id/statistiques"
+            android:id="@+id/statisticsAdmin"
             android:icon="@drawable/ic_baseline_statistics"
             android:title="@string/menu_statistique"/>
         <item

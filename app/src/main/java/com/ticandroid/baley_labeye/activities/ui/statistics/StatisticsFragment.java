@@ -50,7 +50,10 @@ public class StatisticsFragment extends Fragment {
         distance = root.findViewById(R.id.distance);
         auth = FirebaseAuth.getInstance();
         stm= FirebaseStorage.getInstance().getReference();
+
         afficherNbMusees();
+
+
 
         return root;
     }
@@ -63,12 +66,14 @@ public class StatisticsFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     Log.d("count","count");
-                    for(QueryDocumentSnapshot doc : task.getResult()){
-                        Log.d("count"," "+count);
-                        count+=1;
-                        double d =(double) doc.get("distance");
-                       distanceParcourue = Double.sum(distanceParcourue,d);
-                       // distanceParcourue = distanceParcourue+doc.get("distance");
+                    if(count==0){
+                        for(QueryDocumentSnapshot doc : task.getResult()){
+                            Log.d("count"," "+count);
+                            count+=1;
+                            double d =(double) doc.get("distance");
+                            distanceParcourue = Double.sum(distanceParcourue,d);
+                            // distanceParcourue = distanceParcourue+doc.get("distance");
+                        }
                     }
                     nombre.setText(count+" musées");
                     distance.setText(distanceParcourue+" Km");

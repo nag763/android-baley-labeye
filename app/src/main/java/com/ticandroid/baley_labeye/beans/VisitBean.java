@@ -15,6 +15,11 @@ public class VisitBean {
     /** Date of the visit. **/
     private Timestamp date;
 
+    private double distance;
+    private double evaluation;
+
+
+
     public VisitBean() {
     }
 
@@ -33,4 +38,20 @@ public class VisitBean {
     public void setDate(Timestamp date) {
         this.date = date;
     }
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(double evaluation) {
+        this.evaluation = evaluation;
+    }
+
 }
