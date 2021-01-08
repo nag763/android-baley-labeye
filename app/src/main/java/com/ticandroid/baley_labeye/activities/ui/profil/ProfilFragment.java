@@ -50,7 +50,7 @@ public class ProfilFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
-        ProfilDAOImpl profilDAO =new ProfilDAOImpl();
+
         profil = root.findViewById(R.id.profil);
         firstName = root.findViewById(R.id.firstname);
         lastName = root.findViewById(R.id.lastname);
@@ -59,11 +59,7 @@ public class ProfilFragment extends Fragment {
         image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
         stm= FirebaseStorage.getInstance().getReference();
-       // profilDAO.setAuth();
-       // profilDAO.setStm();
-        //profilDAO.afficherImage();
-       // Log.d("message", profilDAO.getDownloadUrl().toString());
-       //Picasso.with(getActivity()).load(profilDAO.getDownloadUrl()).into(image);
+
         afficherImage();
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("profils").document(auth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -76,8 +72,8 @@ public class ProfilFragment extends Fragment {
                         if(profilBean!=null){
                             ((TextView) root.findViewById(R.id.firstname)).setText(profilBean.getFirstName());
                             ((TextView) root.findViewById(R.id.lastname)).setText(profilBean.getLastName());
-                            ((TextView) root.findViewById(R.id.phone)).setText(profilBean.getPhone());
-                            ((TextView) root.findViewById(R.id.town)).setText(profilBean.getTown());
+                            ((TextView) root.findViewById(R.id.phone)).setText("Telephone : "+profilBean.getPhone());
+                            ((TextView) root.findViewById(R.id.town)).setText("Ville : "+profilBean.getTown());
 
                         }
                     }
