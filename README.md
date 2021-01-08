@@ -17,7 +17,7 @@ The subject is to create an Android app that will display the museums nearby the
 		- [x] Display the user's name
 		- [x] Display the user's phone number
 		- [x] Display the user's city
-		- [ ] Display the visited museums
+		- [x] Display the visited museums
 
 	- [x] Can see the list of museums
 		- On click show a new activity that :
@@ -48,6 +48,8 @@ If the user is authenticated as an admin :
 
 - [ ] If the connection isn't successful, the connection loops
 
+- [ ] If a visit isn't evaluated, the application crash
+
 ## TODO
 
 - [ ] Fix deprecated *ProgressDialog* in *InscriptionActivity*
@@ -55,3 +57,5 @@ If the user is authenticated as an admin :
 - [ ] Rename MainActivity2 to something more explicit
 
 - [ ] Change App Name and App Logo on phone
+
+- [ ] *MyToolbar* displayed at the top

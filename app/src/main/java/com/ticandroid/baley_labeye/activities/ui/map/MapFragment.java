@@ -8,11 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.ticandroid.baley_labeye.BuildConfig;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
@@ -25,8 +22,8 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Map Fragment used to display all the museums stored in the FS instance on a
@@ -42,9 +39,14 @@ public class MapFragment extends Fragment {
      * Current map view being displayed.
      **/
     private transient MapView mMapView;
-
-
+    /**
+     * Our current firestore instance
+     */
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    /**
+     * The list of museum ids in visit collection
+     */
+    private transient ArrayList<String> listOfMuseumIdInVisits;
 
     /**
      * Draw a marker with the given geopoint.
@@ -71,17 +73,17 @@ public class MapFragment extends Fragment {
         final String splitter = ",";
         try {
             final int numberOfSplittableRequired = 2;
-            if (!position.contains(splitter)) {
-                throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(splitter).length != 2) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
-            } else if (position.trim().isEmpty()) {
+            if (position.trim().isEmpty()) {
                 throw new Exception("The string is empty");
+            } else if (!position.contains(splitter)) {
+                throw new ParseException("Array doesn't contain the splitter museums", 0);
+            } else if (position.split(splitter).length != numberOfSplittableRequired) {
+                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
             } else {
                 return Arrays.stream(position.split(splitter)).mapToDouble(Double::parseDouble).toArray();
             }
         } catch (Exception e) {
-            Log.e(getClass().getName(), "Exception occured\nException : %s", e);
+            Log.e(getClass().getName(), String.format("Exception occured\nException : %s", e));
             return null;
         }
     }
@@ -118,34 +120,24 @@ public class MapFragment extends Fragment {
         mMapController.setCenter(centerOfFrance);
         mMapController.setZoom(7);
         // Add geomarkers for museums
+        CollectionReference visites = firebaseFirestore.collection("visites");
+        // We only need to know the number of visits for each museum, so we can only save its id per visit and count it later
+        listOfMuseumIdInVisits = new ArrayList<>();
+        visites.get().addOnCompleteListener(k -> k.getResult().forEach(element -> listOfMuseumIdInVisits.add(element.getString("idMusee"))));
         CollectionReference collectionReference = firebaseFirestore.collection("museums");
-        Task<QuerySnapshot> task = collectionReference.get();
-        task.addOnCompleteListener(k ->
-                task.getResult().forEach(museums -> {
-                            Query visiteCollection = firebaseFirestore
-                                                            .collection("visites")
-                                                            .whereEqualTo("idMusee", museums.getId());
-                            Task<QuerySnapshot> task1 = visiteCollection.get();
-                            task1.addOnCompleteListener(visits -> {
-                                        try {
-                                            final int numberOfVisits = visits
-                                                                        .getResult()
-                                                                        .size();
-                                            final MuseumBean museumBean = Objects
-                                                                        .requireNonNull(museums)
-                                                                        .toObject(MuseumBean.class);
-                                            final double[] position = positionToDoubleArray(museumBean.getCoordonneesFinales());
-                                            drawMarker(new GeoPoint(position[0], position[1]), museumBean.getNomDuMusee(), numberOfVisits);
-
-                                        } catch (Exception e) {
-                                            Log.e(getClass().getName(), e.getMessage());
-                                        }
-                                    }
-                            );
+        collectionReference.get().addOnCompleteListener(k ->
+                k.getResult().forEach(element -> {
+                            try {
+                                MuseumBean museum = element.toObject(MuseumBean.class);
+                                final int numberOfVisits = (int) listOfMuseumIdInVisits.stream().filter(visitId -> visitId.equals(element.getId())).count();
+                                final double[] position = positionToDoubleArray(museum.getCoordonneesFinales());
+                                drawMarker(new GeoPoint(position[0], position[1]), museum.getNomDuMusee(), numberOfVisits);
+                            } catch (Exception e) {
+                                Log.e(getClass().getName(), e.getMessage());
+                            }
                         }
-                ));
-
-
+                )
+        );
         return root;
     }
 }
