@@ -71,17 +71,17 @@ public class MapFragment extends Fragment {
         final String splitter = ",";
         try {
             final int numberOfSplittableRequired = 2;
-            if (!position.contains(splitter)) {
-                throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(splitter).length != 2) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
-            } else if (position.trim().isEmpty()) {
+            if (position.trim().isEmpty()) {
                 throw new Exception("The string is empty");
+            } else if (!position.contains(splitter)) {
+                throw new ParseException("Array doesn't contain the splitter museums", 0);
+            } else if (position.split(splitter).length != numberOfSplittableRequired) {
+                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
             } else {
                 return Arrays.stream(position.split(splitter)).mapToDouble(Double::parseDouble).toArray();
             }
         } catch (Exception e) {
-            Log.e(getClass().getName(), "Exception occured\nException : %s", e);
+            Log.e(getClass().getName(), String.format("Exception occured\nException : %s", e));
             return null;
         }
     }
