@@ -95,7 +95,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                     progressDialog.dismiss();
                     String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     Toast.makeText(InscriptionActivity.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
-                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity2.class);
+                    Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity.class);
                     startActivity(inscriptionF);
                     finish();
                 }

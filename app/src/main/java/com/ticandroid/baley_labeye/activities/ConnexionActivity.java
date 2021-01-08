@@ -9,10 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,11 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.model.Document;
-import com.google.rpc.context.AttributeContext;
 import com.ticandroid.baley_labeye.R;
-
-import java.util.Objects;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     private transient EditText email;
@@ -73,10 +67,10 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                         if (task.getResult().getBoolean("isAdmin")) {
                             startActivity(new Intent(ConnexionActivity.this, AdminActivity.class));
                         } else {
-                            startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                            startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                         }
                     } catch (NullPointerException e) {
-                        startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                        startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                     } finally {
                         finish();
                     }
