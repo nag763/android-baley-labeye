@@ -22,6 +22,7 @@ import com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment;
 import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 import com.ticandroid.baley_labeye.adapter.StatListAdapter;
 import com.ticandroid.baley_labeye.adapter.VisitListFSAdapter;
+import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.beans.VisitBean;
 
 
@@ -33,8 +34,9 @@ public class StatisticsAdminFragment extends Fragment {
     private static final String QUERY_PATH = "museums";
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private transient StatListAdapter adapter;
-    private transient FirestoreRecyclerOptions<VisitBean> options;
-
+    private transient FirestoreRecyclerOptions<MuseumBean> options;
+    private transient TextView nbVist;
+    private transient int nbVisites;
     public static Fragment newInstance() {
         Bundle args = new Bundle();
         StatisticsAdminFragment fragment = new StatisticsAdminFragment();
@@ -51,11 +53,13 @@ public class StatisticsAdminFragment extends Fragment {
         searchView.setOnQueryTextListener(new searchBarListener());
         options = generateQuery();
         adapter = new StatListAdapter(root.getContext(), options);
-
+        nbVist = root.findViewById(R.id.textTitle);
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
+        firebaseFirestore.collection("visites").get().addOnCompleteListener(task -> nbVisites = task.getResult().size());
+        nbVist.setText(String.format("%s %s",nbVist.getText(), nbVisites));
 
        return root;
     }
@@ -73,32 +77,31 @@ public class StatisticsAdminFragment extends Fragment {
         Log.i(this.getClass().toString(), "listening started");
     }
 
-    private FirestoreRecyclerOptions<VisitBean> generateQuery(String startsWith) {
+    private FirestoreRecyclerOptions<MuseumBean> generateQuery(String startsWith) {
         Log.d(this.getClass().toString(), String.format("method with %s called", startsWith == null ? "null" : startsWith));
-        FirestoreRecyclerOptions<VisitBean> newOptions;
+        FirestoreRecyclerOptions<MuseumBean> newOptions;
         if (startsWith == null || startsWith.length() == 0) {
             newOptions = generateQuery();
         } else {
             Query query;
             // The purpose is to make a query 'BEGIN WITH'
             query = firebaseFirestore.collection(QUERY_PATH)
-                    .whereEqualTo("idProfil", FirebaseAuth.getInstance().getUid())
                     .orderBy("nomDuMusee")
                     // The \uf8ff sequence is an escape sequence for any
                     .startAt(startsWith)
                     .endAt(String.format("%s\uf8ff", startsWith));
             Log.d(this.getClass().getName(), String.format("options updated with %s parameter", startsWith));
-            newOptions = new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
+            newOptions = new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
         }
         return newOptions;
     }
 
-    private FirestoreRecyclerOptions<VisitBean> generateQuery() {
+    private FirestoreRecyclerOptions<MuseumBean> generateQuery() {
         Query query;
         query = firebaseFirestore.collection(QUERY_PATH)
                 .orderBy("nomDuMusee");
         //Log.d(this.getClass().getName(), "options reseted with default "+query.toString());
-        return new FirestoreRecyclerOptions.Builder<VisitBean>().setQuery(query, VisitBean.class).build();
+        return new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
     }
 
     private class searchBarListener implements SearchView.OnQueryTextListener {
