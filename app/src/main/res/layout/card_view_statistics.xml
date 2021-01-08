@@ -33,9 +33,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="13dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="198dp"
+            android:layout_marginEnd="19dp"
             android:layout_marginBottom="1dp"
-            android:text="TextView" />
+            android:text="Evaluation moyenne : " />
         <TextView
             android:id="@+id/textDistance"
             android:layout_width="184dp"
@@ -46,9 +46,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="13dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="198dp"
+            android:layout_marginEnd="19dp"
             android:layout_marginBottom="1dp"
-            android:text="TextView" />
+            android:text="Distance cumulée : " />
 
 
     </RelativeLayout>

@@ -12,11 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -61,27 +63,38 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private void loginUser(String email, String password) {
         progressDialog.setMessage("Veuillez patienter");
         progressDialog.show();
-        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onSuccess(AuthResult authResult) {
-                progressDialog.dismiss();
-                Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                DocumentReference document = firebaseFirestore.collection("profils").document(authResult.getUser().getUid());
-                Task<DocumentSnapshot> task = document.get();
-                task.addOnCompleteListener(k -> {
-                    try {
-                        if (task.getResult().getBoolean("isAdmin")) {
-                            startActivity(new Intent(ConnexionActivity.this, AdminActivity.class));
-                        } else {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    progressDialog.dismiss();
+                    Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+
+                    FirebaseUser user= auth.getCurrentUser();
+                    DocumentReference document = firebaseFirestore.collection("profils").document(user.getUid());
+                    Task<DocumentSnapshot> task2 = document.get();
+                    task2.addOnCompleteListener(k -> {
+                        try {
+                            if (task2.getResult().getBoolean("isAdmin")) {
+                                startActivity(new Intent(ConnexionActivity.this, AdminActivity.class));
+                            } else {
+                                startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                            }
+                        } catch (NullPointerException e) {
                             startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                        } finally {
+                            finish();
                         }
-                    } catch (NullPointerException e) {
-                        startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
-                    } finally {
-                        finish();
-                    }
-                });
+                    });
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(ConnexionActivity.this, "Connexion refusée", Toast.LENGTH_SHORT).show();
+                }
             }
+        }).addOnFailureListener(e -> {
+            progressDialog.dismiss();
+            Toast.makeText(ConnexionActivity.this, "Connexion refusée", Toast.LENGTH_SHORT).show();
         });
+
     }
 }

@@ -54,6 +54,7 @@ public class StatisticsAdminFragment extends Fragment {
         options = generateQuery();
         adapter = new StatListAdapter(root.getContext(), options);
         nbVist = root.findViewById(R.id.textTitle);
+
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
