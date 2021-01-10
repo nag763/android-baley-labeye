@@ -30,7 +30,9 @@ public class StatListHolder extends RecyclerView.ViewHolder{
     public void setTextInTitleView(String title){
         this.title.setText(title);
     }
+    //public void setTextInNoteView(String note){this.note.setText(note);}
+    //public void setTextInDistanceView(String distance){this.distance.setText(distance);}
    // public void setTextInNumberVisitsView(String numberVisits) { this.numberVisits.setText(numberVisits);}
-    public void setTextInNoteView(String note) { this.note.setText(note);}
-    public void setTextInDistanceView(String distance) { this.distance.setText(distance);}
+    public void setTextInNoteView(String note) { this.note.setText(String.format("%s %s %s","Evaluation moyenne : ",note, "/5"));}
+    public void setTextInDistanceView(String distance) { this.distance.setText(String.format("%s %s %s","Distance totale parcourue : ",distance," km"));}
 }

@@ -69,18 +69,18 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
         double EVALUATION=0;
         VisitBean[] visitsForMuseum = visitBeans.stream().filter(element -> element.getNomDuMusee().equals(model.getNomDuMusee())).toArray(VisitBean[]:: new);
         if(visitsForMuseum.length!= 0){
-            for (VisitBean visit: visitsForMuseum) {
-                EVALUATION += visit.getEvaluation();
-                DISTANCE += visit.getDistance();
-            }
+                for (VisitBean visit: visitsForMuseum) {
+                    EVALUATION += visit.getEvaluation();
+                    DISTANCE += visit.getDistance();
+                }
             EVALUATION = EVALUATION/visitsForMuseum.length;
-            //nbVisits=visitsForMuseum.length;
-            //Log.d("visites",""+nbVisits);
+
+
         }
+
         holder.setTextInTitleView(TITLE);
         holder.setTextInDistanceView(DISTANCE+"");
         holder.setTextInNoteView(EVALUATION+"");
-
 
     }
 
