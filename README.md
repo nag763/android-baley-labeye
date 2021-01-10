@@ -36,7 +36,7 @@ If the user is authenticated as an admin :
 
 - [x] Can see the integrated museums in a map
 
-- [ ] Can see the application usage stats
+- [x] Can see the application usage stats
 
 - [x] Can quit the application
 
@@ -48,16 +48,18 @@ If the user is authenticated as an admin :
 
 - [x] If the connection isn't successful, the connection loops
 
-	- Solved on commit (46c050ab650adc5f1c4549458e2d00687d3a9cac)[https://github.com/nag763/android-baley-labeye/commit/46c050ab650adc5f1c4549458e2d00687d3a9cac]
+	- Solved on commit [46c050ab650adc5f1c4549458e2d00687d3a9cac](https://github.com/nag763/android-baley-labeye/commit/46c050ab650adc5f1c4549458e2d00687d3a9cac)
 
-- [ ] If a visit isn't evaluated, the application crash
+- [x] If a visit isn't evaluated, the application crash
+
+	- Fixed on a  old commit
 
 ## TODO
 
-- [ ] Fix deprecated *ProgressDialog* in *InscriptionActivity*
+- [x] Fix deprecated *ProgressDialog* in *InscriptionActivity*
 
-- [ ] Rename MainActivity2 to something more explicit
+- [x] Rename MainActivity2 to something more explicit
 
-- [ ] Change App Name and App Logo on phone
+- [x] Change App Name and App Logo on phone
 
-- [ ] *MyToolbar* displayed at the top
+- [x] *MyToolbar* displayed at the top
