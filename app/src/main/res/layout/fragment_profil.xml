@@ -16,38 +16,68 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/profil"
         android:id="@+id/image"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lastname"
-        android:layout_below="@+id/image"
+        android:layout_toRightOf="@+id/image"
+        android:layout_below="@+id/profil"
+        android:layout_marginLeft="20dp"
+        android:text="Nom"
+        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/firstname"
-        android:layout_below="@+id/lastname"
+        android:layout_below="@+id/profil"
+        android:layout_toRightOf="@+id/lastname"
+        android:layout_marginLeft="10dp"
+        android:text="Prenom"
+        android:textSize="30dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="50dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/phone"
+        android:text="Telephone : "
         android:layout_below="@+id/firstname"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="60dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/town"
+        android:text="Ville : "
         android:layout_below="@+id/phone"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
         android:layout_marginTop="30dp"/>
+    <ImageView
+        android:id="@+id/logoPhone"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/simple_logo"
+        android:layout_toLeftOf="@+id/phone"
+        android:layout_below="@+id/firstname"
+        app:srcCompat="@android:drawable/sym_action_call" />
 
-
+    <ImageView
+        android:id="@+id/logoTown"
+        android:layout_width="20dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/simple_logo"
+        android:layout_toLeftOf="@+id/phone"
+        android:layout_below="@+id/phone"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
 </RelativeLayout>

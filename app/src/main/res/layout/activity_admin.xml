@@ -31,7 +31,7 @@
 
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="MyToolbar" />
+            app:title="Musées de France" />
     </FrameLayout>
 
     <com.google.android.material.navigation.NavigationView
