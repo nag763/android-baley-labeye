@@ -24,6 +24,7 @@ import org.osmdroid.views.overlay.Marker;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Map Fragment used to display all the museums stored in the FS instance on a
@@ -73,7 +74,7 @@ public class MapFragment extends Fragment {
         final String splitter = ",";
         try {
             final int numberOfSplittableRequired = 2;
-            if (position.trim().isEmpty()) {
+            if (null == position || position.trim().isEmpty()) {
                 throw new Exception("The string is empty");
             } else if (!position.contains(splitter)) {
                 throw new ParseException("Array doesn't contain the splitter museums", 0);
@@ -128,9 +129,13 @@ public class MapFragment extends Fragment {
         collectionReference.get().addOnCompleteListener(k ->
                 k.getResult().forEach(element -> {
                             try {
-                                MuseumBean museum = element.toObject(MuseumBean.class);
+                                MuseumBean museum = new MuseumBean();
+                                museum.setNomDuMusee(element.getString("nomDuMusee"));
+                                museum.setCoordonneesFinales(element.getString("coordonneesFinales"));
                                 final int numberOfVisits = (int) listOfMuseumIdInVisits.stream().filter(visitId -> visitId.equals(element.getId())).count();
-                                final double[] position = positionToDoubleArray(museum.getCoordonneesFinales());
+                                final double[] position = positionToDoubleArray(
+                                        Objects.requireNonNull(museum.getCoordonneesFinales(), String.format("Position is null for %s", element.getId()))
+                                );
                                 drawMarker(new GeoPoint(position[0], position[1]), museum.getNomDuMusee(), numberOfVisits);
                             } catch (Exception e) {
                                 Log.e(getClass().getName(), e.getMessage());
