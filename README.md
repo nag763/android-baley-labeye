@@ -46,7 +46,9 @@ If the user is authenticated as an admin :
 	
 	- Solved by removing some useless fields in the museum collection
 
-- [ ] If the connection isn't successful, the connection loops
+- [x] If the connection isn't successful, the connection loops
+
+	- Solved on commit (46c050ab650adc5f1c4549458e2d00687d3a9cac)[https://github.com/nag763/android-baley-labeye/commit/46c050ab650adc5f1c4549458e2d00687d3a9cac]
 
 - [ ] If a visit isn't evaluated, the application crash
 

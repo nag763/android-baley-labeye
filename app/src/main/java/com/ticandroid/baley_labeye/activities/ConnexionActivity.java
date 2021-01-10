@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -73,10 +74,10 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                             if (task2.getResult().getBoolean("isAdmin")) {
                                 startActivity(new Intent(ConnexionActivity.this, AdminActivity.class));
                             } else {
-                                startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                                startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                             }
                         } catch (NullPointerException e) {
-                            startActivity(new Intent(ConnexionActivity.this, MainActivity2.class));
+                            startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                         } finally {
                             finish();
                         }
