@@ -31,7 +31,7 @@ public class StepBean {
     /**
      * default constructor.
      **/
-    public StepBean() {
+    private StepBean() {
     }
 
     /**

@@ -2,6 +2,9 @@ package com.ticandroid.baley_labeye.beans;
 
 import com.google.firebase.Timestamp;
 
+import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefault;
+import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultDouble;
+
 /**
  * Visit bean used to modelise a visit in our classes.
  *
@@ -45,16 +48,16 @@ public class VisitBean {
         return distance;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setDistance(Object distance) {
+        this.distance = valueOrDefaultDouble(distance);
     }
 
     public double getEvaluation() {
         return evaluation;
     }
 
-    public void setEvaluation(double evaluation) {
-        this.evaluation = evaluation;
+    public void setEvaluation(Object evaluation) {
+        this.evaluation = valueOrDefaultDouble(evaluation);
     }
 
 }

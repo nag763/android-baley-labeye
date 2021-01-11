@@ -50,5 +50,9 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Errors -->
+    <string name="err_not_found">Le document n\'a pas été trouvé</string>
+    <string name="err_failure">Une erreur s\'est produite</string>
 </resources>
 

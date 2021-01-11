@@ -1,5 +1,11 @@
 package com.ticandroid.baley_labeye.beans;
 
+import android.util.Log;
+
+import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultDouble;
+import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultInteger;
+import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultLong;
+
 /**
  * The museum class's purpose is to contain any important information related to the museums
  * stored in the firestore database.
@@ -125,8 +131,8 @@ public class MuseumBean {
         this.coordonneesFinales = coordonneesFinales;
     }
 
-    public void setCp(int cp) {
-        this.cp = cp;
+    public void setCp(Object cp) {
+        this.cp = valueOrDefaultInteger(cp);
     }
 
     public void setDepartement(String departement) {
@@ -141,8 +147,8 @@ public class MuseumBean {
         this.region = region;
     }
 
-    public void setTelephone1(long telephone1) {
-        this.telephone1 = telephone1;
+    public void setTelephone1(Object telephone1) {
+        this.telephone1 = valueOrDefaultLong(telephone1);
     }
 
     public void setVille(String ville) {
