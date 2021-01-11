@@ -51,7 +51,7 @@ import static java.text.DateFormat.getDateTimeInstance;
  * This activity's purpose is to display
  * elegantly the different informations
  * related to a museum.
- *
+
  * @author Labeye
  * @see AppCompatActivity
  */

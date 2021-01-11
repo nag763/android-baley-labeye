@@ -39,13 +39,9 @@ public class StatisticsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
-        TextView title = root.findViewById(R.id.stat);
-        TextView nb = root.findViewById(R.id.nb);
         nombre = root.findViewById(R.id.nombre);
-        TextView dist = root.findViewById(R.id.dist);
         distance = root.findViewById(R.id.distance);
         auth = FirebaseAuth.getInstance();
-        StorageReference stm = FirebaseStorage.getInstance().getReference();
 
         afficherNbMusees();
 

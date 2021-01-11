@@ -146,35 +146,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         StorageReference st = stm.child("users/" + auth.getCurrentUser().getUid());
-        File localFile = null;
         try {
+            File localFile = File.createTempFile("image", "png");
+            st.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-            localFile = File.createTempFile("image", "png");
+                    st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Picasso.with(getBaseContext()).load(uri).into(imageView);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+
+                        }
+                    });
+                }
+            });
         } catch (IOException e) {
-
-            e.printStackTrace();
+            Log.e(getClass().getName(), e.toString());
         }
 
-        st.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        Picasso.with(getBaseContext()).load(uri).into(imageView);
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-
-                    }
-                });
-            }
-        });
     }
 
     @Override

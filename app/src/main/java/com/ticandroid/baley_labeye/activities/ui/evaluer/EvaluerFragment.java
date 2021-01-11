@@ -46,14 +46,10 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
                              Bundle savedInstanceState) {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_evaluer, container, false);
-        TextView museum = root.findViewById(R.id.museum);
         Button button = root.findViewById(R.id.getRating);
         number = root.findViewById(R.id.number);
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        StorageReference stm = FirebaseStorage.getInstance().getReference();
         ratingBar = root.findViewById(R.id.rating);
-        // ratingBar.setRating((float) 3.5);
-        //number.setText(ratingBar.getRating()+"/"+ratingBar.getNumStars());
         ratingBar.setOnRatingBarChangeListener(this);
 
 

@@ -40,11 +40,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        StorageReference stm = FirebaseStorage.getInstance().getReference();
         this.configureNavigationView();
         this.configureToolbar();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                         R.string.navigation_drawer_open, R.string.navigation_drawer_close) {

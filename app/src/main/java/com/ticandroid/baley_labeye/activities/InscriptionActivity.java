@@ -58,7 +58,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        TextView title = (TextView) findViewById(R.id.title);
         lastName = findViewById(R.id.lastname);
         firstName = findViewById(R.id.firstname);
         phone = findViewById(R.id.phone);
@@ -92,7 +91,6 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
-                    String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                     Toast.makeText(InscriptionActivity.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
                     Intent inscriptionF = new Intent(InscriptionActivity.this, MainActivity.class);
                     startActivity(inscriptionF);

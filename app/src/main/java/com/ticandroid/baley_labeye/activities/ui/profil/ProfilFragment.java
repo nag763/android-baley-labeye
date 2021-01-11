@@ -45,11 +45,6 @@ public class ProfilFragment extends Fragment {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        TextView profil = root.findViewById(R.id.profil);
-        TextView firstName = root.findViewById(R.id.firstname);
-        TextView lastName = root.findViewById(R.id.lastname);
-        TextView phone = root.findViewById(R.id.phone);
-        TextView town = root.findViewById(R.id.town);
         image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
         stm = FirebaseStorage.getInstance().getReference();

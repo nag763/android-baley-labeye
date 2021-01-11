@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.ticandroid.baley_labeye.BuildConfig;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
+import com.ticandroid.baley_labeye.utils.Caster;
 
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -21,9 +22,7 @@ import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -61,31 +60,6 @@ public class MapFragment extends Fragment {
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mMapView.getOverlayManager().add(marker);
         Log.d(getClass().getName(), String.format("marker added to gp : %s", geoPoint.toString()));
-    }
-
-    /**
-     * Parse the position as string to a array of double.
-     *
-     * @param position position to parse
-     * @return position as double array
-     */
-    private double[] positionToDoubleArray(String position) {
-        final String splitter = ",";
-        try {
-            final int numberOfSplittableRequired = 2;
-            if (null == position || position.trim().isEmpty()) {
-                throw new Exception("The string is empty");
-            } else if (!position.contains(splitter)) {
-                throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(splitter).length != numberOfSplittableRequired) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splitter));
-            } else {
-                return Arrays.stream(position.split(splitter)).mapToDouble(Double::parseDouble).toArray();
-            }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), String.format("Exception occured\nException : %s", e));
-            return null;
-        }
     }
 
     /**
@@ -132,8 +106,9 @@ public class MapFragment extends Fragment {
                                 museum.setNomDuMusee(element.getString("nomDuMusee"));
                                 museum.setCoordonneesFinales(element.getString("coordonneesFinales"));
                                 final int numberOfVisits = (int) listOfMuseumIdInVisits.stream().filter(visitId -> visitId.equals(element.getId())).count();
-                                final double[] position = positionToDoubleArray(
-                                        Objects.requireNonNull(museum.getCoordonneesFinales(), String.format("Position is null for %s", element.getId()))
+                                final double[] position = Caster.positionToDoubleArray(
+                                        Objects.requireNonNull(museum.getCoordonneesFinales(),
+                                                String.format("Position is null for %s", element.getId()))
                                 );
                                 drawMarker(new GeoPoint(position[0], position[1]), museum.getNomDuMusee(), numberOfVisits);
                             } catch (Exception e) {

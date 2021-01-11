@@ -40,7 +40,6 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         Button login = findViewById(R.id.login);
         auth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
-        TextView title = (TextView) findViewById(R.id.title);
         progressDialog = new ProgressDialog(this);
 
     }
