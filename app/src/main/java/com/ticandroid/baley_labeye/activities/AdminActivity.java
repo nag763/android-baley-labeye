@@ -29,9 +29,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private transient Toolbar toolbar;
     private transient Fragment fragmentMap;
     private transient Fragment fragmentStatistics;
-    private static transient final int FRAGMENT_MAP = 0;
-    private static transient final int FRAGMENT_STATISTICS = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +69,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
         if (visibleFragment == null) {
             // 1.1 - Show News Fragment
-            this.showFragment(FRAGMENT_MAP);
+            this.showMapFragment();
             // 1.2 - Mark as selected the menu item corresponding to NewsFragment
             this.navigationView.getMenu().getItem(0).setChecked(true);
         }
@@ -90,15 +87,14 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.map:
-                this.showFragment(FRAGMENT_MAP);
+        switch (item.getOrder()) {
+            case 0:
+                this.showMapFragment();
                 break;
-            case R.id.statisticsAdmin:
-                this.showFragment(FRAGMENT_STATISTICS);
+            case 1:
+                this.showStatisticsFragment();
                 break;
-            case R.id.quitter:
+            case 2:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
                 startActivity(deconnexion);
@@ -109,19 +105,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void showFragment(int fragmentIdentifier) {
-        switch (fragmentIdentifier) {
-            case FRAGMENT_MAP:
-                this.showMapFragment();
-                break;
-            case FRAGMENT_STATISTICS:
-                this.showStatisticsFragment();
-                break;
-            default:
-                break;
-        }
     }
 
     private void showStatisticsFragment() {
@@ -140,7 +123,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     private void startTransactionFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
 
         transaction.replace(R.id.activity_main_frame_layout, fragment);
         transaction.addToBackStack(null);
