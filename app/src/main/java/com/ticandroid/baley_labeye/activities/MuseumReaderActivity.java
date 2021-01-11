@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +32,7 @@ import com.squareup.okhttp.Response;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.MuseumListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
+import com.ticandroid.baley_labeye.utils.ErrorHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -184,17 +184,9 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 refreshButton = findViewById(R.id.btn_destination);
                 refreshButton.setOnClickListener(click -> accessLocation());
             } else {
-                Toast.makeText(this, res.getString(R.string.document_is_null), Toast.LENGTH_LONG).show();
-                Log.e(this.getClass().getName(), String.format(
-                        "Document with id=%s couldn't be parsed in java class", documentId)
-                );
-                finish();
+                ErrorHandler.notFound(this);
             }
-        }).addOnFailureListener(k -> {
-            Toast.makeText(this, res.getString(R.string.unable_to_fetch), Toast.LENGTH_LONG).show();
-            Log.e(this.getClass().getName(), String.format("Document with id=%s couldn't be fetched", documentId));
-            finish();
-        });
+        }).addOnFailureListener(k -> ErrorHandler.notFound(this));
 
     }
 

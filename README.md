@@ -54,11 +54,13 @@ If the user is authenticated as an admin :
 
 	- Fixed on a  old commit
 
-- [ ] If no visit saved, application crash on evaluate visit
+- [ ] If no visit saved, application crash on evaluate visit (EvalAct)
 
-- [ ] Issue with city icon
+- [ ] Issue with city icon (ProfilFrag)
 
-- [ ] Fix ressources in switch
+- [ ] Fix ressources in switch (Main and Admin act)
+
+- [ ] Total of visits doesn't appear (AdminStats)
 
 ## TODO
 

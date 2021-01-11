@@ -1,6 +1,7 @@
 package com.ticandroid.baley_labeye.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.ticandroid.baley_labeye.R;
+import com.ticandroid.baley_labeye.utils.ErrorHandler;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     private transient EditText email;
@@ -28,11 +30,13 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     // TODO : Fix that
     private transient ProgressDialog progressDialog;
 
+    private transient Context context;
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         setContentView(R.layout.activity_connexion);
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
@@ -75,7 +79,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                         } finally {
                             finish();
                         }
-                    });
+                    }).addOnFailureListener(_failure -> ErrorHandler.failure((AppCompatActivity) context));
                 } else {
                     progressDialog.dismiss();
                     Toast.makeText(ConnexionActivity.this, "Connexion refusée", Toast.LENGTH_SHORT).show();

@@ -25,6 +25,7 @@ import com.ticandroid.baley_labeye.BuildConfig;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.adapter.StepListAdapter;
 import com.ticandroid.baley_labeye.beans.StepBean;
+import com.ticandroid.baley_labeye.utils.ErrorHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -138,7 +139,7 @@ public class RouteMapActivity extends AppCompatActivity {
             Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
             // No need to save the document twice
             findViewById(R.id.flt_sv_db).setVisibility(View.GONE);
-        });
+        }).addOnFailureListener(_failure -> ErrorHandler.failure(this));
     }
 
 
@@ -265,8 +266,7 @@ public class RouteMapActivity extends AppCompatActivity {
                         Log.e(getClass().getName(), e.getMessage());
                     } finally {
                         if (geoPointList.isEmpty() || stepList.isEmpty()) {
-                            Log.e(this.getClass().getName(), "One of the list is empty");
-                            Toast.makeText(context, res.getString(R.string.nothing_fetched), Toast.LENGTH_LONG).show();
+                            ErrorHandler.notFound((AppCompatActivity) context);
                         } else {
                             Log.i(getClass().getName(), String.format(
                                     "%s points added to map" +
