@@ -16,9 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
 import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment;
