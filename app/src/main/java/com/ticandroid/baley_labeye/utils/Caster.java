@@ -23,6 +23,8 @@ public final class Caster {
     private Caster() {
     }
 
+    private static final int NUMBER_OF_SPLITABLLE_REQUIRED = 2;
+
     /**
      * Parse the position as string to a array of double.
      *
@@ -37,7 +39,7 @@ public final class Caster {
                 throw new NullPointerException("The string is empty");
             } else if (!position.contains(SPLITTER)) {
                 throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(SPLITTER).length != 2) {
+            } else if (position.split(SPLITTER).length != NUMBER_OF_SPLITABLLE_REQUIRED) {
                 throw new ParseException("Array got too many splittable args", position.lastIndexOf(SPLITTER));
             } else {
                 return Arrays.stream(position.split(SPLITTER)).mapToDouble(Double::parseDouble).toArray();

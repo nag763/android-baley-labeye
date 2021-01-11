@@ -1,6 +1,5 @@
 package com.ticandroid.baley_labeye.adapter;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +22,7 @@ import com.ticandroid.baley_labeye.holder.StatListHolder;
 import java.util.ArrayList;
 
 public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatListHolder> {
-    //private transient CollectionReference visits;
     private final transient ArrayList<VisitBean> visitBeans;
-
-    // private transient VisitBean visitBean;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -34,7 +30,7 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
      *
      * @param options
      */
-    public StatListAdapter(Context context, @NonNull FirestoreRecyclerOptions<MuseumBean> options) {
+    public StatListAdapter(@NonNull FirestoreRecyclerOptions<MuseumBean> options) {
         super(options);
         visitBeans = new ArrayList<>();
         FirebaseFirestore.getInstance().collection("visites").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -51,7 +47,6 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
                 }
             }
         });
-        // nbVisits=visitBeans.size();
 
 
     }

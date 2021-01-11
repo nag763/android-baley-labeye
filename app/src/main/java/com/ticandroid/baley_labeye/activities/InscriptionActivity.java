@@ -136,18 +136,14 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v == picture) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                    requestPermissions(permissions, PERMISSION_CODE);
-                } else {
-                    pickImageFromGallery();
-                }
+        if (v.equals(picture)) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                requestPermissions(permissions, PERMISSION_CODE);
             } else {
                 pickImageFromGallery();
             }
-        } else if (v == register) {
+        } else if (v.equals(register)) {
             final String textLastName = lastName.getText().toString();
             final String textFirstName = firstName.getText().toString();
             final String textPhone = phone.getText().toString();

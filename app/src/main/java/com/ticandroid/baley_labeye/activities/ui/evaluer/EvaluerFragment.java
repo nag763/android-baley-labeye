@@ -29,7 +29,6 @@ import java.util.Map;
 
 public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarChangeListener {
     private transient RatingBar ratingBar;
-    private transient static MuseumBean museumBean;
     private transient TextView number;
 
     public static Fragment newInstance() {

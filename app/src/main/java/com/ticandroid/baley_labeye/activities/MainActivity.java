@@ -46,10 +46,9 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private transient TextView textView;
-    private ImageView imageView;
+    private transient ImageView imageView;
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
-    // private transient int count=0;
     private transient DrawerLayout drawerLayout;
     private transient NavigationView navigationView;
     private transient Toolbar toolbar;
@@ -130,11 +129,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     Log.d("count", "count");
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
-                        Log.d("count", " " + count);
-                        count += 1;
-                    }
-                    textView.setText("" + count);
+                    count = task.getResult().size();
+                    textView.setText(count);
                 }
             }
         });
