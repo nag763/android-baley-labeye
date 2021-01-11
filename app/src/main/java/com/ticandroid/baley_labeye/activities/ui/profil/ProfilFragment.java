@@ -76,28 +76,26 @@ public class ProfilFragment extends Fragment {
 
 
         StorageReference st = stm.child("users/" + auth.getCurrentUser().getUid());
-        File localFile = null;
         try {
+            File localFile = File.createTempFile("image", "png");
+            st.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-            localFile = File.createTempFile("image", "png");
+                    st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Picasso.with(getActivity()).load(uri).into(image);
+                        }
+                    });
+                }
+            });
         } catch (IOException e) {
-
             e.printStackTrace();
         }
 
-        st.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
 
-                st.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-
-                        Picasso.with(getActivity()).load(uri).into(image);
-                    }
-                });
-            }
-        });
     }
 
 }

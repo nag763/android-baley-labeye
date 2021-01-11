@@ -32,12 +32,12 @@ public final class Caster {
     public static double[] positionToDoubleArray(String position) {
 
         try {
-            final int numberOfSplittableRequired = 2;
+
             if (null == position || position.trim().isEmpty()) {
-                throw new Exception("The string is empty");
+                throw new NullPointerException("The string is empty");
             } else if (!position.contains(SPLITTER)) {
                 throw new ParseException("Array doesn't contain the splitter museums", 0);
-            } else if (position.split(SPLITTER).length != numberOfSplittableRequired) {
+            } else if (position.split(SPLITTER).length != 2) {
                 throw new ParseException("Array got too many splittable args", position.lastIndexOf(SPLITTER));
             } else {
                 return Arrays.stream(position.split(SPLITTER)).mapToDouble(Double::parseDouble).toArray();

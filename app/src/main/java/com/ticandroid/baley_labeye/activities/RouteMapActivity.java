@@ -46,6 +46,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.ticandroid.baley_labeye.utils.Caster.positionToDoubleArray;
+
 /**
  * Display the route to a point given as intent.
  *
@@ -102,31 +104,6 @@ public class RouteMapActivity extends AppCompatActivity {
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mMapView.getOverlayManager().add(marker);
         Log.d(getClass().getName(), String.format("marker added to gp : %s", geoPoint.toString()));
-    }
-
-    /**
-     * Parse the position as string to a array of double.
-     *
-     * @param position position to parse
-     * @return position as double array
-     */
-    private double[] positionToDoubleArray(String position) {
-        final String splittable = ",";
-        try {
-            final int numberOfSplittableElements = 2;
-            if (!position.contains(splittable)) {
-                throw new ParseException("Array doesn't contain the splitter element", 0);
-            } else if (position.split(splittable).length != numberOfSplittableElements) {
-                throw new ParseException("Array got too many splittable args", position.lastIndexOf(splittable));
-            } else if (position.trim().isEmpty()) {
-                throw new NullPointerException("The string is empty");
-            } else {
-                return Arrays.stream(position.split(splittable)).mapToDouble(Double::parseDouble).toArray();
-            }
-        } catch (Exception e) {
-            Log.e(getClass().getName(), "Exception occured\nException : %s", e);
-            return null;
-        }
     }
 
     /**
@@ -255,7 +232,7 @@ public class RouteMapActivity extends AppCompatActivity {
                     );
                     Toast.makeText(context, res.getString(R.string.error_remote_orss), Toast.LENGTH_LONG).show();
                 } else {
-                    Log.d(this.getClass().getName(), "Request is successful");
+                    Log.d(getClass().getName(), "Request is successful");
                     final JSONObject jsonReader;
                     try {
 
