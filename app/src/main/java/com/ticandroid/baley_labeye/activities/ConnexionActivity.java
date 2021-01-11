@@ -70,7 +70,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                             } else {
                                 startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                             }
-                        } catch (NullPointerException e) {
+                        } catch (Exception e) {
                             startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                         } finally {
                             finish();

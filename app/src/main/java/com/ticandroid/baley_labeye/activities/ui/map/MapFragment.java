@@ -23,6 +23,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -45,7 +46,7 @@ public class MapFragment extends Fragment {
     /**
      * The list of museum ids in visit collection.
      */
-    private transient ArrayList<String> listOfMuseumIdInVisits;
+    private transient List<String> listOfMuseumIdInVisits;
 
     /**
      * Draw a marker with the given geopoint.

@@ -21,7 +21,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.ticandroid.baley_labeye.R;
-import com.ticandroid.baley_labeye.beans.MuseumBean;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,9 +57,10 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot doc : task.getResult()) {
                         ((TextView) root.findViewById(R.id.museum)).setText(doc.get("nomDuMusee").toString());
-                        if (doc.get("evaluation") != null) {
-                            ((TextView) root.findViewById(R.id.number)).setText(doc.get("evaluation").toString() + "/" + ratingBar.getNumStars());
-                            double d = (double) doc.get("evaluation");
+                        Object evaluation = doc.get("evaluation");
+                        if (evaluation != null) {
+                            ((TextView) root.findViewById(R.id.number)).setText(evaluation.toString() + "/" + ratingBar.getNumStars());
+                            double d = (double) evaluation;
                             float f = (float) d;
                             ratingBar.setRating(f);
                         } else {
