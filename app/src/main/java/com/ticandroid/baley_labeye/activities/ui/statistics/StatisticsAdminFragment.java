@@ -29,7 +29,6 @@ public class StatisticsAdminFragment extends Fragment {
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private transient StatListAdapter adapter;
     private transient FirestoreRecyclerOptions<MuseumBean> options;
-    private transient TextView nbVist;
     private transient int nbVisites;
 
     public static Fragment newInstance() {
@@ -45,10 +44,10 @@ public class StatisticsAdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(LAYOUT, container, false);
         SearchView searchView = root.findViewById(SEARCH_BAR);
-        searchView.setOnQueryTextListener(new searchBarListener());
+        searchView.setOnQueryTextListener(new SearchBarListener());
         options = generateQuery();
         adapter = new StatListAdapter(root.getContext(), options);
-        nbVist = root.findViewById(R.id.textTitle);
+        TextView nbVist = root.findViewById(R.id.textTitle);
 
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);
@@ -101,7 +100,7 @@ public class StatisticsAdminFragment extends Fragment {
         return new FirestoreRecyclerOptions.Builder<MuseumBean>().setQuery(query, MuseumBean.class).build();
     }
 
-    private class searchBarListener implements SearchView.OnQueryTextListener {
+    private class SearchBarListener implements SearchView.OnQueryTextListener {
 
         @Override
         public boolean onQueryTextChange(String newText) {

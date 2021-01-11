@@ -2,7 +2,6 @@ package com.ticandroid.baley_labeye.beans;
 
 import com.google.firebase.Timestamp;
 
-import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefault;
 import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultDouble;
 
 /**

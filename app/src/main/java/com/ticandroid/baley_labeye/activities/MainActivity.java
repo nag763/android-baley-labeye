@@ -244,29 +244,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private void showProfilFragment() {
-        if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
+        if (this.fragmentProfil == null) {
+            this.fragmentProfil = ProfilFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentProfil);
     }
 
     private void showMuseumListFragment() {
-        if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
+        if (this.fragmentMuseumList == null) {
+            this.fragmentMuseumList = MuseumFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentMuseumList);
     }
 
     private void showEvaluerFragment() {
-        if (this.fragmentEvaluer == null) this.fragmentEvaluer = EvaluerFragment.newInstance();
+        if (this.fragmentEvaluer == null) {
+            this.fragmentEvaluer = EvaluerFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentEvaluer);
     }
 
 
     private void showMuseumVisitFragment() {
-        if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
+        if (this.fragmentVisitList == null) {
+            this.fragmentVisitList = VisitsFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentVisitList);
     }
 
     private void showStatisticsFragment() {
-        if (this.fragmentStatistics == null)
+        if (this.fragmentStatistics == null) {
             this.fragmentStatistics = StatisticsFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentStatistics);
     }
 

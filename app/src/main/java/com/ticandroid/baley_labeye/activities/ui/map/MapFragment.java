@@ -40,11 +40,11 @@ public class MapFragment extends Fragment {
      **/
     private transient MapView mMapView;
     /**
-     * Our current firestore instance
+     * Our current firestore instance.
      */
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     /**
-     * The list of museum ids in visit collection
+     * The list of museum ids in visit collection.
      */
     private transient ArrayList<String> listOfMuseumIdInVisits;
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -134,13 +133,16 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     private void showStatisticsFragment() {
-        if (this.fragmentStatistics == null)
+        if (this.fragmentStatistics == null) {
             this.fragmentStatistics = StatisticsAdminFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentStatistics);
     }
 
     private void showMapFragment() {
-        if (this.fragmentMap == null) this.fragmentMap = MapFragment.newInstance();
+        if (this.fragmentMap == null) {
+            this.fragmentMap = MapFragment.newInstance();
+        }
         this.startTransactionFragment(this.fragmentMap);
     }
 

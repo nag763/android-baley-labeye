@@ -61,23 +61,23 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
 
     @Override
     protected void onBindViewHolder(@NonNull StatListHolder holder, int position, @NonNull MuseumBean model) {
-        final String TITLE = model.getNomDuMusee();
-        double DISTANCE = 0;
-        double EVALUATION = 0;
+        final String title = model.getNomDuMusee();
+        double distance = 0;
+        double evaluation = 0;
         VisitBean[] visitsForMuseum = visitBeans.stream().filter(element -> element.getNomDuMusee().equals(model.getNomDuMusee())).toArray(VisitBean[]::new);
         if (visitsForMuseum.length != 0) {
             for (VisitBean visit : visitsForMuseum) {
-                EVALUATION += visit.getEvaluation();
-                DISTANCE += visit.getDistance();
+                evaluation += visit.getEvaluation();
+                distance += visit.getDistance();
             }
-            EVALUATION = EVALUATION / visitsForMuseum.length;
+            evaluation = evaluation / visitsForMuseum.length;
 
 
         }
 
-        holder.setTextInTitleView(TITLE);
-        holder.setTextInDistanceView(DISTANCE + "");
-        holder.setTextInNoteView(EVALUATION + "");
+        holder.setTextInTitleView(title);
+        holder.setTextInDistanceView(distance + "");
+        holder.setTextInNoteView(evaluation + "");
 
     }
 

@@ -1,8 +1,5 @@
 package com.ticandroid.baley_labeye.beans;
 
-import android.util.Log;
-
-import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultDouble;
 import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultInteger;
 import static com.ticandroid.baley_labeye.utils.Setters.valueOrDefaultLong;
 
