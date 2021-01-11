@@ -28,11 +28,11 @@ public class VisitListHolder extends RecyclerView.ViewHolder {
     /**
      * Card title element.
      **/
-    private final static int CARD_TITLE = R.id.textTitle;
+    private final static int CARD_TITLE = R.id.lbl_title;
     /**
      * Card visited on element.
      **/
-    private final static int CARD_VISITED_ON = R.id.textVisitedOn;
+    private final static int CARD_VISITED_ON = R.id.txt_visited_on;
 
 
     /**

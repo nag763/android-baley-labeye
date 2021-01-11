@@ -14,35 +14,31 @@
         android:layout_height="164dp">
 
         <TextView
-            android:id="@+id/textStreetName"
+            android:id="@+id/txt_strt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textDistanceDuration"
+            android:id="@+id/txt_distance_duration"
             android:layout_width="351dp"
             android:layout_height="38dp"
-            android:layout_below="@id/textStreetName"
+            android:layout_below="@id/txt_strt_name"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginStart="12dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="21dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
-            android:text="TextView" />
+            />
 
         <TextView
-            android:id="@+id/textInstruction"
+            android:id="@+id/txt_instruction"
             android:layout_width="361dp"
             android:layout_height="46dp"
-            android:layout_below="@+id/textDistanceDuration"
+            android:layout_below="@+id/txt_distance_duration"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -50,7 +46,7 @@
             android:layout_marginTop="13dp"
             android:layout_marginEnd="21dp"
             android:layout_marginBottom="10dp"
-            android:text="TextView" />
+             />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

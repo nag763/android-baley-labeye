@@ -87,7 +87,7 @@ public class MapFragment extends Fragment {
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
         super.onCreate(savedInstanceState);
         // Create map view
-        mMapView = root.findViewById(R.id.mapMuseumsView);
+        mMapView = root.findViewById(R.id.map_museum_view);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
         // Focus on the geographical center of the metropolitan france
         final MapController mMapController = (MapController) mMapView.getController();

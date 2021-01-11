@@ -1,7 +1,19 @@
 <resources>
-    <string name="app_name">Baley_Labeye</string>
+    <string name="app_name">Baley et Labeye</string>
+    <string name="app_name2">Musées de France</string>
 
     <!-- Layouts -->
+
+    <string name="connection_title">Connexion</string>
+    <string name="connection_email">Courriel</string>
+    <string name="connection_pwd">Mot de passe</string>
+    <string name="connection_log_in">Se connecter</string>
+    <string name="signup_lbl">Inscription</string>
+    <string name="signup_name">Nom</string>
+    <string name="signup_lastname">Prénom</string>
+    <string name="signup_phone">Prénom</string>
+    <string name="signup_city">Ville</string>
+    <string name="signup_pic">Sélectionner une photo</string>
     <string name="museum_name">Nom du musée</string>
     <string name="museum_location">Adresse du musée</string>
     <string name="museum_phone">Numéro de téléphone du musée</string>
@@ -12,19 +24,30 @@
     <string name="route_to_destination">Itinéraire jusqu\'à la destination</string>
     <string name="simple_logo">Simple logo</string>
     <string name="save_in_db">Enregistrer le trajet</string>
+    <string name="card_avg_rating">Enregistrer le trajet</string>
+    <string name="card_cum_dist">Distance cumulée : </string>
+    <string name="rate_me">Evaluer les visites</string>
+    <string name="rate_me_now">Evaluer</string>
+    <string name="profil_header">Profil</string>
+    <string name="profil_telephone">Telephone :</string>
+    <string name="profil_city">Ville :</string>
+    <string name="stats_statistiques">Statistiques</string>
+    <string name="stats_nb_msm">Nombre de musées déjà visités :</string>
+    <string name="stats_cum_dst">Distance parcourue cumulée :</string>
+    <string name="stats_cum_vsts">Nombre total de musées visités :</string>
 
     <!-- Errors -->
     <string name="nothing_fetched">Aucun résultat.</string>
     <string name="error_remote">Une erreur est survenue.</string>
-
     <string name="title_activity_start">MainActivity</string>
-
     <string name="unable_to_fetch">Le document n\'a pas pu être récupéré.</string>
     <string name="canceled_by_user">Opération annulée par l\'utilisateur.</string>
     <string name="error_remote_orss">Le service distant n\'est pas disponible.</string>
     <string name="document_is_null">Le document retourné est null.</string>
     <string name="location_service_disabled">Votre localisation est désactivée.</string>
     <string name="error_while_displaying">Erreur lors de l\'affichage.</string>
+    <string name="err_not_found">Le document n\'a pas été trouvé</string>
+    <string name="err_failure">Une erreur s\'est produite</string>
 
     <!-- Remote ressources -->
     <string name="fs_museums">museums</string>
@@ -51,8 +74,4 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <!-- Errors -->
-    <string name="err_not_found">Le document n\'a pas été trouvé</string>
-    <string name="err_failure">Une erreur s\'est produite</string>
 </resources>
-

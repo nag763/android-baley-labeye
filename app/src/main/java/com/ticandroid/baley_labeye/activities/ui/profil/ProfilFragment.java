@@ -46,7 +46,7 @@ public class ProfilFragment extends Fragment {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        image = root.findViewById(R.id.image);
+        image = root.findViewById(R.id.img_user);
         auth = FirebaseAuth.getInstance();
         stm = FirebaseStorage.getInstance().getReference();
 
@@ -60,10 +60,10 @@ public class ProfilFragment extends Fragment {
                     if (docSnap.exists()) {
                         profilBean = Objects.requireNonNull(docSnap).toObject(ProfilBean.class);
                         if (profilBean != null) {
-                            ((TextView) root.findViewById(R.id.firstname)).setText(profilBean.getFirstName());
-                            ((TextView) root.findViewById(R.id.lastname)).setText(profilBean.getLastName());
-                            ((TextView) root.findViewById(R.id.phone)).setText("Telephone : " + profilBean.getPhone());
-                            ((TextView) root.findViewById(R.id.town)).setText("Ville : " + profilBean.getTown());
+                            ((TextView) root.findViewById(R.id.et_firstname)).setText(profilBean.getFirstName());
+                            ((TextView) root.findViewById(R.id.et_lastname)).setText(profilBean.getLastName());
+                            ((TextView) root.findViewById(R.id.et_phone)).setText("Telephone : " + profilBean.getPhone());
+                            ((TextView) root.findViewById(R.id.et_town)).setText("Ville : " + profilBean.getTown());
 
                         }
                     }

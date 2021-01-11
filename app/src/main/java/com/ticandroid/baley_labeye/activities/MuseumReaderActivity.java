@@ -139,7 +139,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
      * Method to access the user's location.
      */
     private void accessLocation() {
-        final TextView tvDistanceToMuseum = findViewById(R.id.tvDistanceToMuseum);
+        final TextView tvDistanceToMuseum = findViewById(R.id.tv_dst_to_museum_filler);
         Log.d(getClass().getName(), "Location accesser called");
         // If the user hasn't accepted the usage of its location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -182,7 +182,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
                 bindView(museumBean);
                 // Starting our location manager
                 mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-                refreshButton = findViewById(R.id.btnDestination);
+                refreshButton = findViewById(R.id.btn_destination);
                 refreshButton.setOnClickListener(click -> accessLocation());
             } else {
                 Toast.makeText(this, res.getString(R.string.document_is_null), Toast.LENGTH_LONG).show();
@@ -205,10 +205,10 @@ public class MuseumReaderActivity extends AppCompatActivity {
      * @param museumBean museum bean to bind our view with
      */
     private void bindView(final MuseumBean museumBean) {
-        ((TextView) findViewById(R.id.tvMuseumName)).setText(museumBean.getNomDuMusee());
-        ((TextView) findViewById(R.id.tvMuseumLocation)).setText(museumBean.getCompleteAdresse());
-        ((TextView) findViewById(R.id.tvMuseumPhone)).setText(museumBean.getTelephoneWithPrefix());
-        ((TextView) findViewById(R.id.tvCurrDT)).setText(getDateTimeInstance().format(new Date()));
+        ((TextView) findViewById(R.id.tv_museum_name)).setText(museumBean.getNomDuMusee());
+        ((TextView) findViewById(R.id.tv_museum_location_filler)).setText(museumBean.getCompleteAdresse());
+        ((TextView) findViewById(R.id.tv_museum_phone)).setText(museumBean.getTelephoneWithPrefix());
+        ((TextView) findViewById(R.id.tv_curr_dt)).setText(getDateTimeInstance().format(new Date()));
     }
 
     /**
@@ -221,7 +221,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
     public void bindDistanceToMuseum(String userPosition, MuseumBean museumBean) {
 
         OkHttpClient okHttpClient = new OkHttpClient();
-        TextView tvDistanceToMuseum = findViewById(R.id.tvDistanceToMuseum);
+        TextView tvDistanceToMuseum = findViewById(R.id.tv_dst_to_museum_filler);
 
         String json = String.format(
                 "{\"locations\":[[%s],[%s]]," +

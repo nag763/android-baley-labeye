@@ -31,15 +31,15 @@ public class StepListHolder extends RecyclerView.ViewHolder {
     /**
      * Matching text view element in card view.
      **/
-    private final static int CARD_STREET_NAME = R.id.textStreetName;
+    private final static int CARD_STREET_NAME = R.id.txt_strt_name;
     /**
      * Matching text view element in card view.
      **/
-    private final static int CARD_DISTANCE_DURATION = R.id.textDistanceDuration;
+    private final static int CARD_DISTANCE_DURATION = R.id.txt_distance_duration;
     /**
      * Matching text view element in card view.
      **/
-    private final static int CARD_INSTRUCTION = R.id.textInstruction;
+    private final static int CARD_INSTRUCTION = R.id.txt_instruction;
 
     /**
      * Constructor initialising the text view elements.

@@ -56,16 +56,16 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        lastName = findViewById(R.id.lastname);
-        firstName = findViewById(R.id.firstname);
-        phone = findViewById(R.id.phone);
-        town = findViewById(R.id.town);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        imageView = findViewById(R.id.image);
+        lastName = findViewById(R.id.et_lastname);
+        firstName = findViewById(R.id.et_firstname);
+        phone = findViewById(R.id.et_phone);
+        town = findViewById(R.id.et_town);
+        email = findViewById(R.id.et_email);
+        password = findViewById(R.id.et_password);
+        imageView = findViewById(R.id.img_user);
         progressDialog = new ProgressDialog(this);
-        picture = findViewById(R.id.picture);
-        register = findViewById(R.id.register);
+        picture = findViewById(R.id.btn_upload_pic);
+        register = findViewById(R.id.btn_register);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

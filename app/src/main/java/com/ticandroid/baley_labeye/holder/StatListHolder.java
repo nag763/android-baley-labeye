@@ -14,10 +14,10 @@ public class StatListHolder extends RecyclerView.ViewHolder {
     private transient final TextView note;
     private transient final TextView distance;
 
-    private final static int CARD_TITLE = R.id.textTitle;
+    private final static int CARD_TITLE = R.id.lbl_title;
     // private final static int CARD_NUMBER_VISITS = R.id.textNumberVisits;
-    private final static int CARD_NOTE = R.id.textNote;
-    private final static int CARD_DISTANCE = R.id.textDistance;
+    private final static int CARD_NOTE = R.id.lbl_rating;
+    private final static int CARD_DISTANCE = R.id.lbl_distance;
 
     public StatListHolder(@NonNull View itemView) {
         super(itemView);

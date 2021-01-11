@@ -32,15 +32,15 @@ public class MuseumListHolder extends RecyclerView.ViewHolder {
     /**
      * Card title element.
      **/
-    private final static int CARD_TITLE = R.id.textTitle;
+    private final static int CARD_TITLE = R.id.lbl_title;
     /**
      * Card location element.
      **/
-    private final static int CARD_LOCATION = R.id.textVisitedOn;
+    private final static int CARD_LOCATION = R.id.txt_visited_on;
     /**
      * Card phone element.
      **/
-    private final static int CARD_PHONE = R.id.textPhoneNumber;
+    private final static int CARD_PHONE = R.id.txt_phone_num;
 
 
     /**

@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.StartActivity">
 
     <TextView
+        android:id="@+id/lbl_inscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:text="Musées de France"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:textSize="30dp"
-        />
+        android:text="@string/app_name2"
+        android:textSize="30sp" />
 
     <Button
+        android:id="@+id/btn_register"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_below="@id/lbl_inscription"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/cardview_light_background"
-        android:textColor="@color/black"
-        android:id="@+id/register"
-        android:text="Inscription"
-        android:layout_below="@id/title"
         android:layout_marginTop="100dp"
-        />
+        android:backgroundTint="@color/cardview_light_background"
+        android:text="@string/signup_lbl"
+        android:textColor="@color/black" />
+
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_below="@id/btn_register"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/cardview_light_background"
-        android:textColor="@color/black"
-        android:id="@+id/login"
-        android:text="Connexion"
-        android:layout_below="@id/register"
         android:layout_marginTop="100dp"
-        />
+        android:backgroundTint="@color/cardview_light_background"
+        android:text="@string/connection_title"
+        android:textColor="@color/black" />
 
 </RelativeLayout>

@@ -16,16 +16,16 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-         />
+        android:paddingTop="@dimen/nav_header_vertical_spacing" />
 
     <TextView
+        android:id="@+id/tv_nb_museum_vsted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textColor="@color/black"
         android:text="@string/nav_header_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView"

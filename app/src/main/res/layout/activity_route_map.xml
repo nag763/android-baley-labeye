@@ -7,19 +7,19 @@
     tools:context=".activities.RouteMapActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fltBtnSaveInDb"
+        android:id="@+id/flt_sv_db"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
         android:contentDescription="@string/simple_logo"
-        app:layout_constraintBottom_toTopOf="@+id/fltBtnMapInstructions"
+        app:layout_constraintBottom_toTopOf="@+id/flt_switch_map_inst"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_save" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fltBtnMapInstructions"
+        android:id="@+id/flt_switch_map_inst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/round_navigation_white_48" />
 
     <org.osmdroid.views.MapView
-        android:id="@+id/mapview"
+        android:id="@+id/map_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="true"
@@ -43,7 +43,7 @@
     </org.osmdroid.views.MapView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSteps"
+        android:id="@+id/rv_steps"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/simple_logo"

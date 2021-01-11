@@ -42,7 +42,7 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
                              Bundle savedInstanceState) {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_evaluer, container, false);
-        Button button = root.findViewById(R.id.getRating);
+        Button button = root.findViewById(R.id.get_rating);
         number = root.findViewById(R.id.number);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         ratingBar = root.findViewById(R.id.rating);

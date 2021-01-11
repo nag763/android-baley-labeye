@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardViewStatistics"
+    android:id="@+id/cv_stats"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
@@ -14,33 +14,32 @@
         android:layout_height="164dp">
 
         <TextView
-            android:id="@+id/textTitle"
+            android:id="@+id/lbl_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
-            android:id="@+id/textNote"
+            android:id="@+id/lbl_rating"
             android:layout_width="184dp"
             android:layout_height="31dp"
-            android:layout_below="@+id/textTitle"
+            android:layout_below="@+id/lbl_title"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="13dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="1dp"
-            android:text="Evaluation moyenne : " />
+            android:text="@string/card_avg_rating" />
         <TextView
-            android:id="@+id/textDistance"
+            android:id="@+id/lbl_distance"
             android:layout_width="184dp"
             android:layout_height="31dp"
-            android:layout_below="@+id/textNote"
+            android:layout_below="@+id/lbl_rating"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -48,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="1dp"
-            android:text="Distance cumulée : " />
+            android:text="@string/card_cum_dist" />
 
 
     </RelativeLayout>

@@ -8,15 +8,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Statistiques"
+        android:text="@string/stats_statistiques"
         android:id="@+id/stat"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de musées déjà visités :"
+        android:text="@string/stats_nb_msm"
         android:id="@+id/nb"
         android:layout_marginTop="200dp"
         android:layout_centerHorizontal="true"/>
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Distance parcourue cumulée :"
+        android:text="@string/stats_cum_dst"
         android:layout_below="@+id/nombre"
         android:id="@+id/dist"
         android:layout_marginTop="50dp"

@@ -36,11 +36,11 @@ public class VisitsFragment extends Fragment {
     /**
      * Current activity's used recycler view.
      **/
-    private static final int RECYCLER_VIEW = R.id.recyclerView;
+    private static final int RECYCLER_VIEW = R.id.recycler_view;
     /**
      * Search bar used to filter our data.
      **/
-    private static final int SEARCH_BAR = R.id.searchBar;
+    private static final int SEARCH_BAR = R.id.search_bar;
     /**
      * Firesore query path to fetch museum elements.
      **/

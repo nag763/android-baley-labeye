@@ -23,8 +23,8 @@ import com.ticandroid.baley_labeye.beans.MuseumBean;
 public class StatisticsAdminFragment extends Fragment {
 
     private static final int LAYOUT = R.layout.fragment_statistics_admin;
-    private static final int RECYCLER_VIEW = R.id.recyclerView;
-    private static final int SEARCH_BAR = R.id.searchBar;
+    private static final int RECYCLER_VIEW = R.id.recycler_view;
+    private static final int SEARCH_BAR = R.id.search_bar;
     private static final String QUERY_PATH = "museums";
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     private transient StatListAdapter adapter;
@@ -47,7 +47,7 @@ public class StatisticsAdminFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchBarListener());
         options = generateQuery();
         adapter = new StatListAdapter(options);
-        TextView nbVist = root.findViewById(R.id.textTitle);
+        TextView nbVist = root.findViewById(R.id.lbl_title);
 
         // Place it in the recycler view
         RecyclerView recyclerView = root.findViewById(RECYCLER_VIEW);

@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvMuseumName"
+        android:id="@+id/tv_museum_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="@+id/x5" />
 
     <TextView
-        android:id="@+id/tvMuseumLocationLbl"
+        android:id="@+id/tv_museum_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -63,20 +63,20 @@
         android:text="@string/museum_location"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumName" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_name" />
 
     <TextView
-        android:id="@+id/tvMuseumLocation"
+        android:id="@+id/tv_museum_location_filler"
         android:layout_width="256dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         app:layout_constraintEnd_toStartOf="@+id/x95"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumLocationLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_location" />
 
     <TextView
-        android:id="@+id/tvMuseumPhoneLbl"
+        android:id="@+id/tv_museum_phone_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -84,10 +84,10 @@
         android:text="@string/museum_phone"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_location_filler" />
 
     <TextView
-        android:id="@+id/tvMuseumPhone"
+        android:id="@+id/tv_museum_phone"
         android:layout_width="256dp"
         android:layout_height="18dp"
         android:layout_marginStart="4dp"
@@ -95,10 +95,10 @@
         android:gravity="center"
         app:layout_constraintEnd_toStartOf="@+id/x95"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumPhoneLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_phone_lbl" />
 
     <TextView
-        android:id="@+id/tvDistanceToMuseumLbl"
+        android:id="@+id/tv_dst_to_museum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -106,20 +106,20 @@
         android:text="@string/distance_to_museum"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_phone" />
 
     <TextView
-        android:id="@+id/tvDistanceToMuseum"
+        android:id="@+id/tv_dst_to_museum_filler"
         android:layout_width="370dp"
         android:layout_height="107dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/x95"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistanceToMuseumLbl" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_dst_to_museum" />
 
     <TextView
-        android:id="@+id/tvCurrDT"
+        android:id="@+id/tv_curr_dt"
         android:layout_width="153dp"
         android:layout_height="20dp"
         android:text="@string/current_datetime"
@@ -128,7 +128,7 @@
         app:layout_constraintEnd_toStartOf="@+id/x95" />
 
     <Button
-        android:id="@+id/btnDestination"
+        android:id="@+id/btn_destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/access_my_location"
@@ -136,44 +136,44 @@
         app:layout_constraintBottom_toTopOf="@+id/y95"
         app:layout_constraintEnd_toStartOf="@+id/x95"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistanceToMuseumLbl"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dst_to_museum"
         app:layout_constraintVertical_bias="0.803" />
 
     <ImageView
-        android:id="@+id/logoGoTo"
+        android:id="@+id/logo_go_to"
         android:layout_width="21dp"
         android:layout_height="19dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="2dp"
         android:contentDescription="@string/simple_logo"
-        app:layout_constraintEnd_toStartOf="@+id/tvDistanceToMuseumLbl"
+        app:layout_constraintEnd_toStartOf="@+id/tv_dst_to_museum"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumPhone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_phone"
         app:srcCompat="@android:drawable/ic_menu_directions" />
 
     <ImageView
-        android:id="@+id/logoLocation"
+        android:id="@+id/logo_location"
         android:layout_width="23dp"
         android:layout_height="19dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/simple_logo"
-        app:layout_constraintEnd_toStartOf="@+id/tvMuseumLocationLbl"
+        app:layout_constraintEnd_toStartOf="@+id/tv_museum_location"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toBottomOf="@+id/tvMuseumName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_museum_name"
         app:srcCompat="@android:drawable/ic_menu_compass" />
 
     <ImageView
-        android:id="@+id/logoPhone"
+        android:id="@+id/logo_phone"
         android:layout_width="20dp"
         android:layout_height="19dp"
         android:layout_marginTop="76dp"
         android:contentDescription="@string/simple_logo"
-        app:layout_constraintEnd_toStartOf="@+id/tvMuseumPhoneLbl"
+        app:layout_constraintEnd_toStartOf="@+id/tv_museum_phone_lbl"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="@+id/y5"
-        app:layout_constraintTop_toTopOf="@+id/tvMuseumLocation"
+        app:layout_constraintTop_toTopOf="@+id/tv_museum_location_filler"
         app:srcCompat="@android:drawable/sym_action_call" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

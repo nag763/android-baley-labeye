@@ -137,7 +137,7 @@ public class RouteMapActivity extends AppCompatActivity {
                 .set(data).addOnCompleteListener(task -> {
             Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
             // No need to save the document twice
-            findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
+            findViewById(R.id.flt_sv_db).setVisibility(View.GONE);
         });
     }
 
@@ -152,7 +152,7 @@ public class RouteMapActivity extends AppCompatActivity {
         res = getResources();
         context = this;
 
-        recyclerView = findViewById(R.id.rvSteps);
+        recyclerView = findViewById(R.id.rv_steps);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         museumId = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_ID);
@@ -164,7 +164,7 @@ public class RouteMapActivity extends AppCompatActivity {
         final String museumPosition = getIntent().getStringExtra(MuseumReaderActivity.KEY_OF_EXTRA_MUSEUM_POSITION);
         final double[] museumPositionAsDouble = Objects.requireNonNull(positionToDoubleArray(museumPosition));
 
-        mMapView = findViewById(R.id.mapview);
+        mMapView = findViewById(R.id.map_view);
         mMapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
 
         MapController mMapController = (MapController) mMapView.getController();
@@ -281,9 +281,9 @@ public class RouteMapActivity extends AppCompatActivity {
                                 mMapView.getOverlayManager().add(polyline);
                                 geoPointList.forEach(polyline::addPoint);
 
-                                findViewById(R.id.fltBtnMapInstructions).setOnClickListener(k -> switchVisibilities());
+                                findViewById(R.id.flt_switch_map_inst).setOnClickListener(k -> switchVisibilities());
 
-                                findViewById(R.id.fltBtnSaveInDb).setOnClickListener(_k -> addRouteToFirestore());
+                                findViewById(R.id.flt_sv_db).setOnClickListener(_k -> addRouteToFirestore());
 
                                 recyclerView.setAdapter(new StepListAdapter(stepList.toArray(new StepBean[0])));
                             });
