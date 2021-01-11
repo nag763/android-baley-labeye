@@ -62,8 +62,8 @@ public class ProfilFragment extends Fragment {
                         if (profilBean != null) {
                             ((TextView) root.findViewById(R.id.et_firstname)).setText(profilBean.getFirstName());
                             ((TextView) root.findViewById(R.id.et_lastname)).setText(profilBean.getLastName());
-                            ((TextView) root.findViewById(R.id.et_phone)).setText("Telephone : " + profilBean.getPhone());
-                            ((TextView) root.findViewById(R.id.et_town)).setText("Ville : " + profilBean.getTown());
+                            ((TextView) root.findViewById(R.id.et_phone)).setText(String.format("Telephone : %s", profilBean.getPhone()));
+                            ((TextView) root.findViewById(R.id.et_town)).setText(String.format("Ville : %s", profilBean.getTown()));
 
                         }
                     }

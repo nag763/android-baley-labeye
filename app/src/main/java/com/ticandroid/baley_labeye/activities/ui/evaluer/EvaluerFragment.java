@@ -23,6 +23,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.ticandroid.baley_labeye.R;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -59,13 +60,13 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
                         ((TextView) root.findViewById(R.id.museum)).setText(doc.get("nomDuMusee").toString());
                         Object evaluation = doc.get("evaluation");
                         if (evaluation != null) {
-                            ((TextView) root.findViewById(R.id.number)).setText(evaluation.toString() + "/" + ratingBar.getNumStars());
+                            ((TextView) root.findViewById(R.id.number)).setText(String.format(Locale.FRANCE, "%s/%d", evaluation, ratingBar.getNumStars()));
                             double d = (double) evaluation;
                             float f = (float) d;
                             ratingBar.setRating(f);
                         } else {
                             ratingBar.setRating((float) 3.5);
-                            number.setText(ratingBar.getRating() + "/" + ratingBar.getNumStars());
+                            number.setText(String.format(Locale.FRANCE, "%s/%d", ratingBar.getRating(), ratingBar.getNumStars()));
                         }
                         idVisite = doc.getId().toString();
                     }
@@ -94,6 +95,6 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-        number.setText(ratingBar.getRating() + "/" + ratingBar.getNumStars());
+        number.setText(String.format(Locale.FRANCE, "%s/%d", ratingBar.getRating(), ratingBar.getNumStars()));
     }
 }
