@@ -50,19 +50,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
     // private transient int count=0;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
-    private Fragment fragmentProfil;
-    private Fragment fragmentMuseumList;
-    private Fragment fragmentVisitList;
-    private Fragment fragmentEvaluer;
-    private Fragment fragmentStatistics;
-    private static final int FRAGMENT_PROFIL = 0;
-    private static final int FRAGMENT_LISTE_MUSEE = 1;
-    private static final int FRAGMENT_LIST_VISITS = 2;
-    private static final int FRAGMENT_EVALUER = 3;
-    private static final int FRAGMENT_STATISTICS = 4;
+    private transient DrawerLayout drawerLayout;
+    private transient NavigationView navigationView;
+    private transient Toolbar toolbar;
+    private transient Fragment fragmentProfil;
+    private transient Fragment fragmentMuseumList;
+    private transient Fragment fragmentVisitList;
+    private transient Fragment fragmentEvaluer;
+    private transient Fragment fragmentStatistics;
+    private static transient final int FRAGMENT_PROFIL = 0;
+    private static transient final int FRAGMENT_LISTE_MUSEE = 1;
+    private static transient final int FRAGMENT_LIST_VISITS = 2;
+    private static transient final int FRAGMENT_EVALUER = 3;
+    private static transient final int FRAGMENT_STATISTICS = 4;
     private transient int count = 0;
 
     @Override

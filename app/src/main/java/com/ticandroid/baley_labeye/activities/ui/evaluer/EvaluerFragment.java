@@ -30,7 +30,7 @@ import java.util.Map;
 
 
 public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarChangeListener {
-    private RatingBar ratingBar;
+    private transient RatingBar ratingBar;
     private transient static MuseumBean museumBean;
     private transient TextView number;
 
@@ -38,7 +38,7 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
         return (new EvaluerFragment());
     }
 
-    private String idVisite;
+    private transient String idVisite;
 
 
     @Override

@@ -27,13 +27,13 @@ import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragm
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
-    private Fragment fragmentMap;
-    private Fragment fragmentStatistics;
-    private static final int FRAGMENT_MAP = 0;
-    private static final int FRAGMENT_STATISTICS = 1;
+    private transient DrawerLayout drawerLayout;
+    private transient NavigationView navigationView;
+    private transient Toolbar toolbar;
+    private transient Fragment fragmentMap;
+    private transient Fragment fragmentStatistics;
+    private static transient final int FRAGMENT_MAP = 0;
+    private static transient final int FRAGMENT_STATISTICS = 1;
 
 
     @Override
