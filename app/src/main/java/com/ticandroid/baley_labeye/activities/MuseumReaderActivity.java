@@ -98,6 +98,10 @@ public class MuseumReaderActivity extends AppCompatActivity {
      **/
     private transient double distanceToMuseum;
     /**
+     * Duration from user to museum.
+     **/
+    private transient double durationToMuseum;
+    /**
      * Key of the extra museum id.
      **/
     public static final String KEY_OF_EXTRA_MUSEUM_ID = "museumId";
@@ -260,7 +264,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
                             response.code(), res.getString(R.string.error_remote_orss)
                     );
                 } else {
-                    double durationToMuseum = -1;
                     final JSONObject jsonReader;
                     try {
                         String jsonData = response.body().string();
