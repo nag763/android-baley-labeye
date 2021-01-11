@@ -1,7 +1,7 @@
 package com.ticandroid.baley_labeye.utils;
 
 /**
- * Safe setters for logo and integers, fixing FB possible issues when automaticly setting fields
+ * Safe setters for logo and integers, fixing FB possible issues when automaticly setting fields.
  *
  * @author Labeye
  * @version 0.1
@@ -9,13 +9,13 @@ package com.ticandroid.baley_labeye.utils;
 public final class Setters {
 
     /**
-     * Private constructor to avoid class instanciation
+     * Private constructor to avoid class instanciation.
      **/
     private Setters() {
     }
 
     /**
-     * Give a default value if null is given
+     * Give a default value if null is given.
      *
      * @param value        to return as int
      * @param defaultValue if the argument isn't an int or null value
@@ -32,7 +32,7 @@ public final class Setters {
 
 
     /**
-     * Give a default value if null is given
+     * Give a default value if null is given.
      *
      * @param value        to return as double
      * @param defaultValue if the argument isn't a double or null value
@@ -49,7 +49,7 @@ public final class Setters {
 
 
     /**
-     * Give a default value if null is given
+     * Give a default value if null is given.
      *
      * @param value        to return as string
      * @param defaultValue if the argument isn't a string or null value
@@ -65,12 +65,12 @@ public final class Setters {
     }
 
     /**
-     * Give a default value if null is given
+     * Give a default value if null is given.
      *
-     * @param value        to return as long
-     * @param defaultValue if the argument isn't a long or null value
-     * @param nullValue    value which has to be replaced by the default
-     * @return a long value
+     * @param value        to return as long.
+     * @param defaultValue if the argument isn't a long or null value.
+     * @param nullValue    value which has to be replaced by the default.
+     * @return a long value.
      */
     public static long valueOrDefault(Object value, long defaultValue, long nullValue) {
         if (value instanceof Long && !value.equals(nullValue)) {
@@ -81,27 +81,27 @@ public final class Setters {
     }
 
     /**
-     * Returns an integer value
+     * Returns an integer value.
      *
-     * @param value to return
-     * @return value if integer, 0 if null
+     * @param value to return.
+     * @return value if integer, 0 if null.
      */
     public static int valueOrDefaultInteger(Object value) {
         return valueOrDefault(value, 0, 0);
     }
 
     /**
-     * Returns a long value
+     * Returns a long value.
      *
-     * @param value to return
-     * @return value if long, 0 if null
+     * @param value to return.
+     * @return value if long, 0 if null.
      */
     public static long valueOrDefaultLong(Object value) {
         return valueOrDefault(value, 0, 0);
     }
 
     /**
-     * Returns a double value
+     * Returns a double value.
      *
      * @param value to return
      * @return value if double, 0d if null
@@ -111,22 +111,12 @@ public final class Setters {
     }
 
     /**
-     * Returns a string value
+     * Returns a string value.
      *
      * @param value to return
      * @return value if string, "" if null
      */
     public static String valueOrDefaultString(Object value) {
         return valueOrDefault(value, "", "");
-    }
-
-    /**
-     * Returns a logo value
-     *
-     * @param value to return
-     * @return value if logo, "et_inconnu" if null
-     */
-    public static String valueOrDefaultLogo(Object value) {
-        return valueOrDefault(value, "et_inconnu", "");
     }
 }
