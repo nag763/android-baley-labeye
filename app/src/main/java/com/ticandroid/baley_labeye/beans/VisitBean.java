@@ -5,19 +5,21 @@ import com.google.firebase.Timestamp;
 /**
  * Visit bean used to modelise a visit in our classes.
  *
- * @author Baley
  * @author Labeye
  */
 public class VisitBean {
 
-    /** Name of the museum. **/
+    /**
+     * Name of the museum.
+     **/
     private String nomDuMusee;
-    /** Date of the visit. **/
+    /**
+     * Date of the visit.
+     **/
     private Timestamp date;
 
     private double distance;
     private double evaluation;
-
 
 
     public VisitBean() {
@@ -38,6 +40,7 @@ public class VisitBean {
     public void setDate(Timestamp date) {
         this.date = date;
     }
+
     public double getDistance() {
         return distance;
     }

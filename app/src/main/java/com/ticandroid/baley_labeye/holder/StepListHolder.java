@@ -11,11 +11,8 @@ import com.ticandroid.baley_labeye.R;
 /**
  * Holder of a step list to be used in a recylcer view.
  *
- * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
- *
- * @author Baley
  * @author Labeye
- *
+ * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  */
 public class StepListHolder extends RecyclerView.ViewHolder {
 

@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ticandroid.baley_labeye.R;
 
-public class StatListHolder extends RecyclerView.ViewHolder{
+public class StatListHolder extends RecyclerView.ViewHolder {
     private transient final TextView title;
     //private transient final TextView numberVisits;
     private transient final TextView note;
     private transient final TextView distance;
 
     private final static int CARD_TITLE = R.id.textTitle;
-   // private final static int CARD_NUMBER_VISITS = R.id.textNumberVisits;
+    // private final static int CARD_NUMBER_VISITS = R.id.textNumberVisits;
     private final static int CARD_NOTE = R.id.textNote;
     private final static int CARD_DISTANCE = R.id.textDistance;
 
@@ -27,12 +27,18 @@ public class StatListHolder extends RecyclerView.ViewHolder{
         this.distance = itemView.findViewById(CARD_DISTANCE);
     }
 
-    public void setTextInTitleView(String title){
+    public void setTextInTitleView(String title) {
         this.title.setText(title);
     }
+
     //public void setTextInNoteView(String note){this.note.setText(note);}
     //public void setTextInDistanceView(String distance){this.distance.setText(distance);}
-   // public void setTextInNumberVisitsView(String numberVisits) { this.numberVisits.setText(numberVisits);}
-    public void setTextInNoteView(String note) { this.note.setText(String.format("%s %s %s","Evaluation moyenne : ",note, "/5"));}
-    public void setTextInDistanceView(String distance) { this.distance.setText(String.format("%s %s %s","Distance totale parcourue : ",distance," km"));}
+    // public void setTextInNumberVisitsView(String numberVisits) { this.numberVisits.setText(numberVisits);}
+    public void setTextInNoteView(String note) {
+        this.note.setText(String.format("%s %s %s", "Evaluation moyenne : ", note, "/5"));
+    }
+
+    public void setTextInDistanceView(String distance) {
+        this.distance.setText(String.format("%s %s %s", "Distance totale parcourue : ", distance, " km"));
+    }
 }

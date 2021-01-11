@@ -12,25 +12,22 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.beans.VisitBean;
-import com.ticandroid.baley_labeye.holder.MuseumListHolder;
 import com.ticandroid.baley_labeye.holder.StatListHolder;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatListHolder> {
     private transient final Context context;
     //private transient CollectionReference visits;
     private transient ArrayList<VisitBean> visitBeans;
 
-   // private transient VisitBean visitBean;
+    // private transient VisitBean visitBean;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -38,7 +35,7 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
      *
      * @param options
      */
-    public StatListAdapter(Context context,@NonNull FirestoreRecyclerOptions<MuseumBean> options) {
+    public StatListAdapter(Context context, @NonNull FirestoreRecyclerOptions<MuseumBean> options) {
         super(options);
         this.context = context;
         visitBeans = new ArrayList<>();
@@ -49,14 +46,14 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
                     for (QueryDocumentSnapshot doc : task.getResult()) {
                         VisitBean visitBean = new VisitBean();
                         visitBean.setNomDuMusee(doc.getString("nomDuMusee"));
-                        visitBean.setDistance( doc.getDouble("distance"));
-                        visitBean.setEvaluation( doc.getDouble("evaluation"));
+                        visitBean.setDistance(doc.getDouble("distance"));
+                        visitBean.setEvaluation(doc.getDouble("evaluation"));
                         visitBeans.add(visitBean);
                     }
                 }
             }
         });
-       // nbVisits=visitBeans.size();
+        // nbVisits=visitBeans.size();
 
 
     }
@@ -65,22 +62,22 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
     @Override
     protected void onBindViewHolder(@NonNull StatListHolder holder, int position, @NonNull MuseumBean model) {
         final String TITLE = model.getNomDuMusee();
-        double DISTANCE=0;
-        double EVALUATION=0;
-        VisitBean[] visitsForMuseum = visitBeans.stream().filter(element -> element.getNomDuMusee().equals(model.getNomDuMusee())).toArray(VisitBean[]:: new);
-        if(visitsForMuseum.length!= 0){
-                for (VisitBean visit: visitsForMuseum) {
-                    EVALUATION += visit.getEvaluation();
-                    DISTANCE += visit.getDistance();
-                }
-            EVALUATION = EVALUATION/visitsForMuseum.length;
+        double DISTANCE = 0;
+        double EVALUATION = 0;
+        VisitBean[] visitsForMuseum = visitBeans.stream().filter(element -> element.getNomDuMusee().equals(model.getNomDuMusee())).toArray(VisitBean[]::new);
+        if (visitsForMuseum.length != 0) {
+            for (VisitBean visit : visitsForMuseum) {
+                EVALUATION += visit.getEvaluation();
+                DISTANCE += visit.getDistance();
+            }
+            EVALUATION = EVALUATION / visitsForMuseum.length;
 
 
         }
 
         holder.setTextInTitleView(TITLE);
-        holder.setTextInDistanceView(DISTANCE+"");
-        holder.setTextInNoteView(EVALUATION+"");
+        holder.setTextInDistanceView(DISTANCE + "");
+        holder.setTextInNoteView(EVALUATION + "");
 
     }
 

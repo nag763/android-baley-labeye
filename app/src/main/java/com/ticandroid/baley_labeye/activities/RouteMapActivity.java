@@ -49,7 +49,6 @@ import java.util.Objects;
 /**
  * Display the route to a point given as intent.
  *
- * @author Baley
  * @author Labeye
  * @see AppCompatActivity
  */
@@ -144,7 +143,8 @@ public class RouteMapActivity extends AppCompatActivity {
      */
     private void addRouteToFirestore() {
         final FirebaseAuth auth = FirebaseAuth.getInstance();
-        final Map<String, Object> data = new HashMap<String, Object>() { };
+        final Map<String, Object> data = new HashMap<String, Object>() {
+        };
         data.put("nomDuMusee", museumName);
         data.put("date", Timestamp.now());
         data.put("instructions", stepList);
@@ -160,9 +160,9 @@ public class RouteMapActivity extends AppCompatActivity {
                 .collection("visites")
                 .document(String.format("%s::%s", auth.getUid(), museumId))
                 .set(data).addOnCompleteListener(task -> {
-                    Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
-                    // No need to save the document twice
-                    findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
+            Toast.makeText(context, "Chemin ajouté à votre profil", Toast.LENGTH_LONG).show();
+            // No need to save the document twice
+            findViewById(R.id.fltBtnSaveInDb).setVisibility(View.GONE);
         });
     }
 

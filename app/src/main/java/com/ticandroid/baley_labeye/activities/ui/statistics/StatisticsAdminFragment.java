@@ -1,11 +1,6 @@
 package com.ticandroid.baley_labeye.activities.ui.statistics;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +8,16 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.ticandroid.baley_labeye.R;
-import com.ticandroid.baley_labeye.activities.ui.evaluer.EvaluerFragment;
-import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 import com.ticandroid.baley_labeye.adapter.StatListAdapter;
-import com.ticandroid.baley_labeye.adapter.VisitListFSAdapter;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
-import com.ticandroid.baley_labeye.beans.VisitBean;
 
 
 public class StatisticsAdminFragment extends Fragment {
@@ -37,6 +31,7 @@ public class StatisticsAdminFragment extends Fragment {
     private transient FirestoreRecyclerOptions<MuseumBean> options;
     private transient TextView nbVist;
     private transient int nbVisites;
+
     public static Fragment newInstance() {
         Bundle args = new Bundle();
         StatisticsAdminFragment fragment = new StatisticsAdminFragment();
@@ -60,10 +55,11 @@ public class StatisticsAdminFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         firebaseFirestore.collection("visites").get().addOnCompleteListener(task -> nbVisites = task.getResult().size());
-        nbVist.setText(String.format("%s %s",nbVist.getText(), nbVisites));
+        nbVist.setText(String.format("%s %s", nbVist.getText(), nbVisites));
 
-       return root;
+        return root;
     }
+
     @Override
     public void onStop() {
         super.onStop();

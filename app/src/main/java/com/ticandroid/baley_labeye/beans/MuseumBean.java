@@ -4,7 +4,6 @@ package com.ticandroid.baley_labeye.beans;
  * The museum class's purpose is to contain any important information related to the museums
  * stored in the firestore database.
  *
- * @author Baley
  * @author Labeye
  */
 public class MuseumBean {

@@ -52,7 +52,6 @@ import static java.text.DateFormat.getDateTimeInstance;
  * elegantly the different informations
  * related to a museum.
  *
- * @author Baley
  * @author Labeye
  * @see AppCompatActivity
  */
@@ -136,7 +135,7 @@ public class MuseumReaderActivity extends AppCompatActivity {
      * Method to access the user's location.
      */
     private void accessLocation() {
-        final TextView tvDistanceToMuseum =  findViewById(R.id.tvDistanceToMuseum);
+        final TextView tvDistanceToMuseum = findViewById(R.id.tvDistanceToMuseum);
         Log.d(getClass().getName(), "Location accesser called");
         // If the user hasn't accepted the usage of its location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED

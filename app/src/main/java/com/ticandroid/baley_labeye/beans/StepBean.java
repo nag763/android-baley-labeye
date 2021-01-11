@@ -7,7 +7,6 @@ import org.json.JSONObject;
  * Step bean to modelise our different steps in
  * our route.
  *
- * @author Baley
  * @author Labeye
  */
 public class StepBean {

@@ -19,6 +19,8 @@ import java.util.TimeZone;
 
 /**
  * Step list adapter used to display elegently our elements.
+ *
+ * @author Labeye
  */
 public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
 
@@ -54,7 +56,7 @@ public class StepListAdapter extends RecyclerView.Adapter<StepListHolder> {
     @Override
     public void onBindViewHolder(@NonNull StepListHolder holder, int position) {
         final StepBean currentStep = stepBeans[position];
-        final String streetName = String.format("Etape %s : %s", position+1, currentStep.getRoadName());
+        final String streetName = String.format("Etape %s : %s", position + 1, currentStep.getRoadName());
 
         final String distanceDuration = String.format("Dans %s - à %s kms",
                 FORMATTER.format(

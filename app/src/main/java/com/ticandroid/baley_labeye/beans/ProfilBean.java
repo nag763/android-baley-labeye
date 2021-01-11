@@ -19,7 +19,7 @@ public class ProfilBean {
     private ImageView image;
 
 
-    public ProfilBean(){
+    public ProfilBean() {
 
     }
 

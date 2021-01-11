@@ -20,13 +20,14 @@ import com.ticandroid.baley_labeye.holder.MuseumListHolder;
 /**
  * This adapter's purpose is to bind the museum elements of the remote firestore into the given holder.
  *
- * @see com.firebase.ui.firestore.FirestoreRecyclerAdapter
- * @author Baley
  * @author Labeye
+ * @see com.firebase.ui.firestore.FirestoreRecyclerAdapter
  */
-public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, MuseumListHolder>  {
+public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, MuseumListHolder> {
 
-    /** Context that will be used in the clickable element. **/
+    /**
+     * Context that will be used in the clickable element.
+     **/
     private transient final Context context;
 
     public static final String KEY_OF_EXTRA = "idToOpen";
@@ -46,7 +47,7 @@ public class MuseumListFSAdapter extends FirestoreRecyclerAdapter<MuseumBean, Mu
     @Override
     protected void onBindViewHolder(@NonNull MuseumListHolder holder, int position, @NonNull MuseumBean model) {
 
-        final String title =  model.getNomDuMusee();
+        final String title = model.getNomDuMusee();
         final String location = model.getPartialAdresse();
         // By default, the phone numbers from the csv are stored without the local prefix
         final String phoneNumber = model.getTelephoneWithPrefix();

@@ -11,7 +11,6 @@ import com.ticandroid.baley_labeye.R;
 /**
  * Holder used to bind our data into our museum card layout.
  *
- * @author Baley
  * @author Labeye
  * @see androidx.recyclerview.widget.RecyclerView.ViewHolder
  */

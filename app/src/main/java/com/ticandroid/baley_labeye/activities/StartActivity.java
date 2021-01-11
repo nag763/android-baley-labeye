@@ -31,7 +31,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         } else if (v.equals(login)) {
             Intent connexion = new Intent(this, ConnexionActivity.class);
             startActivity(connexion);
-           // finish();
+            // finish();
         }
 
 

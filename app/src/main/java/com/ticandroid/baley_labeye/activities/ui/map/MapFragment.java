@@ -30,7 +30,6 @@ import java.util.Objects;
  * Map Fragment used to display all the museums stored in the FS instance on a
  * osm map.
  *
- * @author Baley
  * @author Labeye
  * @see Fragment
  */

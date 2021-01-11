@@ -22,16 +22,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
-import com.ticandroid.baley_labeye.activities.ui.museum.MuseumFragment;
-import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
 import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment;
-import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 
 
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private ImageView imageView;
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
 
@@ -40,8 +36,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private Toolbar toolbar;
     private Fragment fragmentMap;
     private Fragment fragmentStatistics;
-    private static final int FRAGMENT_MAP=0;
-    private static final int FRAGMENT_STATISTICS=1;
+    private static final int FRAGMENT_MAP = 0;
+    private static final int FRAGMENT_STATISTICS = 1;
 
 
     @Override
@@ -56,16 +52,16 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         ActionBarDrawerToggle actionBarDrawerToggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                         R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerClosed(View v) {
-                super.onDrawerClosed(v);
-            }
+                    @Override
+                    public void onDrawerClosed(View v) {
+                        super.onDrawerClosed(v);
+                    }
 
-            @Override
-            public void onDrawerOpened(View v) {
-                super.onDrawerOpened(v);
-            }
-        };
+                    @Override
+                    public void onDrawerOpened(View v) {
+                        super.onDrawerOpened(v);
+                    }
+                };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         this.showFirstFragment();
@@ -80,9 +76,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         this.navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    private void showFirstFragment(){
+
+    private void showFirstFragment() {
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (visibleFragment == null){
+        if (visibleFragment == null) {
             // 1.1 - Show News Fragment
             this.showFragment(FRAGMENT_MAP);
             // 1.2 - Mark as selected the menu item corresponding to NewsFragment
@@ -137,12 +134,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     private void showStatisticsFragment() {
-        if(this.fragmentStatistics == null) this.fragmentStatistics = StatisticsAdminFragment.newInstance();
+        if (this.fragmentStatistics == null)
+            this.fragmentStatistics = StatisticsAdminFragment.newInstance();
         this.startTransactionFragment(this.fragmentStatistics);
     }
 
     private void showMapFragment() {
-        if(this.fragmentMap == null) this.fragmentMap = MapFragment.newInstance();
+        if (this.fragmentMap == null) this.fragmentMap = MapFragment.newInstance();
         this.startTransactionFragment(this.fragmentMap);
     }
 

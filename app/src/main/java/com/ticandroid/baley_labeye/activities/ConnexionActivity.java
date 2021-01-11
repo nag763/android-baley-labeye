@@ -13,8 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,14 +57,14 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     private void loginUser(String email, String password) {
         progressDialog.setMessage("Veuillez patienter");
         progressDialog.show();
-        auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     progressDialog.dismiss();
                     Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
 
-                    FirebaseUser user= auth.getCurrentUser();
+                    FirebaseUser user = auth.getCurrentUser();
                     DocumentReference document = firebaseFirestore.collection("profils").document(user.getUid());
                     Task<DocumentSnapshot> task2 = document.get();
                     task2.addOnCompleteListener(k -> {
@@ -82,7 +80,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                             finish();
                         }
                     });
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(ConnexionActivity.this, "Connexion refusée", Toast.LENGTH_SHORT).show();
                 }

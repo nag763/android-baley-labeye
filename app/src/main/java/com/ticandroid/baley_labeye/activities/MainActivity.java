@@ -1,21 +1,27 @@
 package com.ticandroid.baley_labeye.activities;
 
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,17 +39,6 @@ import com.ticandroid.baley_labeye.activities.ui.profil.ProfilFragment;
 import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsFragment;
 import com.ticandroid.baley_labeye.activities.ui.visits.VisitsFragment;
 
-import androidx.annotation.NonNull;
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentTransaction;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -54,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView imageView;
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
-   // private transient int count=0;
+    // private transient int count=0;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -68,24 +63,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_LIST_VISITS = 2;
     private static final int FRAGMENT_EVALUER = 3;
     private static final int FRAGMENT_STATISTICS = 4;
-    private transient int count=0;
+    private transient int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-        stm= FirebaseStorage.getInstance().getReference();
+        stm = FirebaseStorage.getInstance().getReference();
         this.configureNavigationView();
         this.configureToolbar();
         drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle actionBarDrawerToggle =new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close){
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
-            public void onDrawerClosed(View v){
+            public void onDrawerClosed(View v) {
                 super.onDrawerClosed(v);
             }
+
             @Override
-            public void onDrawerOpened(View v){
+            public void onDrawerOpened(View v) {
                 super.onDrawerOpened(v);
             }
         };
@@ -93,9 +89,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
         this.showFirstFragment();
     }
-    private void showFirstFragment(){
+
+    private void showFirstFragment() {
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (visibleFragment == null){
+        if (visibleFragment == null) {
             // 1.1 - Show News Fragment
             this.showFragment(FRAGMENT_PROFIL);
             // 1.2 - Mark as selected the menu item corresponding to NewsFragment
@@ -109,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    private void configureNavigationView(){
+
+    private void configureNavigationView() {
         this.navigationView = findViewById(R.id.nav_view);
         // NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         View hView = navigationView.getHeaderView(0);
@@ -122,34 +120,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //textView.setText(afficherNbMusees());
         navigationView.setNavigationItemSelectedListener(this);
     }
-    private void afficherNbMusees(){
+
+    private void afficherNbMusees() {
 
         FirebaseFirestore.getInstance().collection("visites")
-                .whereEqualTo("idProfil",auth.getCurrentUser().getUid())
+                .whereEqualTo("idProfil", auth.getCurrentUser().getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    Log.d("count","count");
-                    for(QueryDocumentSnapshot doc : task.getResult()){
-                        Log.d("count"," "+count);
-                        count+=1;
+                if (task.isSuccessful()) {
+                    Log.d("count", "count");
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        Log.d("count", " " + count);
+                        count += 1;
                     }
-                    textView.setText(""+count);
+                    textView.setText("" + count);
                 }
             }
         });
 
 
     }
-    private void afficherImage(){
+
+    private void afficherImage() {
 
 
-        StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
+        StorageReference st = stm.child("users/" + auth.getCurrentUser().getUid());
         File localFile = null;
-        try{
+        try {
 
-            localFile = File.createTempFile("image","png");
+            localFile = File.createTempFile("image", "png");
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onNavigationItemSelected (@NonNull MenuItem item){
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
             case R.id.profil:
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-        private void showFragment ( int fragmentIdentifier){
+    private void showFragment(int fragmentIdentifier) {
         switch (fragmentIdentifier) {
             case FRAGMENT_PROFIL:
                 this.showProfilFragment();
@@ -243,42 +243,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-    private void showProfilFragment () {
+    private void showProfilFragment() {
         if (this.fragmentProfil == null) this.fragmentProfil = ProfilFragment.newInstance();
         this.startTransactionFragment(this.fragmentProfil);
     }
 
-        private void showMuseumListFragment() {
-            if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
-            this.startTransactionFragment(this.fragmentMuseumList);
-        }
-        private void showEvaluerFragment(){
-            if(this.fragmentEvaluer == null) this.fragmentEvaluer = EvaluerFragment.newInstance();
-            this.startTransactionFragment(this.fragmentEvaluer);
-        }
-
-
-        private void showMuseumVisitFragment() {
-            if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
-            this.startTransactionFragment(this.fragmentVisitList);
-        }
-        private void showStatisticsFragment() {
-            if (this.fragmentStatistics == null) this.fragmentStatistics = StatisticsFragment.newInstance();
-            this.startTransactionFragment(this.fragmentStatistics);
-        }
-
-        private void startTransactionFragment (Fragment fragment){
-
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-
-            transaction.replace(R.id.activity_main_frame_layout, fragment);
-            transaction.addToBackStack(null);
-
-            transaction.commit();
+    private void showMuseumListFragment() {
+        if (this.fragmentMuseumList == null) this.fragmentMuseumList = MuseumFragment.newInstance();
+        this.startTransactionFragment(this.fragmentMuseumList);
     }
 
+    private void showEvaluerFragment() {
+        if (this.fragmentEvaluer == null) this.fragmentEvaluer = EvaluerFragment.newInstance();
+        this.startTransactionFragment(this.fragmentEvaluer);
+    }
+
+
+    private void showMuseumVisitFragment() {
+        if (this.fragmentVisitList == null) this.fragmentVisitList = VisitsFragment.newInstance();
+        this.startTransactionFragment(this.fragmentVisitList);
+    }
+
+    private void showStatisticsFragment() {
+        if (this.fragmentStatistics == null)
+            this.fragmentStatistics = StatisticsFragment.newInstance();
+        this.startTransactionFragment(this.fragmentStatistics);
+    }
+
+    private void startTransactionFragment(Fragment fragment) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+        transaction.replace(R.id.activity_main_frame_layout, fragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
+    }
 
 
 }

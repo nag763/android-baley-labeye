@@ -23,10 +23,8 @@ import com.ticandroid.baley_labeye.beans.VisitBean;
 /**
  * Visits fragment used to display the places currently visited by the user.
  *
- * @see Fragment
- *
- * @author Baley
  * @author Labeye
+ * @see Fragment
  */
 public class VisitsFragment extends Fragment {
 

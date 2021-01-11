@@ -19,7 +19,6 @@ import java.util.Locale;
 /**
  * Visit list FS adapter used to display the visits made by the user.
  *
- * @author Baley
  * @author Labeye
  * @see FirestoreRecyclerAdapter
  */

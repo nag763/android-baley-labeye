@@ -24,7 +24,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.beans.ProfilBean;
-import com.ticandroid.baley_labeye.dao.ProfilDAOImpl;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,22 +57,22 @@ public class ProfilFragment extends Fragment {
         town = root.findViewById(R.id.town);
         image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
-        stm= FirebaseStorage.getInstance().getReference();
+        stm = FirebaseStorage.getInstance().getReference();
 
         afficherImage();
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("profils").document(auth.getCurrentUser().getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     DocumentSnapshot docSnap = task.getResult();
-                    if(docSnap.exists()){
+                    if (docSnap.exists()) {
                         profilBean = Objects.requireNonNull(docSnap).toObject(ProfilBean.class);
-                        if(profilBean!=null){
+                        if (profilBean != null) {
                             ((TextView) root.findViewById(R.id.firstname)).setText(profilBean.getFirstName());
                             ((TextView) root.findViewById(R.id.lastname)).setText(profilBean.getLastName());
-                            ((TextView) root.findViewById(R.id.phone)).setText("Telephone : "+profilBean.getPhone());
-                            ((TextView) root.findViewById(R.id.town)).setText("Ville : "+profilBean.getTown());
+                            ((TextView) root.findViewById(R.id.phone)).setText("Telephone : " + profilBean.getPhone());
+                            ((TextView) root.findViewById(R.id.town)).setText("Ville : " + profilBean.getTown());
 
                         }
                     }
@@ -82,14 +81,15 @@ public class ProfilFragment extends Fragment {
         });
         return root;
     }
-    private void afficherImage(){
+
+    private void afficherImage() {
 
 
-        StorageReference st = stm.child("users/"+auth.getCurrentUser().getUid());
+        StorageReference st = stm.child("users/" + auth.getCurrentUser().getUid());
         File localFile = null;
-        try{
+        try {
 
-            localFile = File.createTempFile("image","png");
+            localFile = File.createTempFile("image", "png");
         } catch (IOException e) {
 
             e.printStackTrace();
