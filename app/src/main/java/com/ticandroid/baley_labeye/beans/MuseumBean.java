@@ -22,7 +22,7 @@ public class MuseumBean {
     /**
      * Postal code associated.
      **/
-    private int cp;
+    private long cp;
     /**
      * Department of the museum.
      **/
@@ -80,7 +80,7 @@ public class MuseumBean {
      * @return a shortened understandable adress
      */
     public String getPartialAdresse() {
-        return String.format("%s\n %s, %s", adr, ville, region);
+        return String.format("%s\n%s, %s", adr, ville, region);
     }
 
     /**
@@ -100,7 +100,7 @@ public class MuseumBean {
         return coordonneesFinales;
     }
 
-    public int getCp() {
+    public long getCp() {
         return cp;
     }
 
@@ -129,7 +129,7 @@ public class MuseumBean {
     }
 
     public void setCp(Object cp) {
-        this.cp = valueOrDefaultInteger(cp);
+        this.cp = valueOrDefaultLong(cp);
     }
 
     public void setDepartement(String departement) {

@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (task.isSuccessful()) {
                 Log.d("count", "count");
                 count = Objects.requireNonNull(task.getResult()).size();
-                textView.setText(count);
+                textView.setText(String.valueOf(count));
             }
         });
 
@@ -154,23 +154,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getOrder()) {
-            case 0:
+        Log.d(getClass().getName(), String.valueOf(item.getItemId()));
+        switch (item.getItemId()) {
+            case R.id.profil:
                 this.showProfilFragment();
                 break;
-            case 1:
+            case R.id.listeMusees:
                 this.showMuseumListFragment();
                 break;
-            case 2:
+            case R.id.visites:
                 this.showMuseumVisitFragment();
                 break;
-            case 3:
+            case R.id.evaluer:
                 this.showEvaluerFragment();
                 break;
-            case 4:
+            case R.id.statistics:
                 this.showStatisticsFragment();
                 break;
-            case 5:
+            case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
                 startActivity(deconnexion);

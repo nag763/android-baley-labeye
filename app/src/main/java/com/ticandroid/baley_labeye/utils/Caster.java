@@ -6,19 +6,19 @@ import java.text.ParseException;
 import java.util.Arrays;
 
 /**
- * Util to cast classes to another
+ * Util to cast classes to another.
  *
  * @author Labeye
  */
 public final class Caster {
 
     /**
-     * Splittable element
+     * Splittable element.
      **/
     private static final String SPLITTER = ",";
 
     /**
-     * Not instanciable class
+     * Not instanciable class.
      **/
     private Caster() {
     }

@@ -54,6 +54,12 @@ If the user is authenticated as an admin :
 
 	- Fixed on a  old commit
 
+- [ ] If no visit saved, application crash on evaluate visit
+
+- [ ] Issue with city icon
+
+- [ ] Fix ressources in switch
+
 ## TODO
 
 - [x] Fix deprecated *ProgressDialog* in *InscriptionActivity*

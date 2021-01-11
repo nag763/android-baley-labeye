@@ -87,14 +87,14 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getOrder()) {
-            case 0:
+        switch (item.getItemId()) {
+            case R.id.map:
                 this.showMapFragment();
                 break;
-            case 1:
+            case R.id.stats_admin:
                 this.showStatisticsFragment();
                 break;
-            case 2:
+            case R.id.quitter:
                 Intent deconnexion = new Intent(this, StartActivity.class);
                 Toast.makeText(this, "déconnexion", Toast.LENGTH_SHORT).show();
                 startActivity(deconnexion);

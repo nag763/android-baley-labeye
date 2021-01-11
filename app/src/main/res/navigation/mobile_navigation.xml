@@ -28,7 +28,7 @@
         android:label="Statistiques"
         tools:layout="@layout/fragment_statistics"/>
     <fragment
-        android:id="@id/statisticsAdmin"
+        android:id="@id/stats_admin"
         android:name="com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment"
         android:label="StatistiquesAdmin"
         tools:layout="@layout/fragment_statistics_admin"/>

@@ -11,7 +11,7 @@
     <string name="signup_lbl">Inscription</string>
     <string name="signup_name">Nom</string>
     <string name="signup_lastname">Prénom</string>
-    <string name="signup_phone">Prénom</string>
+    <string name="signup_phone">Numéro de téléphone</string>
     <string name="signup_city">Ville</string>
     <string name="signup_pic">Sélectionner une photo</string>
     <string name="museum_location">Adresse du musée</string>

@@ -155,7 +155,6 @@ public class MuseumReaderActivity extends AppCompatActivity {
             // If the location is enabled on user's device
         } else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, mLocationListener);
-
             tvDistanceToMuseum.setText(res.getString(R.string.waiting_for_service));
             refreshButton.setVisibility(View.INVISIBLE);
         }

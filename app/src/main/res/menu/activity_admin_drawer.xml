@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_baseline_map_24"
             android:title="Afficher carte" />
         <item
-            android:id="@+id/statisticsAdmin"
+            android:id="@+id/stats_admin"
             android:icon="@drawable/ic_baseline_statistics"
             android:title="@string/menu_statistique"/>
         <item

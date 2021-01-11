@@ -97,7 +97,7 @@ public final class Setters {
      * @return value if long, 0 if null.
      */
     public static long valueOrDefaultLong(Object value) {
-        return valueOrDefault(value, 0, 0);
+        return valueOrDefault(value, 0L, 0L);
     }
 
     /**
