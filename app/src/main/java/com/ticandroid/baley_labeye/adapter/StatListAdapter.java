@@ -23,9 +23,8 @@ import com.ticandroid.baley_labeye.holder.StatListHolder;
 import java.util.ArrayList;
 
 public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatListHolder> {
-    private transient final Context context;
     //private transient CollectionReference visits;
-    private transient ArrayList<VisitBean> visitBeans;
+    private final transient ArrayList<VisitBean> visitBeans;
 
     // private transient VisitBean visitBean;
 
@@ -37,7 +36,6 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
      */
     public StatListAdapter(Context context, @NonNull FirestoreRecyclerOptions<MuseumBean> options) {
         super(options);
-        this.context = context;
         visitBeans = new ArrayList<>();
         FirebaseFirestore.getInstance().collection("visites").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

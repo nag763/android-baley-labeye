@@ -32,14 +32,9 @@ import java.util.Objects;
 public class ProfilFragment extends Fragment {
 
     private transient ImageView image;
-    private transient TextView profil;
-    private transient TextView firstName;
-    private transient TextView lastName;
-    private transient TextView phone;
-    private transient TextView town;
     private transient StorageReference stm;
     private transient FirebaseAuth auth;
-    private transient static ProfilBean profilBean;
+    private transient ProfilBean profilBean;
 
     public static Fragment newInstance() {
         return (new ProfilFragment());
@@ -50,11 +45,11 @@ public class ProfilFragment extends Fragment {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_profil, container, false);
 
-        profil = root.findViewById(R.id.profil);
-        firstName = root.findViewById(R.id.firstname);
-        lastName = root.findViewById(R.id.lastname);
-        phone = root.findViewById(R.id.phone);
-        town = root.findViewById(R.id.town);
+        TextView profil = root.findViewById(R.id.profil);
+        TextView firstName = root.findViewById(R.id.firstname);
+        TextView lastName = root.findViewById(R.id.lastname);
+        TextView phone = root.findViewById(R.id.phone);
+        TextView town = root.findViewById(R.id.town);
         image = root.findViewById(R.id.image);
         auth = FirebaseAuth.getInstance();
         stm = FirebaseStorage.getInstance().getReference();

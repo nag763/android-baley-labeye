@@ -25,9 +25,7 @@ import com.ticandroid.baley_labeye.R;
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     private transient EditText email;
     private transient EditText password;
-    private transient Button login;
     private transient FirebaseAuth auth;
-    private transient TextView title;
     // TODO : Fix that
     private transient ProgressDialog progressDialog;
 
@@ -39,10 +37,10 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_connexion);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        login = findViewById(R.id.login);
+        Button login = findViewById(R.id.login);
         auth = FirebaseAuth.getInstance();
         login.setOnClickListener(this);
-        title = (TextView) findViewById(R.id.title);
+        TextView title = (TextView) findViewById(R.id.title);
         progressDialog = new ProgressDialog(this);
 
     }

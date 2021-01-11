@@ -27,9 +27,6 @@ import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragm
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private transient StorageReference stm;
-    private transient FirebaseAuth auth;
-
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -43,8 +40,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        auth = FirebaseAuth.getInstance();
-        stm = FirebaseStorage.getInstance().getReference();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        StorageReference stm = FirebaseStorage.getInstance().getReference();
         this.configureNavigationView();
         this.configureToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

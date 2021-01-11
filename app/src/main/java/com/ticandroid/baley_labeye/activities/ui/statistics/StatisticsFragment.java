@@ -23,8 +23,8 @@ import com.ticandroid.baley_labeye.R;
 public class StatisticsFragment extends Fragment {
 
 
-    private transient TextView title, nb, nombre, dist, distance;
-    private transient StorageReference stm;
+    private transient TextView nombre;
+    private transient TextView distance;
     private transient FirebaseAuth auth;
     private transient int count = 0;
     private transient double distanceParcourue = 0;
@@ -39,13 +39,13 @@ public class StatisticsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_statistics, container, false);
-        title = root.findViewById(R.id.stat);
-        nb = root.findViewById(R.id.nb);
+        TextView title = root.findViewById(R.id.stat);
+        TextView nb = root.findViewById(R.id.nb);
         nombre = root.findViewById(R.id.nombre);
-        dist = root.findViewById(R.id.dist);
+        TextView dist = root.findViewById(R.id.dist);
         distance = root.findViewById(R.id.distance);
         auth = FirebaseAuth.getInstance();
-        stm = FirebaseStorage.getInstance().getReference();
+        StorageReference stm = FirebaseStorage.getInstance().getReference();
 
         afficherNbMusees();
 

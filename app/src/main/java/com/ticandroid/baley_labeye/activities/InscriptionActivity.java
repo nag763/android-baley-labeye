@@ -36,7 +36,6 @@ import java.util.Map;
 
 
 public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener {
-    private transient TextView title;
     private transient EditText lastName;
     private transient EditText firstName;
     private transient EditText phone;
@@ -59,7 +58,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
-        title = (TextView) findViewById(R.id.title);
+        TextView title = (TextView) findViewById(R.id.title);
         lastName = findViewById(R.id.lastname);
         firstName = findViewById(R.id.firstname);
         phone = findViewById(R.id.phone);

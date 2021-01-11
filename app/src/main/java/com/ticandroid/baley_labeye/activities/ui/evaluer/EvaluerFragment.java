@@ -30,11 +30,7 @@ import java.util.Map;
 
 
 public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarChangeListener {
-    private transient Button button;
     private RatingBar ratingBar;
-    private transient TextView museum;
-    private transient StorageReference stm;
-    private transient FirebaseAuth auth;
     private transient static MuseumBean museumBean;
     private transient TextView number;
 
@@ -50,11 +46,11 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
                              Bundle savedInstanceState) {
         container.clearDisappearingChildren();
         View root = inflater.inflate(R.layout.fragment_evaluer, container, false);
-        museum = root.findViewById(R.id.museum);
-        button = root.findViewById(R.id.getRating);
+        TextView museum = root.findViewById(R.id.museum);
+        Button button = root.findViewById(R.id.getRating);
         number = root.findViewById(R.id.number);
-        auth = FirebaseAuth.getInstance();
-        stm = FirebaseStorage.getInstance().getReference();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        StorageReference stm = FirebaseStorage.getInstance().getReference();
         ratingBar = root.findViewById(R.id.rating);
         // ratingBar.setRating((float) 3.5);
         //number.setText(ratingBar.getRating()+"/"+ratingBar.getNumStars());
