@@ -46,7 +46,7 @@ public class StatisticsAdminFragment extends Fragment {
         SearchView searchView = root.findViewById(SEARCH_BAR);
         searchView.setOnQueryTextListener(new SearchBarListener());
         options = generateQuery();
-        adapter = new StatListAdapter(root.getContext(), options);
+        adapter = new StatListAdapter(options);
         TextView nbVist = root.findViewById(R.id.textTitle);
 
         // Place it in the recycler view
