@@ -20,23 +20,49 @@ import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
 import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment;
 
-
+/**
+ * admin activity with the navbar for the menu
+ * @author baley
+ */
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    //fetch xml content
+    /**
+     * drawer layout
+     */
     private transient DrawerLayout drawerLayout;
+    /**
+     * navigation view
+     */
     private transient NavigationView navigationView;
+    /**
+     * toolbar
+     */
     private transient Toolbar toolbar;
+    /**
+     * fragment map
+     */
     private transient Fragment fragmentMap;
+    /**
+     * fragment statistics
+     */
     private transient Fragment fragmentStatistics;
 
+    /**
+     * on create the activity
+     * @param savedInstanceState saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set the content view with the xml
         setContentView(R.layout.activity_admin);
+        //method called to configure the navigation view
         this.configureNavigationView();
+        //methode called to configure the toolbar
         this.configureToolbar();
         drawerLayout = findViewById(R.id.drawer_layout);
+        //action bar drawer to open or close the drawer
         ActionBarDrawerToggle actionBarDrawerToggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                         R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -52,19 +78,29 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+        //show the first fragment, the map of all museums
         this.showFirstFragment();
     }
 
+    /**
+     * method to configure the toolbar
+     */
     private void configureToolbar() {
         this.toolbar = findViewById(R.id.activity_toolbar);
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * method to configure the navigation view
+     */
     private void configureNavigationView() {
         this.navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /**
+     * method to show the first fragment
+     */
     private void showFirstFragment() {
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
         if (visibleFragment == null) {
@@ -75,6 +111,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    /**
+     * method to close or open the drawer when the user
+     * click on the back button
+     */
     @Override
     public void onBackPressed() {
         // 5 - Handle back click to close menu
@@ -85,6 +125,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
+    /**
+     * method to select the item the user wants to see
+     * @param item item
+     * @return true
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -107,6 +152,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
+    /**
+     * method to show the statistics fragment
+     * call the method to make a transaction of fragment
+     */
     private void showStatisticsFragment() {
         if (this.fragmentStatistics == null) {
             this.fragmentStatistics = StatisticsAdminFragment.newInstance();
@@ -114,6 +163,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         this.startTransactionFragment(this.fragmentStatistics);
     }
 
+    /**
+     * method to show the map fragment
+     * call the method to make a transaction of fragment
+     */
     private void showMapFragment() {
         if (this.fragmentMap == null) {
             this.fragmentMap = MapFragment.newInstance();
@@ -121,6 +174,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         this.startTransactionFragment(this.fragmentMap);
     }
 
+    /**
+     * method to start the transaction of fragment
+     * @param fragment fragment
+     */
     private void startTransactionFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 

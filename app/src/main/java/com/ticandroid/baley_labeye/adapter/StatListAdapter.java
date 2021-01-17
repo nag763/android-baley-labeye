@@ -22,29 +22,33 @@ import com.ticandroid.baley_labeye.holder.StatListHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author baley labeye
+ * statistics list adapter for the admin statistics fragment
+ */
 public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatListHolder> {
+    /**
+     * list of visit beans
+     */
     private final transient List<VisitBean> visitBeans;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
-     * @param options
+     * @param options options of the search
      */
     public StatListAdapter(@NonNull FirestoreRecyclerOptions<MuseumBean> options) {
         super(options);
         visitBeans = new ArrayList<>();
-        FirebaseFirestore.getInstance().collection("visites").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
-                        VisitBean visitBean = new VisitBean();
-                        visitBean.setNomDuMusee(doc.getString("nomDuMusee"));
-                        visitBean.setDistance(doc.getDouble("distance"));
-                        visitBean.setEvaluation(doc.getDouble("evaluation"));
-                        visitBeans.add(visitBean);
-                    }
+        FirebaseFirestore.getInstance().collection("visites").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot doc : task.getResult()) {
+                    VisitBean visitBean = new VisitBean();
+                    visitBean.setNomDuMusee(doc.getString("nomDuMusee"));
+                    visitBean.setDistance(doc.getDouble("distance"));
+                    visitBean.setEvaluation(doc.getDouble("evaluation"));
+                    visitBeans.add(visitBean);
                 }
             }
         });
@@ -52,7 +56,12 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
 
     }
 
-
+    /**
+     * on bind view holder
+     * @param holder holder
+     * @param position position
+     * @param model model
+     */
     @Override
     protected void onBindViewHolder(@NonNull StatListHolder holder, int position, @NonNull MuseumBean model) {
         final String title = model.getNomDuMusee();
@@ -75,6 +84,12 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
 
     }
 
+    /**
+     * on create view holder
+     * @param parent parent
+     * @param viewType view type
+     * @return stat list holder
+     */
     @NonNull
     @Override
     public StatListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
