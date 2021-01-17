@@ -12,14 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -33,28 +30,28 @@ import java.util.Objects;
 /**
  * @author baley
  * profil fragment of the user
- * show the personal information of the user
+ * show the personal information of the user.
  */
 public class ProfilFragment extends Fragment {
     /**
-     * image of the user
+     * image of the user.
      */
     private transient ImageView image;
     /**
-     * storage reference of the image
+     * storage reference of the image.
      */
     private transient StorageReference stm;
     /**
-     * auth of the user
+     * auth of the user.
      */
     private transient FirebaseAuth auth;
     /**
-     * bean profil used to fetch data in the bean
+     * bean profil used to fetch data in the bean.
      */
     private transient ProfilBean profilBean;
 
     /**
-     * new instance of the fragment
+     * new instance of the fragment.
      * @return  profil fragment
      */
     public static Fragment newInstance() {
@@ -62,7 +59,7 @@ public class ProfilFragment extends Fragment {
     }
 
     /**
-     * on create view
+     * on create view.
      * @param inflater inflater
      * @param container container
      * @param savedInstanceState saved instance state
@@ -102,7 +99,7 @@ public class ProfilFragment extends Fragment {
     }
 
     /**
-     * method to print the picture of the user
+     * method to print the picture of the user.
      */
     private void afficherImage() {
 

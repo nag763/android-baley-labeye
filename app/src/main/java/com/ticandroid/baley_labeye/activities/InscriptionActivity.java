@@ -18,15 +18,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.ticandroid.baley_labeye.R;
 
 import java.util.HashMap;
@@ -34,74 +30,74 @@ import java.util.Map;
 
 /**
  * @author baley
- * This activity is used to register the user
+ * This activity is used to register the user.
  */
 public class InscriptionActivity extends AppCompatActivity implements View.OnClickListener {
     /**
-     * lastname of the user
+     * lastname of the user.
      */
     private transient EditText lastName;
     /**
-     * firstname of the user
+     * firstname of the user.
      */
     private transient EditText firstName;
     /**
-     * phone of the user
+     * phone of the user.
      */
     private transient EditText phone;
     /**
-     * town of the user
+     * town of the user.
      */
     private transient EditText town;
     /**
-     * email of the user
+     * email of the user.
      */
     private transient EditText email;
     /**
-     * password of the user
+     * password of the user.
      */
     private transient EditText password;
     /**
-     * register button
+     * register button.
      */
     private transient Button register;
     /**
-     * picture button
+     * picture button.
      */
     private transient Button picture;
     //auth and the database
     /**
-     * auth of the user
+     * auth of the user.
      */
     private transient FirebaseAuth auth;
     /**
-     * database
+     * database.
      */
     private transient FirebaseFirestore db;
     /**
-     * image of the user selected
+     * image of the user selected.
      */
     private transient ImageView imageView;
     /**
-     * uri of the image selected
+     * uri of the image selected.
      */
     private transient Uri imageUri;
     /**
-     * progress dialog
+     * progress dialog.
      */
     private transient ProgressDialog progressDialog;
     //code to check if the user allows the app to take a picture from the phone
     /**
-     * image pick code
+     * image pick code.
      */
     private static final int IMAGE_PICK_CODE = 1000;
     /**
-     * permission code
+     * permission code.
      */
     private static final int PERMISSION_CODE = 1001;
 
     /**
-     * on create method
+     * on create method.
      * @param savedInstanceState saved instance state
      */
     @Override
@@ -130,7 +126,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * method to pick an image from gallery after the authorisation
+     * method to pick an image from gallery after the authorisation.
      */
     private void pickImageFromGallery() {
         Intent pickIntent = new Intent(Intent.ACTION_PICK);
@@ -139,9 +135,9 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * store the picture in the database after the user is registered
-     * On success, the user is redirected in the main activity
-     * On failure, the picture is not registered but the user is registered
+     * store the picture in the database after the user is registered.
+     * On success, the user is redirected in the main activity.
+     * On failure, the picture is not registered but the user is registered.
      */
     private void registerPicture() {
         if (imageUri != null) {
@@ -161,7 +157,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * register the user with email and password
-     * then store in firestore the personal information of the user
+     * then store in firestore the personal information of the user.
      * @param lastName lastname
      * @param firstName firstname
      * @param phone phone
@@ -195,7 +191,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * on click to check if the user wants to take a picture or
-     * to register
+     * to register.
      * @param v view
      */
     @Override

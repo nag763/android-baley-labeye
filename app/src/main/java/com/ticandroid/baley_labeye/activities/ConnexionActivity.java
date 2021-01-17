@@ -9,12 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,37 +22,37 @@ import com.ticandroid.baley_labeye.utils.ErrorHandler;
 
 /**
  * @author baley
- * activity connexion to login the user to the app
+ * activity connexion to login the user to the app.
  */
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
     /**
-     * email of the user
+     * email of the user.
      */
     private transient EditText email;
     /**
-     * password of the user
+     * password of the user.
      */
     private transient EditText password;
     /**
-     * auth of the current user
+     * auth of the current user.
      */
     private transient FirebaseAuth auth;
     /**
-     * progress dialog
+     * progress dialog.
      */
     private transient ProgressDialog progressDialog;
     /**
-     * context
+     * context.
      */
     private transient Context context;
     /**
-     * instance of the firestore database
+     * instance of the firestore database.
      */
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     /**
      * on creating the activity
-     * fetch the xml content
+     * fetch the xml content.
      * @param savedInstanceState instance saved
      */
     @Override
@@ -73,7 +70,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     /**
-     * On click listener to call the loginUser method to login the user
+     * On click listener to call the loginUser method to login the user.
      * @param v view
      */
     @Override
@@ -84,7 +81,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     /**
-     * login the user with email and password
+     * login the user with email and password.
      * @param email email
      * @param password password
      */

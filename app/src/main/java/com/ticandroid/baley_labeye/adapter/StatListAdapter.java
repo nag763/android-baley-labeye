@@ -9,11 +9,8 @@ import androidx.annotation.NonNull;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.ticandroid.baley_labeye.R;
 import com.ticandroid.baley_labeye.beans.MuseumBean;
 import com.ticandroid.baley_labeye.beans.VisitBean;
@@ -24,11 +21,11 @@ import java.util.List;
 
 /**
  * @author baley labeye
- * statistics list adapter for the admin statistics fragment
+ * statistics list adapter for the admin statistics fragment.
  */
 public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatListHolder> {
     /**
-     * list of visit beans
+     * list of visit beans.
      */
     private final transient List<VisitBean> visitBeans;
 
@@ -57,7 +54,7 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
     }
 
     /**
-     * on bind view holder
+     * on bind view holder.
      * @param holder holder
      * @param position position
      * @param model model
@@ -85,7 +82,7 @@ public class StatListAdapter extends FirestoreRecyclerAdapter<MuseumBean, StatLi
     }
 
     /**
-     * on create view holder
+     * on create view holder.
      * @param parent parent
      * @param viewType view type
      * @return stat list holder

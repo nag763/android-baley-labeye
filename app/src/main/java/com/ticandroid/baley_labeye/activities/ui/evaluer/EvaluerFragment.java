@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.ticandroid.baley_labeye.R;
 
@@ -31,7 +30,7 @@ import java.util.Map;
  * this user can evaluate the last museum visited
  * the last museum will be shown
  * the user will see the note he gave to the museum and can
- * change it
+ * change it.
  */
 public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarChangeListener {
     private transient RatingBar ratingBar;
@@ -45,7 +44,7 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
 
     /**
      * on create view
-     * fetch the xml content
+     * fetch the xml content.
      * @param inflater inflater
      * @param container container
      * @param savedInstanceState saved instance state
@@ -108,7 +107,7 @@ public class EvaluerFragment extends Fragment implements RatingBar.OnRatingBarCh
     }
 
     /**
-     * on rating changed print the rate selected
+     * on rating changed print the rate selected.
      * @param ratingBar rating bar
      * @param rating rating
      * @param fromUser from user
