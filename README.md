@@ -15,6 +15,11 @@ The subject is to create an Android app that will display the museums nearby the
 ![user](https://github.com/nag763/android-baley-labeye/blob/master/user.gif)
 ![admin](https://github.com/nag763/android-baley-labeye/blob/master/admin.gif)
 
+## Trends
+
+![sloc](https://github.com/nag763/android-baley-labeye/blob/master/reports/sloc.png)
+![admin](https://github.com/nag763/android-baley-labeye/blob/master/reports/reports.png)
+
 ## TODO List
 
 - [x] Authentication and inscription of the user
