@@ -6,6 +6,15 @@ This project is part of our studies in our third year at ESIGELEC.
 
 The subject is to create an Android app that will display the museums nearby the user and save datas around it while using the Firebase technology.
 
+## Download app 
+
+![qrcode](https://github.com/nag763/android-baley-labeye/blob/master/dlapp.png)
+
+## Demo
+
+![user](https://github.com/nag763/android-baley-labeye/blob/master/user.gif)
+![admin](https://github.com/nag763/android-baley-labeye/blob/master/admin.gif)
+
 ## TODO List
 
 - [x] Authentication and inscription of the user
