@@ -4,23 +4,23 @@ import android.widget.ImageView;
 
 /**
  * @author baley
- * bean profil
+ * bean profil.
  */
 public class ProfilBean {
     /**
-     * firstname of the user
+     * firstname of the user.
      */
     private String firstName;
     /**
-     * lastname of the user
+     * lastname of the user.
      */
     private String lastName;
     /**
-     * phone of the user
+     * phone of the user.
      */
     private String phone;
     /**
-     * town of the user
+     * town of the user.
      */
     private String town;
 

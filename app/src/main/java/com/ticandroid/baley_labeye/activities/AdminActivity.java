@@ -21,35 +21,35 @@ import com.ticandroid.baley_labeye.activities.ui.map.MapFragment;
 import com.ticandroid.baley_labeye.activities.ui.statistics.StatisticsAdminFragment;
 
 /**
- * admin activity with the navbar for the menu
+ * admin activity with the navbar for the menu.
  * @author baley
  */
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //fetch xml content
     /**
-     * drawer layout
+     * drawer layout.
      */
     private transient DrawerLayout drawerLayout;
     /**
-     * navigation view
+     * navigation view.
      */
     private transient NavigationView navigationView;
     /**
-     * toolbar
+     * toolbar.
      */
     private transient Toolbar toolbar;
     /**
-     * fragment map
+     * fragment map.
      */
     private transient Fragment fragmentMap;
     /**
-     * fragment statistics
+     * fragment statistics.
      */
     private transient Fragment fragmentStatistics;
 
     /**
-     * on create the activity
+     * on create the activity.
      * @param savedInstanceState saved instance state
      */
     @Override
@@ -83,7 +83,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     /**
-     * method to configure the toolbar
+     * method to configure the toolbar.
      */
     private void configureToolbar() {
         this.toolbar = findViewById(R.id.activity_toolbar);
@@ -91,7 +91,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     /**
-     * method to configure the navigation view
+     * method to configure the navigation view.
      */
     private void configureNavigationView() {
         this.navigationView = findViewById(R.id.nav_view);
@@ -99,7 +99,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     /**
-     * method to show the first fragment
+     * method to show the first fragment.
      */
     private void showFirstFragment() {
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
@@ -113,7 +113,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     /**
      * method to close or open the drawer when the user
-     * click on the back button
+     * click on the back button.
      */
     @Override
     public void onBackPressed() {
@@ -126,7 +126,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     /**
-     * method to select the item the user wants to see
+     * method to select the item the user wants to see.
      * @param item item
      * @return true
      */
@@ -154,7 +154,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     /**
      * method to show the statistics fragment
-     * call the method to make a transaction of fragment
+     * call the method to make a transaction of fragment.
      */
     private void showStatisticsFragment() {
         if (this.fragmentStatistics == null) {
@@ -165,7 +165,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
     /**
      * method to show the map fragment
-     * call the method to make a transaction of fragment
+     * call the method to make a transaction of fragment.
      */
     private void showMapFragment() {
         if (this.fragmentMap == null) {
@@ -175,7 +175,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     /**
-     * method to start the transaction of fragment
+     * method to start the transaction of fragment.
      * @param fragment fragment
      */
     private void startTransactionFragment(Fragment fragment) {

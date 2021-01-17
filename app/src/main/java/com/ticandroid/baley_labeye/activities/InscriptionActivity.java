@@ -225,7 +225,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * when the user took a picture
-     * it comes back to the inscription activity with the picture
+     * it comes back to the inscription activity with the picture.
      * @param requestCode request code
      * @param resultCode result code
      * @param data data
@@ -240,7 +240,7 @@ public class InscriptionActivity extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     * request the permission of the user to see if the user accepted the app to take a picture
+     * request the permission of the user to see if the user accepted the app to take a picture.
      * @param requestCode request code
      * @param permissions permissions
      * @param grantResults grant results

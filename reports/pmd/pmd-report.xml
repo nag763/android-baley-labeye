@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.26.0" timestamp="2020-12-04T15:12:25.838">
-<file name="/home/usr/AndroidStudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/MainActivity.java">
-<violation beginline="12" endline="12" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Best Practices" package="com.ticandroid.baley_labeye" class="MainActivity" method="onCreate" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
-System.out.println is used
-</violation>
-<violation beginline="15" endline="15" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Best Practices" package="com.ticandroid.baley_labeye" class="MainActivity" method="onCreate" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#systemprintln" priority="2">
-System.out.println is used
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.26.0" timestamp="2021-01-17T13:21:01.041">
+<file name="/home/usr/StudioProjects/android-baley-labeye/app/src/main/java/com/ticandroid/baley_labeye/utils/ErrorHandler.java">
+<violation beginline="6" endline="6" begincolumn="1" endcolumn="38" rule="UnusedImports" ruleset="Best Practices" package="com.ticandroid.baley_labeye.utils" class="ErrorHandler" externalInfoUrl="https://pmd.github.io/pmd-6.26.0/pmd_rules_java_bestpractices.html#unusedimports" priority="4">
+Avoid unused imports such as 'androidx.fragment.app.Fragment'
 </violation>
 </file>
 </pmd>

@@ -19,33 +19,33 @@ import java.util.Locale;
 /**
  * @author baley
  * fragment statistics to show which distance the user
- * made and the number of museums visited by the user
+ * made and the number of museums visited by the user.
  */
 public class StatisticsFragment extends Fragment {
 
     /**
-     * number of museums visited
+     * number of museums visited.
      */
     private transient TextView nombre;
     /**
-     * distance made by the user to visit museums
+     * distance made by the user to visit museums.
      */
     private transient TextView distance;
     /**
-     * current user auth
+     * current user auth.
      */
     private transient FirebaseAuth auth;
     /**
-     * count the number of museums visited
+     * count the number of museums visited.
      */
     private transient int count = 0;
     /**
-     * count the distance made by the user
+     * count the distance made by the user.
      */
     private transient double distanceParcourue = 0;
 
     /**
-     * new instance of the fragment
+     * new instance of the fragment.
      * @return new StatisticsFragment
      */
     public static Fragment newInstance() {
@@ -53,7 +53,7 @@ public class StatisticsFragment extends Fragment {
     }
 
     /**
-     * on create view
+     * on create view.
      * @param inflater inflater
      * @param container container
      * @param savedInstanceState saved instance
@@ -76,7 +76,7 @@ public class StatisticsFragment extends Fragment {
     }
 
     /**
-     * method to print the number of museums visited by the user
+     * method to print the number of museums visited by the user.
      */
     private void afficherNbMusees() {
 

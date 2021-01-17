@@ -21,44 +21,44 @@ import com.ticandroid.baley_labeye.beans.MuseumBean;
 
 /**
  * @author baley labeye
- * statistics admin fragment to see the statistics of the museums
+ * statistics admin fragment to see the statistics of the museums.
  */
 public class StatisticsAdminFragment extends Fragment {
     /**
-     * layout of the fragment
+     * layout of the fragment.
      */
     private static final int LAYOUT = R.layout.fragment_statistics_admin;
     /**
-     * recycler view of the fragment
+     * recycler view of the fragment.
      */
     private static final int RECYCLER_VIEW = R.id.recycler_view;
     /**
-     * search bar of the fragment
+     * search bar of the fragment.
      */
     private static final int SEARCH_BAR = R.id.search_bar;
     /**
-     * query path museums
+     * query path museums.
      */
     private static final String QUERY_PATH = "museums";
     /**
-     * instance of firestore
+     * instance of firestore.
      */
     private transient final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     /**
-     * adapter of the list result for each search the admin wants
+     * adapter of the list result for each search the admin wants.
      */
     private transient StatListAdapter adapter;
     /**
-     * recycler option of firestore
+     * recycler option of firestore.
      */
     private transient FirestoreRecyclerOptions<MuseumBean> options;
     /**
-     * number of visits of museums
+     * number of visits of museums.
      */
     private transient int nbVisites;
 
     /**
-     * new instance of the fragment
+     * new instance of the fragment.
      * @return fragment
      */
     public static Fragment newInstance() {
@@ -69,7 +69,7 @@ public class StatisticsAdminFragment extends Fragment {
     }
 
     /**
-     * on create view
+     * on create view.
      * @param inflater inflater
      * @param container container
      * @param savedInstanceState saved instance state
@@ -98,7 +98,7 @@ public class StatisticsAdminFragment extends Fragment {
     }
 
     /**
-     * on stop method to stop the listening of the search bar
+     * on stop method to stop the listening of the search bar.
      */
     @Override
     public void onStop() {
@@ -108,7 +108,7 @@ public class StatisticsAdminFragment extends Fragment {
     }
 
     /**
-     * on start method to start listening the search bar
+     * on start method to start listening the search bar.
      */
     @Override
     public void onStart() {
@@ -119,7 +119,7 @@ public class StatisticsAdminFragment extends Fragment {
 
     /**
      * recycler options of museum bean to fetch data which
-     * starts with the string the user entered in the search bar
+     * starts with the string the user entered in the search bar.
      * @param startsWith start with
      * @return new options
      */
@@ -143,7 +143,7 @@ public class StatisticsAdminFragment extends Fragment {
     }
 
     /**
-     * method to generate the query
+     * method to generate the query.
      * @return a set query
      */
     private FirestoreRecyclerOptions<MuseumBean> generateQuery() {
@@ -155,7 +155,7 @@ public class StatisticsAdminFragment extends Fragment {
     }
 
     /**
-     * class search bar listener to listen what is printed in the search bar
+     * class search bar listener to listen what is printed in the search bar.
      */
     private class SearchBarListener implements SearchView.OnQueryTextListener {
 
@@ -172,7 +172,7 @@ public class StatisticsAdminFragment extends Fragment {
         }
 
         /**
-         * method to update the options searched
+         * method to update the options searched.
          * @param query query
          * @return true
          */

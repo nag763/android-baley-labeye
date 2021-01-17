@@ -37,66 +37,66 @@ import java.util.Objects;
 
 /**
  * This activity is the main activity where you can
- * navigate between all fragments of the app
+ * navigate between all fragments of the app.
  * @author baley
  */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 //instance of all components needed connected with the xml
     /**
-     * text which shows the number of museums visited
+     * text which shows the number of museums visited.
      */
     private transient TextView textView;
     /**
-     * image of the user
+     * image of the user.
      */
     private transient ImageView imageView;
     /**
-     * storage reference of the image of the user
+     * storage reference of the image of the user.
      */
     private transient StorageReference stm;
     /**
-     * auth of the user
+     * auth of the user.
      */
     private transient FirebaseAuth auth;
     /**
-     * drawer layout
+     * drawer layout.
      */
     private transient DrawerLayout drawerLayout;
     /**
-     * navigation view
+     * navigation view.
      */
     private transient NavigationView navigationView;
     /**
-     * toolbar
+     * toolbar.
      */
     private transient Toolbar toolbar;
     /**
-     * fragment profil
+     * fragment profil.
      */
     private transient Fragment fragmentProfil;
     /**
-     * fragment of the museum list
+     * fragment of the museum list.
      */
     private transient Fragment fragmentMuseumList;
     /**
-     * fragment of the visits list
+     * fragment of the visits list.
      */
     private transient Fragment fragmentVisitList;
     /**
-     * fragment evaluate
+     * fragment evaluate.
      */
     private transient Fragment fragmentEvaluer;
     /**
-     * fragment of statistics
+     * fragment of statistics.
      */
     private transient Fragment fragmentStatistics;
     /**
-     * number of museums visited by the user
+     * number of museums visited by the user.
      */
     private transient int count = 0;
 
     /**
-     * on create
+     * on create.
      * @param savedInstanceState saved instance state
      */
     @Override
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * method called to show the first fragment when the user is connected : profil fragment
+     * method called to show the first fragment when the user is connected : profil fragment.
      */
     private void showFirstFragment() {
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * configuration of the toolbar
+     * configuration of the toolbar.
      */
     private void configureToolbar() {
         this.toolbar = findViewById(R.id.activity_toolbar);
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * configuration of the navigation view
+     * configuration of the navigation view.
      */
     private void configureNavigationView() {
         this.navigationView = findViewById(R.id.nav_view);
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * print number of museum visited by the user
+     * print number of museum visited by the user.
      */
     private void afficherNbMusees() {
 
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * print the image of the user
+     * print the image of the user.
      */
     private void afficherImage() {
 
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * onBackPressed to open or close the drawer
+     * onBackPressed to open or close the drawer.
      */
     @Override
     public void onBackPressed() {
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the fragment selected by the user
+     * show the fragment selected by the user.
      * @param item item
      * @return true
      */
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the profil fragment
+     * show the profil fragment.
      */
     private void showProfilFragment() {
         if (this.fragmentProfil == null) {
@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the museum fragment
+     * show the museum fragment.
      */
     private void showMuseumListFragment() {
         if (this.fragmentMuseumList == null) {
@@ -277,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the evaluate fragment
+     * show the evaluate fragment.
      */
     private void showEvaluerFragment() {
         if (this.fragmentEvaluer == null) {
@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the museum fragment
+     * show the museum fragment.
      */
     private void showMuseumVisitFragment() {
         if (this.fragmentVisitList == null) {
@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * show the statistics fragment
+     * show the statistics fragment.
      */
     private void showStatisticsFragment() {
         if (this.fragmentStatistics == null) {
@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * start the transaction of the fragment selected
+     * start the transaction of the fragment selected.
      * @param fragment fragment
      */
     private void startTransactionFragment(Fragment fragment) {
